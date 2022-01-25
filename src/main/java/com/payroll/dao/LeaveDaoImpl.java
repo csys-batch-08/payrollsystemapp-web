@@ -5,15 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Scanner;
 
-import com.payroll.model.Departments;
 import com.payroll.model.Employee;
-import com.payroll.model.Grade;
 import com.payroll.model.Leave;
 
 public class LeaveDaoImpl {
@@ -23,8 +19,9 @@ public class LeaveDaoImpl {
 		ConnectionUtilImpl connection=new ConnectionUtilImpl();
 		Connection con=connection.dbConnect();
 		EmployeeDaoImpl employeeDaoImpl=new EmployeeDaoImpl();
+		PreparedStatement pstmt=null;
 		try {
-			PreparedStatement pstmt=con.prepareStatement(query);
+			pstmt=con.prepareStatement(query);
 			int empId=employeeDaoImpl.findEmployeeID(leave.getEmploy());
 			pstmt.setInt(1, empId);
 			pstmt.setDate(2, new java.sql.Date(leave.getLeaveDt().getTime()));
@@ -35,6 +32,9 @@ public class LeaveDaoImpl {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+		finally {
+			ConnectionUtilImpl.closePreparedStatement(pstmt, con);
 		}
 		return result;
 		
@@ -50,8 +50,9 @@ public class LeaveDaoImpl {
 		EmployeeDaoImpl employeeDaoImpl=new EmployeeDaoImpl();
 
 		Connection con=connection.dbConnect();
+		Statement stmt=null;
 		try {
-			Statement stmt=con.createStatement();
+			stmt=con.createStatement();
 			ResultSet rs=stmt.executeQuery(showQuery);
 			while(rs.next())
 			{
@@ -65,6 +66,10 @@ public class LeaveDaoImpl {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		finally {
+			ConnectionUtilImpl.closeStatement(stmt, con);
+		}
+		
 		
 		return leaveList;
 	}
@@ -79,9 +84,10 @@ public class LeaveDaoImpl {
 		String findId="select leave_id from leave_details where EMP_ID = ? and leave_date = ? ";
 		ConnectionUtilImpl connection=new ConnectionUtilImpl();
 		Connection con=connection.dbConnect();
+		PreparedStatement pstmt=null;
 		int id = 0;
 		try {
-			PreparedStatement pstmt=con.prepareStatement(findId);
+			pstmt=con.prepareStatement(findId);
 			pstmt.setInt(1, empID);
 			pstmt.setDate(2, new java.sql.Date(leave.getLeaveDt().getTime()));
 			
@@ -93,6 +99,9 @@ public class LeaveDaoImpl {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		finally {
+			ConnectionUtilImpl.closePreparedStatement(pstmt, con);
+		}
 		return id;
 	}
 	public  Leave findLeave(Date leaveDt,int empId) {
@@ -102,8 +111,9 @@ public class LeaveDaoImpl {
 		Connection con=connection.dbConnect();
 		
 		Leave leave=null;
+		PreparedStatement pstmt=null;
 		try {
-			PreparedStatement pstmt=con.prepareStatement(qry);
+			pstmt=con.prepareStatement(qry);
 			pstmt.setDate(1, new java.sql.Date(leaveDt.getTime()));
 			EmployeeDaoImpl employeeDaoImpl=new EmployeeDaoImpl();
 
@@ -116,6 +126,9 @@ public class LeaveDaoImpl {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		finally {
+			ConnectionUtilImpl.closePreparedStatement(pstmt, con);
+		}
 		
 		return leave;
 		
@@ -125,9 +138,10 @@ public class LeaveDaoImpl {
 	ConnectionUtilImpl connection=new ConnectionUtilImpl();
 	Connection con=connection.dbConnect();
 	int count=0;
+	Statement stmt=null;
 
 	try {
-		Statement stmt=con.createStatement();
+		stmt=con.createStatement();
 		ResultSet rs=stmt.executeQuery(query);
 		if(rs.next()) {
 			count=rs.getInt(1);
@@ -136,6 +150,9 @@ public class LeaveDaoImpl {
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
+	}
+	finally {
+		ConnectionUtilImpl.closeStatement(stmt, con);
 	}
 	
 	return count;
@@ -147,10 +164,10 @@ public  Leave findLeave(int leaveId) {
 		ConnectionUtilImpl connection=new ConnectionUtilImpl();
 		Connection con=connection.dbConnect();
 		EmployeeDaoImpl employeeDaoImpl=new EmployeeDaoImpl();
-
+		Statement stmt=null;
 		Leave leave=null;
 		try {
-			Statement stmt=con.createStatement();
+			stmt=con.createStatement();
 			ResultSet rs=stmt.executeQuery(qry);
 			while(rs.next()) {
 				Employee emp=employeeDaoImpl.findEmployee(rs.getInt(2));
@@ -158,6 +175,9 @@ public  Leave findLeave(int leaveId) {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}
+		finally {
+			ConnectionUtilImpl.closeStatement(stmt, con);
 		}
 		
 		return leave;
@@ -167,7 +187,7 @@ public int deleteLeave(Leave leave) {
 	String query="delete from leave_details where LEAVE_ID =?";
 	ConnectionUtilImpl connection=new ConnectionUtilImpl();
 	Connection con=connection.dbConnect();
-	PreparedStatement pstmt;
+	PreparedStatement pstmt=null;
 	int i=0;
 	try {
 		pstmt = con.prepareStatement(query);
@@ -177,6 +197,9 @@ public int deleteLeave(Leave leave) {
 	} catch (SQLException e) {
 		e.printStackTrace();
 	}
+	finally {
+		ConnectionUtilImpl.closePreparedStatement(pstmt, con);
+	}
 	return i;
 	
 }
@@ -184,7 +207,7 @@ public int updateLeave(Leave leave) {
 	String query="update leave_details set LEAVE_DATE=?,REASON=? where LEAVE_ID=?";
 	ConnectionUtilImpl connection=new ConnectionUtilImpl();
 	Connection con=connection.dbConnect();
-	PreparedStatement pstmt;
+	PreparedStatement pstmt=null;
 	int i=0;
 	try {
 		pstmt = con.prepareStatement(query);
@@ -197,6 +220,9 @@ public int updateLeave(Leave leave) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
+	finally {
+		ConnectionUtilImpl.closePreparedStatement(pstmt, con);
+	}
 	return i;
 	
 	
@@ -207,8 +233,9 @@ public List<Leave> searchLeave(Date fromDt,Date toDate){
 	String searchQuery="select LEAVE_ID,EMP_ID,LEAVE_DATE,REASON from leave_details where LEAVE_DATE  between ? and ?";
 	List<Leave> leaveList=new ArrayList<Leave>();
 	ResultSet rs=null;
+	PreparedStatement pstmt=null;
 	try {
-		PreparedStatement pstmt=con.prepareStatement(searchQuery);
+		pstmt=con.prepareStatement(searchQuery);
 		pstmt.setDate(1,new java.sql.Date (fromDt.getTime()));
 		pstmt.setDate(2,new java.sql.Date(toDate.getTime()));
 		rs=pstmt.executeQuery();
@@ -223,6 +250,10 @@ public List<Leave> searchLeave(Date fromDt,Date toDate){
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
+	}
+	finally {
+		ConnectionUtilImpl.closePreparedStatement(pstmt, con);
+		
 	}
 	
 	return leaveList;

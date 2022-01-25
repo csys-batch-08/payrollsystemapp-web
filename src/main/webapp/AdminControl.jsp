@@ -95,9 +95,9 @@ ADMIN CONTROLS
 <i class="fa fa-caret-down"></i>
 </button>
 <div class="dropdown-content" id="downNav">
-<a href="EmpShow.jsp">Show Active Employ</a>
+<a href="ShowEmployee">Show Active Employ</a>
 <a href="EmployAdd.jsp">ADD Employee </a>
-<a href="EmpShowInactive.jsp">Show In-Active Employ</a>
+<a href="ShowInactiveEmploy">Show In-Active Employ</a>
 </div>
 </div>
 
@@ -107,7 +107,7 @@ ADMIN CONTROLS
 </button>
 <div class="dropdown-content" id="downNav">
 <a href="DepartmentAdd.jsp">ADD Department </a>
-<a href="DepartShow.jsp">Department Show</a>
+<a href="showDept">Department Show</a>
 </div>
 </div>
 

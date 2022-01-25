@@ -1,5 +1,7 @@
 <%@page import="com.payroll.model.Employee"%>
 <%@page import="com.payroll.dao.EmployeeDaoImpl"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -60,11 +62,6 @@ if(data!=null){
 	<%session.removeAttribute("dataInvalid"); %>
 <%} %>
 
-
-<% int empId=Integer.parseInt(request.getParameter("empId"));
-EmployeeDaoImpl employDao=new EmployeeDaoImpl();
-Employee employ=employDao.findEmployee(empId);
-%>
  <div class="empDiv">
  
 <h3 class="text-warning">EMPLOYEE UPDATE</h3><br>
@@ -74,12 +71,15 @@ Employee employ=employDao.findEmployee(empId);
 <div >
 <br>
 <table>
+
 <tr>
+<c:forEach items="${sessionScope.Updemploy}" var="employ">
+
 <td>
   <label for="empName">EMPLOYEE NAME</label>
   </td>
   <td>
-<input type="text" id="empName" name="name"  autofocus="autofocus" value="<%=employ.getEmpName()%>"><br><br>
+<input type="text" id="empName" name="name"  autofocus="autofocus" value="${employ.empName }"><br><br>
 </td>
 </tr>
 <tr>
@@ -88,7 +88,7 @@ Employee employ=employDao.findEmployee(empId);
 <label for="empDob">DATE OF BIRTH</label>
 </td>
 <td>
-<input type="date" id="empDob" name="dob" value="<%=employ.getDob() %>"><br><br>
+<input type="date" id="empDob" name="dob" value="${employ.dob }"><br><br>
 </td>
 </tr>
 <tr>
@@ -97,7 +97,7 @@ Employee employ=employDao.findEmployee(empId);
 <label for="empDoj">DATE OF JOINING</label>
 </td>
 <td>
-<input type="date" id="empDoj" name="doj" value="<%=employ.getDoj() %>"><br><br>
+<input type="date" id="empDoj" name="doj" value="${employ.doj }"><br><br>
 </td>
 </tr>
 <tr>
@@ -106,7 +106,7 @@ Employee employ=employDao.findEmployee(empId);
 <label for="empAddress">ADDRESS</label>
 </td>
 <td>
-<input type="text" id="empAddress" name="address" value="<%=employ.getAddress() %>"><br><br>
+<input type="text" id="empAddress" name="address" value="${employ.address }"><br><br>
 </td>
 </tr>
 <tr>
@@ -115,7 +115,7 @@ Employee employ=employDao.findEmployee(empId);
 <label for="empCity">CITY</label>
 </td>
 <td>
-<input type="text" id="empCity" name="city" value="<%=employ.getCity()%>"><br><br>
+<input type="text" id="empCity" name="city" value="${employ.city }"><br><br>
 </td>
 </tr>
 <tr>
@@ -124,7 +124,7 @@ Employee employ=employDao.findEmployee(empId);
 <label for="empPin">PINCODE</label>
 </td>
 <td>
-<input type="number" maxlength="6" id="empPin" name="pincode" value="<%=employ.getPincode() %>"><br><br>
+<input type="number" maxlength="6" id="empPin" name="pincode" value="${employ.pincode }"><br><br>
 </td>
 </tr>
 <tr>
@@ -133,7 +133,7 @@ Employee employ=employDao.findEmployee(empId);
 <label for="empNo">MOBILE NUMBER</label>
 </td>
 <td>
-<input type="number" id="empNo" maxlength="10" name="mobile" value="<%=employ.getMobileNo() %>"><br><br>
+<input type="number" id="empNo" maxlength="10" name="mobile" value="${employ.mobileNo }"><br><br>
 </td>
 </tr>
 <tr>
@@ -142,7 +142,7 @@ Employee employ=employDao.findEmployee(empId);
 <label for="empState">STATE</label>
 </td>
 <td>
-<input type="text" id="empState" name="state" value="<%=employ.getState() %>" ><br><br>
+<input type="text" id="empState" name="state" value="${employ.state }" ><br><br>
 </td>
 </tr>
 <tr>
@@ -151,7 +151,7 @@ Employee employ=employDao.findEmployee(empId);
 <label for="empEmail">EMAIL ID</label>
 </td>
 <td>
-<input type="text" id="empEmail" name="email" value="<%=employ.getMailId() %>"><br><br>
+<input type="text" id="empEmail" name="email" value="${employ.mailId }"><br><br>
 </td>
 </tr>
 <tr>
@@ -160,7 +160,7 @@ Employee employ=employDao.findEmployee(empId);
 <label for="empPan">PAN NUMBER</label>
 </td>
 <td>
-<input type="text" id="empPan"  maxlength="10" name="pan" value="<%=employ.getPanNo() %>"><br><br>
+<input type="text" id="empPan"  maxlength="10" name="pan" value="${employ.panNo }"><br><br>
 </td>
 </tr>
 <tr>
@@ -168,7 +168,7 @@ Employee employ=employDao.findEmployee(empId);
 <label for="empDepart">DEPARTMENT ID</label>
 </td>
 <td>
-<input type="text" id="deptName" name="dId" value="<%=employ.getDept().getDeptId() %>"><br><br>
+<input type="text" id="deptName" name="dId" value="${employ.dept.deptId }"><br><br>
 </td>
 </tr>
 <tr>
@@ -177,9 +177,10 @@ Employee employ=employDao.findEmployee(empId);
 <label for="gradeId">GRADE ID</label>
 </td>
 <td>
-<input type="number" min="1"  name="grdId" value="<%=employ.getGrade().getGradeId()%>"><br><br>
+<input type="number" min="1"  name="grdId" value="${employ.grade.gradeId}"><br><br>
 </td>
 </tr>
+</c:forEach>
 </table>
 
 <input type="submit" class="btn btn-primary">

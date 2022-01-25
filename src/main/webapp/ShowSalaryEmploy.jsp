@@ -110,11 +110,12 @@ margin-left: 10px;
 <tr class="bg-primary">
 <td>EMPLOYEE ID</td>
 <td>DEPARTMENT NAME</td>
-<td>Grade Name</td>
-<td>Total Leave</td>
-<td>Salary Date</td>
-<td>Gross Salary</td>
-<td>Actual Salary</td>
+<td>GRADE NAME</td>
+<td>TOTAL LEAVE</td>
+<td>SALARY DATE</td>
+<td>GROSS SALARY</td>
+<td>ACTUAL SALARY</td>
+<td>DELETE</td>
 </tr>
 
 <%SalaryCalculateDaoImpl salaryCal=new SalaryCalculateDaoImpl();
@@ -133,6 +134,7 @@ for(int i=0;i<SalaryEmploy.size();i++){
 <td><%=salary.getSalaryDate() %></td>
 <td><%=salary.getGross() %></td>
 <td><%=salary.getSalary() %></td>
+<td><a href="salDel?salId=<%=salary.getTransId() %>">DELETE</a></td>
 </tr>
 <%} %>
 </table>

@@ -20,10 +20,11 @@ public class EmployStatusUpd extends HttpServlet {
 		Employee employ=employeeDao.findEmployee(empId);
 		int i=employeeDao.updateStatusActive(employ);
 		if(i!=0) {
+			
 			PrintWriter out =response.getWriter();
 			out.println("<script type=\"text/javascript\">");
 			out.println("alert('Employee Status Updated ');");
-			out.println("location='EmpShow.jsp';");
+			out.println("location='ShowEmployee';");
 			out.println("</script>");
 		}
 		

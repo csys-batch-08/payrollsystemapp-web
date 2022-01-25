@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
+import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -32,11 +34,9 @@ public class EmployeeDelController extends HttpServlet {
 			
 		
 		if(i>0) {
-			PrintWriter out =response.getWriter();
-			out.println("<script type=\"text/javascript\">");
-			out.println("alert('Employee Status Inactive');");
-			out.println("location='EmpShowInactive.jsp';");
-			out.println("</script>");
+			RequestDispatcher dispatcher=request.getRequestDispatcher("ShowInactiveEmploy");
+			dispatcher.forward(request, response);
+			
 		}
 		else {
 			throw new EmployeeDelException();

@@ -2,6 +2,7 @@
 <%@page import="java.util.List"%>
 <%@page import="com.payroll.dao.EmployeeDaoImpl"%>
 <%@page import="com.payroll.Interface.EmployeeDao"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -56,6 +57,8 @@ margin-right: 40px;
     </style>
 </head>
 <body>
+
+
 <%String deleteError=(String)session.getAttribute("delete");
 if(deleteError!=null){
 %>
@@ -71,7 +74,7 @@ if(delEmp!=null){
 	
 <%} %>
 <div id="search">
-<form action="searchEmployee.jsp">
+<form action="searchEmployee">
 <div class="input-group">
 
 <input type="search" name="empName" placeholder="Search Employee Name" class="form-control"  autofocus="autofocus">
@@ -89,6 +92,7 @@ if(delEmp!=null){
 <form >
 <div class="gridtable">
 <table >
+
 
 <tr class="bg-primary">
 <td>EMPLOYEE ID</td>
@@ -109,33 +113,26 @@ if(delEmp!=null){
 
 </tr>
 
-
-<%EmployeeDaoImpl employeeDao=new  EmployeeDaoImpl();
-List<Employee> employeeList=employeeDao.showEmployee();
-for(int i=0;i<employeeList.size();i++)
-{
-	Employee emp=employeeList.get(i);
-%>
-
 <tr>
-<td><%=emp.getEmpId() %></td>
-<td ><%= emp.getEmpName() %></td>
-<td ><%= emp.getDob() %></td>
-<td ><%= emp.getDoj() %></td>
-<td><%= emp.getAddress() %></td>
-<td ><%= emp.getCity() %></td>
-<td ><%= emp.getPincode() %></td>
-<td ><%= emp.getMobileNo() %></td>
-<td ><%= emp.getState() %></td>
-<td ><%= emp.getMailId() %></td>
-<td ><%= emp.getPanNo() %></td>
-<td ><%= emp.getDept().getDeptName()%></td>
-<td><%=emp.getGrade().getGradeName() %>
-<td ><a href="empDel?empId=<%= emp.getEmpId() %>" >DELETE</a></td>
-<td ><a href="EmployUpd.jsp?empId=<%= emp.getEmpId() %>">EDIT</a></td>
+<c:forEach items="${sessionScope.empList}" var="emp">
+<td>${emp.empId}</td>
+<td >${emp.empName}</td>
+<td >${emp.dob}</td>
+<td >${emp.doj }</td>
+<td>${emp.address}</td>
+<td >${emp.city }</td>
+<td >${emp.pincode }</td>
+<td >${emp.mobileNo }</td>
+<td >${emp.state }</td>
+<td >${emp.mailId }</td>
+<td >${emp.panNo }</td>
+<td >${emp.dept.deptName}</td>
+<td>${emp.grade.gradeName }</td>
+<td ><a href="empDel?empId=${emp.empId }" >DELETE</a></td>
+<td ><a href="UpdEmp?empId=${emp.empId }">EDIT</a></td>
 </tr>
-<%} %>
 
+</c:forEach>
 </table>
 </div>
 

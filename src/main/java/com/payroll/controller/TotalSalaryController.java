@@ -15,9 +15,9 @@ import com.payroll.dao.SalaryCalculateDaoImpl;
  * Servlet implementation class TotalSalary
  */
 @WebServlet("/totalSal")
-public class TotalSalary extends HttpServlet {
+public class TotalSalaryController extends HttpServlet {
 	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		SalaryCalculateDaoImpl salaryDao=new SalaryCalculateDaoImpl();
 		int activeEmp=salaryDao.activeEmployee();
 		HttpSession session=request.getSession();
@@ -28,5 +28,7 @@ public class TotalSalary extends HttpServlet {
 		session.setAttribute("salCount", salCount);
 		
 	}
+	
+	
 
 }

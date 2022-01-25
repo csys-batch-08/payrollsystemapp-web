@@ -6,7 +6,31 @@ import java.util.Objects;
 public class EmpSalary {
 	private Employee emp;
 	private Departments dept;
-	
+	private int transId;
+	public EmpSalary(Employee emp, Departments dept, int transId, int totalLeave, Grade grade, Long gross, Long salary,
+			Date salaryDate) {
+		super();
+		this.emp = emp;
+		this.dept = dept;
+		this.transId = transId;
+		this.totalLeave = totalLeave;
+		this.grade = grade;
+		this.gross = gross;
+		this.salary = salary;
+		this.salaryDate = salaryDate;
+	}
+	public int getTransId() {
+		return transId;
+	}
+	public void setTransId(int transId) {
+		this.transId = transId;
+	}
+	public void setEmp(Employee emp) {
+		this.emp = emp;
+	}
+	public void setGrade(Grade grade) {
+		this.grade = grade;
+	}
 	private int totalLeave;
 	private Grade grade;
 	private Long gross;

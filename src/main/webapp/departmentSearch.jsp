@@ -1,5 +1,7 @@
 <%@page import="com.payroll.model.Departments"%>
 <%@page import="java.util.List"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <%@page import="com.payroll.dao.DepartmentsDaoImpl"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -48,19 +50,16 @@ background-color: #40E0D0;
 
 </tr>
 
-<%String name=request.getParameter("deptName");
-DepartmentsDaoImpl departmentDao=new DepartmentsDaoImpl();
-List<Departments> departmentList=departmentDao.searchDepartment(name);
-for(int i=0;i<departmentList.size();i++)
-{
-Departments depart=departmentList.get(i);
-%>
+
+<c:forEach items="${sessionScope.searchDept}" var="searchdept">
+
+
 <tr>
-<td><%=depart.getDeptId() %></td>
-<td><%=depart.getDeptName() %></td>
+<td>${searchdept.deptId }</td>
+<td>${searchdept.deptName }</td>
 
 </tr>
-<%} %>
+</c:forEach>
 </table>
 
 

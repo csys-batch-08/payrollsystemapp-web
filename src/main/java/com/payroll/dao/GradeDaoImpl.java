@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.payroll.model.Departments;
-import com.payroll.model.Employee;
 import com.payroll.model.Grade;
 
 public class GradeDaoImpl {
@@ -18,8 +17,9 @@ public class GradeDaoImpl {
 		String insertQuery="insert into Grades (grade_name,grade_basic,grade_bonus,grade_pf,grade_pt,DEPT_ID) values (?,?,?,?,?,?)";
 		ConnectionUtilImpl connection=new ConnectionUtilImpl();
 		Connection con=connection.dbConnect();
+		PreparedStatement pstmt=null;
 		try {
-			PreparedStatement pstmt=con.prepareStatement(insertQuery);
+			pstmt=con.prepareStatement(insertQuery);
 			
 			pstmt.setString(1, grade.getGradeName());
 			pstmt.setLong(2, grade.getGradeBasic());
@@ -34,6 +34,11 @@ public class GradeDaoImpl {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		finally {
+			ConnectionUtilImpl.closePreparedStatement(pstmt, con);
+			
+		}
+		
 		return result;
 		
 		
@@ -43,7 +48,7 @@ public class GradeDaoImpl {
 		String findId="select grade_id from grades where grade_name= '"+grade.getGradeName()+"' and DEPT_ID="+grade.getDepartment().getDeptId();
 		ConnectionUtilImpl connection=new ConnectionUtilImpl();
 		Connection con=connection.dbConnect();
-		Statement stmt;
+		Statement stmt=null;
 		int id = 0;
 		try {
 			stmt = con.createStatement();
@@ -56,7 +61,9 @@ public class GradeDaoImpl {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+		finally {
+			ConnectionUtilImpl.closeStatement(stmt, con);
+		}
 		
 		return id;
 	}
@@ -84,6 +91,9 @@ public class GradeDaoImpl {
 			//catch the exception and get that message
 			e.printStackTrace();
 		}
+		finally {
+			ConnectionUtilImpl.closePreparedStatement(pstmt, con);
+		}
 		return result;
 	}
 	public boolean deleteGrade(int  gradeId)
@@ -104,6 +114,9 @@ public class GradeDaoImpl {
 			//catch the exception and get that message
 			e.printStackTrace();
 		}
+		finally {
+			ConnectionUtilImpl.closePreparedStatement(pstmt, con);
+		}
 		return result;
 	}
 	public List<Grade> showGrade()
@@ -113,8 +126,9 @@ public class GradeDaoImpl {
 		String showQuery="select GRADE_ID,GRADE_NAME,GRADE_BASIC,GRADE_BONUS,GRADE_PF,GRADE_PT,DEPT_ID from grades";
 		ConnectionUtilImpl connection=new ConnectionUtilImpl();
 		Connection con=connection.dbConnect();
+		Statement stmt=null;
 		try {
-			Statement stmt=con.createStatement();
+			stmt=con.createStatement();
 			ResultSet rs=stmt.executeQuery(showQuery);
 			while(rs.next())
 			{	DepartmentsDaoImpl departmentDao=new DepartmentsDaoImpl();
@@ -126,6 +140,10 @@ public class GradeDaoImpl {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+		finally {
+			ConnectionUtilImpl.closeStatement(stmt, con);
+			
 		}
 		
 		return gradeList;
@@ -139,7 +157,7 @@ public class GradeDaoImpl {
 		Connection con=connection.dbConnect();
 		Long grossSalary=null;
 		
-			PreparedStatement pstmt;
+			PreparedStatement pstmt=null;
 			try {
 				pstmt = con.prepareStatement(qry);
 				pstmt.setString(1, grdName);
@@ -155,6 +173,9 @@ public class GradeDaoImpl {
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+			}
+			finally {
+				ConnectionUtilImpl.closePreparedStatement(pstmt, con);
 			}
 			
 			
@@ -172,8 +193,9 @@ public class GradeDaoImpl {
 		ConnectionUtilImpl connection=new ConnectionUtilImpl();
 		Connection con=connection.dbConnect();
 		Grade grd=null;
+		Statement stmt=null;
 		try {
-			Statement stmt=con.createStatement();
+			stmt=con.createStatement();
 			ResultSet rs=stmt.executeQuery(qry);
 			while(rs.next()) {
 				DepartmentsDaoImpl departmentDao=new DepartmentsDaoImpl();
@@ -184,7 +206,9 @@ public class GradeDaoImpl {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+		finally {
+			ConnectionUtilImpl.closeStatement(stmt, con);
+		}
 		return grd;
 		
 	}
@@ -195,8 +219,9 @@ public class GradeDaoImpl {
 		long perDaySalary=0;
 		ConnectionUtilImpl connection=new ConnectionUtilImpl();
 		Connection con=connection.dbConnect();
+		PreparedStatement pstmt=null;
 		try {
-			PreparedStatement pstmt=con.prepareStatement(query);
+			pstmt=con.prepareStatement(query);
 			pstmt.setString(1, gradeName);
 			pstmt.setInt(2, deptId);
 			
@@ -210,6 +235,9 @@ public class GradeDaoImpl {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		finally {
+			ConnectionUtilImpl.closePreparedStatement(pstmt, con);
+		}
 		
 		return perDaySalary ;
 	}
@@ -219,9 +247,10 @@ public class GradeDaoImpl {
 		long basicSalary=0;
 		ConnectionUtilImpl connection=new ConnectionUtilImpl();
 		Connection con=connection.dbConnect();
+		PreparedStatement pstmt=null;
 		try {
 			
-			PreparedStatement pstmt=con.prepareStatement(query);
+			pstmt=con.prepareStatement(query);
 			pstmt.setString(1, gradeName);
 			pstmt.setInt(2, deptId);
 			
@@ -233,6 +262,9 @@ public class GradeDaoImpl {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		finally {
+			ConnectionUtilImpl.closePreparedStatement(pstmt, con);
+		}
 		
 		return basicSalary ;
 	}
@@ -241,9 +273,10 @@ public class GradeDaoImpl {
 		long gradeBonus=0;
 		ConnectionUtilImpl connection=new ConnectionUtilImpl();
 		Connection con=connection.dbConnect();
+		PreparedStatement pstmt=null;
 		try {
 			
-			PreparedStatement pstmt=con.prepareStatement(query);
+			pstmt=con.prepareStatement(query);
 			pstmt.setString(1, gradeName);
 			pstmt.setInt(2, deptId);
 			
@@ -256,6 +289,10 @@ public class GradeDaoImpl {
 		{
 			e.printStackTrace();
 		}
+		finally {
+			ConnectionUtilImpl.closePreparedStatement(pstmt, con);
+			
+		}
 		
 		return gradeBonus ;
 	}
@@ -264,9 +301,10 @@ public class GradeDaoImpl {
 		long providentFund=0;
 		ConnectionUtilImpl connection=new ConnectionUtilImpl();
 		Connection con=connection.dbConnect();
+		PreparedStatement pstmt=null;
 		try {
 			
-			PreparedStatement pstmt=con.prepareStatement(query);
+			pstmt=con.prepareStatement(query);
 			pstmt.setString(1, gradeName);
 			pstmt.setInt(2, deptId);
 			
@@ -278,6 +316,10 @@ public class GradeDaoImpl {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		finally {
+			ConnectionUtilImpl.closePreparedStatement(pstmt, con);
+		}
+		
 		
 		return providentFund ;
 	}
@@ -286,9 +328,10 @@ public class GradeDaoImpl {
 		long professionalTax=0;
 		ConnectionUtilImpl connection=new ConnectionUtilImpl();
 		Connection con=connection.dbConnect();
+		PreparedStatement pstmt=null;
 		try {
 			
-			PreparedStatement pstmt=con.prepareStatement(query);
+			pstmt=con.prepareStatement(query);
 			pstmt.setString(1, gradeName);
 			pstmt.setInt(2, deptId);
 			
@@ -300,6 +343,9 @@ public class GradeDaoImpl {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		finally {
+			ConnectionUtilImpl.closePreparedStatement(pstmt, con);
+		}
 		
 		return professionalTax ;
 	}
@@ -310,9 +356,10 @@ public class GradeDaoImpl {
 		String query="select GRADE_ID,GRADE_NAME,GRADE_BASIC,GRADE_BONUS,GRADE_PF,GRADE_PT,DEPT_ID  from grades where upper(GRADE_NAME) like '"+grdName.toUpperCase()+"%'";
 		ResultSet rs=null;
 		List<Grade> gradeList=new ArrayList<Grade>();
+		PreparedStatement pstmt=null;
 
 		try {
-			PreparedStatement pstmt=con.prepareStatement(query);
+			pstmt=con.prepareStatement(query);
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
 				DepartmentsDaoImpl departmentDao=new DepartmentsDaoImpl();
@@ -321,11 +368,15 @@ public class GradeDaoImpl {
 				gradeList.add(grade);
 			}
 			
+			
 			return gradeList;
 		}
 		catch (SQLException e) {
 
 			e.printStackTrace();
+		}
+		finally {
+			ConnectionUtilImpl.closePreparedStatement(pstmt, con);
 		}
 		return gradeList;
 		
@@ -338,8 +389,9 @@ public class GradeDaoImpl {
 		ConnectionUtilImpl connection=new ConnectionUtilImpl();
 		Connection con=connection.dbConnect();
 		Grade grd=null;
+		PreparedStatement pstmt=null;
 		try {
-			PreparedStatement pstmt=con.prepareStatement(qry);
+			pstmt=con.prepareStatement(qry);
 			pstmt.setString(1, gradeName);
 			pstmt.setInt(2, deptId);
 			ResultSet rs=pstmt.executeQuery();
@@ -351,6 +403,9 @@ public class GradeDaoImpl {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}
+		finally {
+			ConnectionUtilImpl.closePreparedStatement(pstmt, con);
 		}
 		
 		return grd;

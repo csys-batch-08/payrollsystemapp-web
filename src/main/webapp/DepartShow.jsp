@@ -1,5 +1,7 @@
 <%@page import="com.payroll.model.Departments"%>
 <%@page import="java.util.List"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+
 <%@page import="com.payroll.dao.DepartmentsDaoImpl"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -57,7 +59,7 @@ if(deptDel!=null){
 
 <%} %>
 <div id="search">
-<form action="departmentSearch.jsp">
+<form action="departmentSearch">
 
 <input type="text" name="deptName" placeholder="Enter Department Name" autofocus="autofocus">
 <button type="submit" class="btn btn-primary">&#128269;
@@ -79,21 +81,17 @@ if(deptDel!=null){
 
 
 
-<% DepartmentsDaoImpl departDao=new DepartmentsDaoImpl();
-List<Departments> departList=departDao.showDepartments();
-for(int i=0;i<departList.size();i++)
-{
-	Departments departments=departList.get(i);
-%>	
-<tr>
-<td><%=departments.getDeptId() %></td>
-<td><%=departments.getDeptName() %></td>
+<c:forEach items="${sessionScope.deptList}" var="depart">
 
-<td><a href="departDel?deptId=<%= departments.getDeptId() %>">DELETE</a></td>
-<td><a href="DepartUpd.jsp?departId=<%= departments.getDeptId() %>">EDIT</a></td>
+<tr>
+<td>${depart.deptId }</td>
+<td>${depart.deptName }</td>
+
+<td><a href="departDel?deptId=${depart.deptId }">DELETE</a></td>
+<td><a href="EditDept?departId=${depart.deptId }">EDIT</a></td>
 
 </tr>
-<%}%>
+</c:forEach>
 </table>
 <center>
 <br>

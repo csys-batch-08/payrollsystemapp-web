@@ -12,7 +12,6 @@ import com.payroll.model.Departments;
 import com.payroll.model.EmpSalary;
 import com.payroll.model.Employee;
 import com.payroll.model.Grade;
-import com.payroll.model.Leave;
 
 public class SalaryCalculateDaoImpl {
 
@@ -24,13 +23,14 @@ public class SalaryCalculateDaoImpl {
 			int deptID=departmentDao.findDepartmentID(department);
 			GradeDaoImpl gradeDaoImpl=new GradeDaoImpl();
 			int gradeID=gradeDaoImpl.findGradeID(grade);
-			LeaveDaoImpl leaveDaoImpl=new LeaveDaoImpl();
+			
 			
 			String query="insert into salarys (EMP_ID,DEPT_ID,TOTAL_LEAVE,GRADE_ID,GROSS_SALARY,TOTAL_SALARY,nextpay_date) values(?,?,?,?,?,?,sysdate+30)";
 			ConnectionUtilImpl connection=new ConnectionUtilImpl();
 			Connection con=connection.dbConnect();
+			PreparedStatement pstmt=null;
 			try {
-				PreparedStatement pstmt=con.prepareStatement(query);
+				pstmt=con.prepareStatement(query);
 				pstmt.setInt(1, empID);
 				pstmt.setInt(2, deptID);
 				pstmt.setInt(3, noOfLeave);
@@ -43,6 +43,9 @@ public class SalaryCalculateDaoImpl {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+			finally {
+				ConnectionUtilImpl.closePreparedStatement(pstmt, con);
+			}
 			return result;
 			
 		}
@@ -52,14 +55,19 @@ public class SalaryCalculateDaoImpl {
 			String insertQuery = "update employees set ="+basic+" where trans_id="+transId;
 			ConnectionUtilImpl connection=new ConnectionUtilImpl();
 			Connection con=connection.dbConnect();
+			Statement stmt=null;
 			try {
 
-				Statement stmt=con.createStatement();
+				stmt=con.createStatement();
 				stmt.executeUpdate(insertQuery);
 			} catch (SQLException e) {
 				//catch the exception and get that message
 				e.printStackTrace();
 			}
+			finally {
+				ConnectionUtilImpl.closeStatement(stmt, con);
+			}
+			
 			
 		}
 		public List<EmpSalary> showEmployee()
@@ -70,9 +78,9 @@ public class SalaryCalculateDaoImpl {
 			ConnectionUtilImpl connection=new ConnectionUtilImpl();
 			Connection con=connection.dbConnect();
 			EmployeeDaoImpl employeeDaoImpl=new EmployeeDaoImpl();
-
+			Statement stmt=null;
 			try {
-				Statement stmt=con.createStatement();
+				stmt=con.createStatement();
 				ResultSet rs=stmt.executeQuery(showQuery);
 				while(rs.next())
 				{
@@ -80,16 +88,19 @@ public class SalaryCalculateDaoImpl {
 					Employee employ=employeeDaoImpl.findEmployee(rs.getInt(2));
 					DepartmentsDaoImpl departmentDao=new DepartmentsDaoImpl();
 					GradeDaoImpl gradeDaoImpl=new GradeDaoImpl();
-					LeaveDaoImpl leaveDaoImpl=new LeaveDaoImpl();
+
 					Departments department=departmentDao.findDepartment(rs.getInt(3));
 					Grade grade=gradeDaoImpl.findGrade(rs.getInt(5));
 					
-					EmpSalary empSalary=new EmpSalary(employ,department,rs.getInt(3),grade,rs.getLong(7),rs.getLong(8),rs.getDate(6));
+					EmpSalary empSalary=new EmpSalary(employ,department,rs.getInt(1),rs.getInt(4),grade,rs.getLong(7),rs.getLong(8),rs.getDate(6));
 					salaryList.add(empSalary);
 				}
 				
 			} catch (SQLException e) {
 				e.printStackTrace();
+			}
+			finally {
+				ConnectionUtilImpl.closeStatement(stmt, con);
 			}
 			
 			return salaryList;
@@ -99,8 +110,9 @@ public class SalaryCalculateDaoImpl {
 			ConnectionUtilImpl connection=new ConnectionUtilImpl();
 			Connection con=connection.dbConnect();
 			EmpSalary salary=null;
+			PreparedStatement pstmt=null;
 			try {
-				PreparedStatement pstmt=con.prepareStatement(query);
+				pstmt=con.prepareStatement(query);
 				pstmt.setInt(1, empId);
 				ResultSet rs=pstmt.executeQuery();
 				while(rs.next()) {
@@ -119,6 +131,10 @@ public class SalaryCalculateDaoImpl {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			finally {
+				ConnectionUtilImpl.closePreparedStatement(pstmt, con);
+			}
+			
 			return salary;
 			
 			}
@@ -127,8 +143,10 @@ public class SalaryCalculateDaoImpl {
 			ConnectionUtilImpl connection=new ConnectionUtilImpl();
 			Connection con=connection.dbConnect();
 			Date paidDt=null;
+			PreparedStatement pstmt=null;
 			try {
-				PreparedStatement pstmt=con.prepareStatement(query);
+				
+				pstmt=con.prepareStatement(query);
 				pstmt.setInt(1, empId);
 				ResultSet rs=pstmt.executeQuery();
 				while(rs.next()) {
@@ -138,6 +156,10 @@ public class SalaryCalculateDaoImpl {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			finally {
+				ConnectionUtilImpl.closePreparedStatement(pstmt, con);
+			}
+			
 			return paidDt;
 			
 			}
@@ -146,8 +168,9 @@ public class SalaryCalculateDaoImpl {
 			ConnectionUtilImpl connection=new ConnectionUtilImpl();
 			Connection con=connection.dbConnect();
 			Date paidDt=null;
+			PreparedStatement pstmt=null;
 			try {
-				PreparedStatement pstmt=con.prepareStatement(query);
+				pstmt=con.prepareStatement(query);
 				pstmt.setInt(1, empId);
 				ResultSet rs=pstmt.executeQuery();
 				while(rs.next()) {
@@ -156,6 +179,9 @@ public class SalaryCalculateDaoImpl {
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+			}
+			finally {
+				ConnectionUtilImpl.closePreparedStatement(pstmt, con);
 			}
 			return paidDt;
 			
@@ -165,8 +191,9 @@ public class SalaryCalculateDaoImpl {
 			ConnectionUtilImpl connection=new ConnectionUtilImpl();
 			Connection con=connection.dbConnect();
 			int count=0;
+			PreparedStatement pstmt=null;
 			try {
-				PreparedStatement pstmt=con.prepareStatement(query);
+				pstmt=con.prepareStatement(query);
 				ResultSet rs=pstmt.executeQuery();
 				if(rs.next()) {
 					count=rs.getInt(1);
@@ -175,6 +202,9 @@ public class SalaryCalculateDaoImpl {
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+			}
+			finally {
+				ConnectionUtilImpl.closePreparedStatement(pstmt, con);
 			}
 			
 			return count;
@@ -185,8 +215,9 @@ public class SalaryCalculateDaoImpl {
 			ConnectionUtilImpl connection=new ConnectionUtilImpl();
 			Connection con=connection.dbConnect();
 			int activeCount=0;
+			PreparedStatement pstmt=null;
 			try {
-				PreparedStatement pstmt=con.prepareStatement(query);
+				pstmt=con.prepareStatement(query);
 				ResultSet rs=pstmt.executeQuery();
 				if(rs.next()) {
 					activeCount=rs.getInt(1);
@@ -194,6 +225,10 @@ public class SalaryCalculateDaoImpl {
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+			}
+			finally {
+				ConnectionUtilImpl.closePreparedStatement(pstmt, con);
+				
 			}
 			return activeCount;
 			
@@ -203,8 +238,9 @@ public class SalaryCalculateDaoImpl {
 			ConnectionUtilImpl connection=new ConnectionUtilImpl();
 			Connection con=connection.dbConnect();
 			int inActiveCount=0;
+			PreparedStatement pstmt=null;
 			try {
-				PreparedStatement pstmt=con.prepareStatement(query);
+				pstmt=con.prepareStatement(query);
 				ResultSet rs=pstmt.executeQuery();
 				if(rs.next()) {
 					inActiveCount=rs.getInt(1);
@@ -212,6 +248,9 @@ public class SalaryCalculateDaoImpl {
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+			}
+			finally {
+				ConnectionUtilImpl.closePreparedStatement(pstmt, con);
 			}
 			return inActiveCount;
 			
@@ -221,8 +260,9 @@ public class SalaryCalculateDaoImpl {
 			ConnectionUtilImpl connection=new ConnectionUtilImpl();
 			Connection con=connection.dbConnect();
 			int total=0;
+			PreparedStatement pstmt=null;
 			try {
-				PreparedStatement pstmt=con.prepareStatement(query);
+				pstmt=con.prepareStatement(query);
 				pstmt.setDate(1, new java.sql.Date(salFrom.getTime()));
 				pstmt.setDate(2, new java.sql.Date(salTo.getTime()));
 				ResultSet rs=pstmt.executeQuery();
@@ -234,8 +274,31 @@ public class SalaryCalculateDaoImpl {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			finally {
+				ConnectionUtilImpl.closePreparedStatement(pstmt, con);
+			}
 			
 			return total;
+		}
+		public int deleteSalary(int  transId) {
+			String query="delete from salarys where TRANS_ID =?";
+			ConnectionUtilImpl connection=new ConnectionUtilImpl();
+			Connection con=connection.dbConnect();
+			PreparedStatement pstmt=null;
+			int i=0;
+			try {
+				pstmt = con.prepareStatement(query);
+				pstmt.setInt(1, transId);
+				i=pstmt.executeUpdate();
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			finally {
+				ConnectionUtilImpl.closePreparedStatement(pstmt, con);
+			}
+			return i;
+			
 		}
 		
 		
