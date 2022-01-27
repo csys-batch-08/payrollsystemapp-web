@@ -2,6 +2,7 @@
 <%@page import="com.payroll.dao.EmployeeDaoImpl"%>
 <%@page import="com.payroll.dao.GradeDaoImpl"%>
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <%@page import="com.payroll.model.EmpSalary"%>
 <%@page import="com.payroll.dao.SalaryCalculateDaoImpl"%>
@@ -37,7 +38,7 @@ tr:nth-child(even) {background-color: #f2f2f2;}
 </style>
 </head>
 <body>
-<h2>ADMINISTRATOR &nbsp;</h2>
+<h2>EMPLOYEE REPORT &nbsp;</h2>
 
 
 <div>
@@ -62,7 +63,9 @@ tr:nth-child(even) {background-color: #f2f2f2;}
 <td>${salRep.dept.deptName }</td>
 <td>${salRep.totalLeave }</td>
 <td>${salRep.grade.gradeName }</td>
-<td>${salRep.salaryDate }</td>
+<fmt:parseDate value="${salRep.salaryDate}" pattern="yyyy-MM-dd" var="SalDate" type="date"/>   
+<td ><fmt:formatDate pattern="dd-MM-yyyy" value="${SalDate}"/> </td>
+
 <td>${salRep.gross }</td>
 <td>${salRep.salary }</td>
 

@@ -50,7 +50,7 @@ label {
 				<label for="gradeName">EMPLOYEE ID</label>
 
 				<input type="number" name="empId"
-					value="${ApproveEmp.emp.empId }">
+					value="${ApproveEmp.empId }">
 				<br>
 				<br>
 				<label for="gradeName">GRADE NAME</label>
@@ -79,13 +79,14 @@ label {
 			</select> <br> <br> <input type="reset" class="btn btn-primary">
 			<button type="submit" class="btn btn-primary">Submit</button>
 
-		</div>
+	
 	</form>
 	<button onclick="history.back()" class="btn btn-primary">BACK</button>
 	<a href="AdminControl.jsp"><button type="button"
 			class="btn btn-primary">
 			<strong>HOME</strong>
 		</button></a>
+			</div>
 	<br>
 	<br>
 	</div>

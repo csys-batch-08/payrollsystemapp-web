@@ -3,6 +3,7 @@
 <%@page import="com.payroll.dao.DepartmentsDaoImpl"%>
 <%@page import="com.payroll.model.EmpSalary"%>
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <%@page import="java.util.List"%>
 <%@page import="com.payroll.dao.SalaryCalculateDaoImpl"%>
@@ -126,7 +127,9 @@ margin-left: 10px;
 <td>${salaryShowL.dept.deptName}</td>
 <td>${salaryShowL.grade.gradeName}</td>
 <td>${salaryShowL.totalLeave}</td>
-<td>${salaryShowL.salaryDate}</td>
+<fmt:parseDate value="${salaryShowL.salaryDate}" pattern="yyyy-MM-dd" var="salDt" type="date"/>   
+	<td ><fmt:formatDate pattern="dd-MM-yyyy" value="${salDt}"/> </td>
+
 <td>${salaryShowL.gross}</td>
 <td>${salaryShowL.salary}</td>
 <td><a href="salDel?salId=${salaryShowL.transId }">DELETE</a></td>

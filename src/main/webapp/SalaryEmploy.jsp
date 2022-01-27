@@ -35,7 +35,7 @@
 <br>
 <center>
 <label for="employId">EMPLOYEE ID</label>
-<input type="number" name="eId" min="1"id="employId" pattern="[0-9]+" placeholder="enter employ Id"><br><br>
+<input type="number" name="eId" min="1"id="employId" pattern="[0-9]+" placeholder="enter employ Id" autofocus="autofocus"><br><br>
 <a href="SalaryReport.jsp?eId=0"><button type="submit"   class="btn btn-primary">GENERATE REPORT</button></a>
 <input type="button" value="Go back!" onclick="history.go(-1)" class="btn btn-primary">
 </center>

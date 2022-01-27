@@ -3,6 +3,7 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="com.payroll.dao.EmployeeDaoImpl"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -78,8 +79,11 @@ tr:nth-child(even) {
 
 				<td>${searchEmploy.empId}</td>
 				<td>${searchEmploy.empName}</td>
-				<td>${searchEmploy.dob}</td>
-				<td>${searchEmploy.doj }</td>
+				<fmt:parseDate value="${searchEmploy.dob}" pattern="yyyy-MM-dd" var="dobDate" type="date"/>   
+				<td ><fmt:formatDate pattern="dd-MM-yyyy" value="${dobDate}"/> </td>
+				<fmt:parseDate value="${searchEmploy.doj}" pattern="yyyy-MM-dd" var="dojDate" type="date"/>   
+				<td ><fmt:formatDate pattern="dd-MM-yyyy" value="${dojDate}"/> </td>
+				
 				<td>${searchEmploy.address}</td>
 				<td>${searchEmploy.city }</td>
 				<td>${searchEmploy.pincode }</td>

@@ -309,16 +309,15 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		return i;
 
 	}
-
 	public List<Employee> searchEmployee(String empName) {
 		ConnectionUtilImpl connection = new ConnectionUtilImpl();
 		Connection con = connection.dbConnect();
-		String query = "select  EMP_ID,EMP_NAME,EMP_DOB,EMP_DOJ,EMP_ADDRESS,EMP_CITY,EMP_PINCODE,EMP_MOBILE_NO,EMP_STATE,EMP_EMAIL_ID,EMP_PAN_NO,DEPT_ID,GRADE_ID,STATUS  from employees where upper(EMP_NAME) like ?";
+		String Duery = "select  EMP_ID,EMP_NAME,EMP_DOB,EMP_DOJ,EMP_ADDRESS,EMP_CITY,EMP_PINCODE,EMP_MOBILE_NO,EMP_STATE,EMP_EMAIL_ID,EMP_PAN_NO,DEPT_ID,GRADE_ID,STATUS  from employees where upper(EMP_NAME) like ?";
 		ResultSet rs = null;
 		List<Employee> employeeList = new ArrayList<Employee>();
 		PreparedStatement pstmt = null;
 		try {
-			pstmt = con.prepareStatement(query);
+			pstmt = con.prepareStatement(Duery);
 			pstmt.setString(1, empName.toUpperCase() +"%");
 			rs = pstmt.executeQuery();
 			while (rs.next()) {

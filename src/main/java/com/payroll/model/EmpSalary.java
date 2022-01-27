@@ -45,7 +45,7 @@ public class EmpSalary {
 	public Employee getEmp() {
 		return emp;
 	}
-	public void setEmpId(Employee empId) {
+	public void setEmpId(Employee emp) {
 		this.emp = emp;
 	}
 	public Departments getDept() {

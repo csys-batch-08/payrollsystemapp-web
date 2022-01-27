@@ -2,6 +2,7 @@
 <%@page import="com.payroll.dao.EmployeeDaoImpl"%>
 <%@page import="com.payroll.model.Leave"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <%@page import="java.util.List"%>
 <%@page import="com.payroll.dao.LeaveDaoImpl"%>
@@ -78,7 +79,8 @@ text-decoration:none;
 <tr>
 <td>${allLeave.employ.empId }</td>
 <td>${allLeave.employ.empName }</td>
-<td>${allLeave.leaveDt }</td>
+<fmt:parseDate value="${allLeave.leaveDt}" pattern="yyyy-MM-dd" var="leaveDate" type="date"/>   
+<td ><fmt:formatDate pattern="dd-MM-yyyy" value="${leaveDate}"/> </td>
 <td>${allLeave.leaveReason }</td>
 <td><a href="empLeave?leaveId=${allLeave.leaveId }">DELETE</a></td>
 <td><a href="LeaveEdit?leaveId=${allLeave.leaveId }">EDIT</a></td>

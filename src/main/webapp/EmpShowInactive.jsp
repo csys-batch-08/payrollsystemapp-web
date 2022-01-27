@@ -2,6 +2,7 @@
 <%@page import="java.util.List"%>
 <%@page import="com.payroll.dao.EmployeeDaoImpl"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -85,8 +86,11 @@ text-decoration:none;
 
 <td>${emp.empId}</td>
 <td >${emp.empName}</td>
-<td >${emp.dob}</td>
-<td >${emp.doj }</td>
+<fmt:parseDate value="${emp.dob}" pattern="yyyy-MM-dd" var="dobDate" type="date"/>   
+<td ><fmt:formatDate pattern="dd-MM-yyyy" value="${dobDate}"/> </td>
+<fmt:parseDate value="${emp.doj}" pattern="yyyy-MM-dd" var="dojDate" type="date"/>   
+<td ><fmt:formatDate pattern="dd-MM-yyyy" value="${dojDate}"/> </td>
+
 <td>${emp.address}</td>
 <td >${emp.city }</td>
 <td >${emp.pincode }</td>
@@ -98,9 +102,10 @@ text-decoration:none;
 <td>${emp.grade.gradeName }</td>
 
 <td><a href="EmpStatus?statusId=${emp.empId}">Active</a></td>
+</c:forEach>
 </tr>
 
-</c:forEach>
+
 </table>
 <center>
 

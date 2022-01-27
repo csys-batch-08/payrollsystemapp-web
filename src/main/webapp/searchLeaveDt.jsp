@@ -3,6 +3,8 @@
 <%@page import="java.util.Date"%>
 <%@page import="com.payroll.model.Leave"%>
 <%@page import="java.util.List"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <%@page import="com.payroll.dao.LeaveDaoImpl"%>
@@ -61,7 +63,8 @@ background-color: #f2f2f2;
 	<tr>
 	<td>${leaveList.leaveId }</td>
 	<td>${leaveList.employ.empId }</td>
-	<td>${leaveList.leaveDt }</td>
+	<fmt:parseDate value="${leaveList.leaveDt}" pattern="yyyy-MM-dd" var="leaveDate" type="date"/>   
+	<td ><fmt:formatDate pattern="dd-MM-yyyy" value="${leaveDate}"/> </td>
 	<td>${leaveList.leaveReason}</td>
 	
 	</tr>
