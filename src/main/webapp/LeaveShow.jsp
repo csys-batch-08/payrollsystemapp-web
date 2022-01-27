@@ -1,6 +1,8 @@
 <%@page import="com.payroll.model.Employee"%>
 <%@page import="com.payroll.dao.EmployeeDaoImpl"%>
 <%@page import="com.payroll.model.Leave"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+
 <%@page import="java.util.List"%>
 <%@page import="com.payroll.dao.LeaveDaoImpl"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -40,7 +42,8 @@ text-decoration:none;
 </head>
 <body>
 <div>
-<form action="searchLeaveDt.jsp">
+<form action="LeaveInbetweenController">
+
 <label for="leaveFrom">FromDate</label>
 <input type="date" id="leaveFrom" name="fromDt">
 <label for="leaveTo">ToDate</label>
@@ -50,21 +53,15 @@ text-decoration:none;
 
 
 </div>
-<%String deleteLeave=(String)session.getAttribute("deleteLeave");
-if(deleteLeave!=null){
-%>
-<center>
-<h2><%=deleteLeave %></h2></center>
-<%session.removeAttribute("negativeValue"); %>
-<%} %>
+<c:set var = "deleteLeave" scope = "session" value = "${deleteLeave}"/>
+	<c:if test="${not empty deleteLeave}">
+			<h2><c:out value="${deleteLeave}" /></h2>
+		</c:if>
 
-<%String updLeave=(String)request.getAttribute("updLeave");
-if(updLeave!=null){
-%>
-<center>
-<h2><%=updLeave %></h2>
-</center>
-<%} %>
+<c:set var = "updleave" scope = "session" value = "${updLeave}"/>
+	<c:if test="${not empty updleave}">
+			<h2><c:out value="${updleave}" /></h2>
+		</c:if>
 
 <table>
 <tr class="bg-primary">
@@ -76,20 +73,17 @@ if(updLeave!=null){
 <td>EDIT</td>
 </tr>
 
-<%LeaveDaoImpl leaveDao=new LeaveDaoImpl();
-List<Leave> leaveList=leaveDao.showLeaveDetail();
-for(int i=0;i<leaveList.size();i++){
-Leave leave=leaveList.get(i);
-%>
+<c:forEach items="${sessionScope.leave}" var="allLeave">
+
 <tr>
-<td><%=leave.getEmploy().getEmpId() %></td>
-<td><%=leave.getEmploy().getEmpName()%></td>
-<td><%=leave.getLeaveDt() %></td>
-<td><%=leave.getLeaveReason() %></td>
-<td><a href="empLeave?leaveId=<%=leave.getLeaveId() %>">DELETE</a></td>
-<td><a href="LeaveUpd.jsp?leaveId=<%=leave.getLeaveId() %>">EDIT</a></td>
+<td>${allLeave.employ.empId }</td>
+<td>${allLeave.employ.empName }</td>
+<td>${allLeave.leaveDt }</td>
+<td>${allLeave.leaveReason }</td>
+<td><a href="empLeave?leaveId=${allLeave.leaveId }">DELETE</a></td>
+<td><a href="LeaveEdit?leaveId=${allLeave.leaveId }">EDIT</a></td>
 </tr>
-<%}%>
+</c:forEach>
 </table>
 
 </form>

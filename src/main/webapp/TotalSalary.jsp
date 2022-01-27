@@ -1,6 +1,8 @@
 <%@page import="com.payroll.dao.SalaryCalculateDaoImpl"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,10 +31,9 @@
 </style>
 </head>
 <body>
-<%SalaryCalculateDaoImpl salaryDao=new SalaryCalculateDaoImpl();
-int activeEmp=salaryDao.activeEmployee();
-int inActiveEmp=salaryDao.inActiveEmployee();
-int salCount=salaryDao.salaryEmpCount(); %>
+<c:set var="empActive" scope="session" value="${actEmp}"/> 
+<c:set var="empinActive" scope="session" value="${inactEmp}"/> 
+<c:set var="salCt" scope="session" value="${salCount}"/> 
 
 <div class="salStyle">
 <table>
@@ -41,7 +42,7 @@ int salCount=salaryDao.salaryEmpCount(); %>
 <label for="actEmp">ACTIVE EMPLOYEE</label>
 </td>
 <td>
-<input id="actEmp"  name="empAct" value="<%=activeEmp%>">
+<input id="actEmp"  name="empAct" value="${empActive}">
 </td>
 </tr>
 <tr>
@@ -49,7 +50,7 @@ int salCount=salaryDao.salaryEmpCount(); %>
 <label for="inactEmp">IN-ACTIVE EMPLOYEE</label>
 </td>
 <td>
-<input id="inactEmp" name="empInact" value="<%=inActiveEmp%>">
+<input id="inactEmp" name="empInact" value="${empinActive}">
 </td>
 </tr>
 <tr>
@@ -57,7 +58,7 @@ int salCount=salaryDao.salaryEmpCount(); %>
 <label for="salApprove">SALARY APPROVED EMPLOYEE</label>
 </td>
 <td>
-<input id="salApprove"  name="salEmp" value="<%=salCount%>">
+<input id="salApprove"  name="salEmp" value="${salCt}">
 </td>
 </tr>
 </table>

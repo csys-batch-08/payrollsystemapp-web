@@ -1,6 +1,8 @@
 package com.payroll.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,6 +28,8 @@ public class TotalSalaryController extends HttpServlet {
 		int salCount=salaryDao.salaryEmpCount();
 		session.setAttribute("inactEmp", inActiveEmp);
 		session.setAttribute("salCount", salCount);
+		RequestDispatcher dispatcher =request.getRequestDispatcher("TotalSalary.jsp");
+		dispatcher.forward(request, response);
 		
 	}
 	

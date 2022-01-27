@@ -14,14 +14,15 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <style>
     
+      
      body {
     font-family: Arial, Helvetica, sans-serif;
-    background-image: url("images/pexels-nataliya-vaitkevich-6863259.jpg");
-     background-repeat:no-repeat center center fixed;
+    background-image: url("images/pexels-nataliya-vaitkevich-6863183.jpg") ;
+    background-repeat:no-repeat center center fixed;
    
   background-size: cover;
   height: 100%;
-    }
+ }
     table {
   border-collapse: collapse;
   width: 100%;
@@ -50,12 +51,11 @@ text-decoration:none;
     </style>
 </head>
 <body>
-<%String deleteError=(String)session.getAttribute("delete");
-if(deleteError!=null){
-%>
-	<h2><%=deleteError %></h2>
-	<%session.removeAttribute("delete"); %>
-<%} %>
+<c:set var = "deleteError" scope = "session" value = "${delete}"/>
+	<c:if test="${not empty deleteError}">
+			<h2><c:out value="${deleteError}" /></h2>
+		</c:if>
+
 
 <div id="empShowForm" >
 <h3  class="text-info">INACTIVE-EMPLOYEE</h3>
@@ -96,7 +96,6 @@ if(deleteError!=null){
 <td >${emp.panNo }</td>
 <td >${emp.dept.deptName}</td>
 <td>${emp.grade.gradeName }</td>
-<td>${emp.status }</td>
 
 <td><a href="EmpStatus?statusId=${emp.empId}">Active</a></td>
 </tr>

@@ -1,5 +1,7 @@
 <%@page import="com.payroll.model.Leave"%>
 <%@page import="com.payroll.dao.LeaveDaoImpl"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -33,21 +35,18 @@
 </style>
 </head>
 <body>
-<%int leaveId=Integer.parseInt(request.getParameter("leaveId"));
-HttpSession session1=request.getSession();
-session1.setAttribute("leaveId", leaveId);
-LeaveDaoImpl leaveDao=new LeaveDaoImpl();
-Leave leave=leaveDao.findLeave(leaveId);
-%>
+<c:forEach items="${sessionScope.leave}" var="leaveUpd">
+
 <form action="leaveUpd" class="formSty">
 <center>
 <label for="leaveDt">LEAVE DATE</label>
-<input type="date" id="leaveDt"  name="leaveDate" value="<%=leave.getLeaveDt() %>"><br><br>
+<input type="date" id="leaveDt"  name="leaveDate" value="${leaveUpd.leaveDt }"><br><br>
 <label for="leaveRs">REASON</label>
-<input type="text" id="leaveRs"  name="reason" value="<%=leave.getLeaveReason() %>"><br><br>
+<input type="text" id="leaveRs"  name="reason" value="${leaveUpd.LeaveReason }"><br><br>
 <input type="submit" class="btn btn-primary">
 
 </form>
+</c:forEach>
 <button onclick="history.go(-1)" class="btn btn-primary">GO BACK</button>
 <a href="AdminControl.jsp"><button type="button" class="btn btn-primary">HOME</button></a>
 

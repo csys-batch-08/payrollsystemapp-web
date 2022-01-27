@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,13 +33,11 @@ body {
   	</style>
 </head>
 <body>
-<%String deptError=(String)session.getAttribute("departAlready");
-if(deptError!=null){
-%>
+<c:set var = "deptError" scope = "session" value = "${departAlready}"/>
+	<c:if test="${not empty deptError}">
+			<h2><c:out value="${deptError}" /></h2>
+		</c:if>
 
-<h3><%=deptError %></h3>
-<%session.removeAttribute("departAlready"); %>
-<%} %>
 <center>
 
 <form action="deptAdd"  >

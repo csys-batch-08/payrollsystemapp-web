@@ -319,7 +319,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		PreparedStatement pstmt = null;
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, empName.toUpperCase() );
+			pstmt.setString(1, empName.toUpperCase() +"%");
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				GradeDaoImpl gradeDao = new GradeDaoImpl();

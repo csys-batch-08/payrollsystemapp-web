@@ -208,7 +208,7 @@ public class DepartmentsDaoImpl implements DepartmentDao{
 		PreparedStatement preparedStatement=null;
 		try {
 			preparedStatement=connection.prepareStatement(query);
-			preparedStatement.setString(1, deptName.toUpperCase());
+			preparedStatement.setString(1, deptName.toUpperCase() +"%");
 			resultSet=preparedStatement.executeQuery();
 			while(resultSet.next()) {
 				

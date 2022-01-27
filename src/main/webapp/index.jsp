@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -91,15 +93,11 @@ top: 10px;
 </style>
 </head>
 <body>
-
-
-<%String userError=(String)session.getAttribute("invalid"); 
-if(userError!=null)
-{
-	%>
-	<h2 style="color:#F7DC6F " ><%=userError %></h2>
-	<%session.removeAttribute("invalid"); %>
-<%}%>
+<c:set var = "userError" scope = "session" value = "${invalid}"/>
+	<font color="#F7DC6F"> 
+	<c:if test="${not empty userError}">
+			<h2><c:out value="${userError}" /></h2>
+		</c:if></font>
 
 	<div id="imgSty">
 	<img alt="" src="images/pngegg (1).png">
@@ -114,6 +112,7 @@ if(userError!=null)
 			<h1 style="color:#7D3C98  " >
 				<STRONG>ADMINISTRATOR &nbsp; </STRONG>
 			</h1>
+			
 			<button class="big-btn" style="width: 10%; font-size: 20px;"
 				 onclick="showform()">
 				<strong>Login</strong>

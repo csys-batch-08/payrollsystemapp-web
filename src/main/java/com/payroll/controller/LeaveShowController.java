@@ -1,7 +1,6 @@
 package com.payroll.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -12,27 +11,24 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.payroll.dao.DepartmentsDaoImpl;
-import com.payroll.model.Departments;
+import com.payroll.dao.LeaveDaoImpl;
+import com.payroll.model.Leave;
 
 /**
- * Servlet implementation class DepartmentEditController
+ * Servlet implementation class LeaveShowController
  */
-@WebServlet("/EditDept")
-public class DepartmentEditController extends HttpServlet {
+@WebServlet("/LeaveShow")
+public class LeaveShowController extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		int deptId=Integer.parseInt(request.getParameter("departId"));
+		LeaveDaoImpl leaveDao=new LeaveDaoImpl();
+		List<Leave> leaveList=leaveDao.showLeaveDetail();
 		HttpSession session=request.getSession();
-		session.setAttribute("editDeptId", deptId);
-		DepartmentsDaoImpl departDao=new DepartmentsDaoImpl();
-		Departments depart=departDao.findDepartment(deptId);
-		List<Departments> department=new ArrayList<Departments>();
-		department.add(depart);
-		session.setAttribute("department", department);
-		RequestDispatcher dispatcher=request.getRequestDispatcher("DepartUpd.jsp");
+		session.setAttribute("leave", leaveList);
+		
+		RequestDispatcher dispatcher=request.getRequestDispatcher("LeaveShow.jsp");
 		dispatcher.forward(request, response);
+
 	}
 
 	/**

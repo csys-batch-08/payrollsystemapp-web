@@ -35,12 +35,12 @@
     </style>
 </head>
 <body>
-<%String deptUpd=(String)request.getParameter("deptUpdData");
-if(deptUpd!=null){
-%>
-<h3><%=deptUpd %></h3>
-<%session.removeAttribute("deptUpdData"); %>
-<%} %>
+<c:set var = "deptUpd" scope = "session" value = "${deptUpdData}"/>
+	
+	<c:if test="${not empty deptUpd}">
+			<h2><c:out value="${deptUpd}" /></h2>
+		</c:if>
+
 <center>
 <c:forEach items="${sessionScope.department}" var="department">
 
@@ -52,13 +52,13 @@ if(deptUpd!=null){
 <input type="text" id="deptName" name="name" autofocus="autofocus" value="${department.deptName }"><br><br>
 <input type="submit"class="btn btn-primary">
 
-</div>
+
 </form>
 </c:forEach>
 <a href="AdminControl.jsp"><button type="button" class="btn btn-primary">HOME</button></a>
 
  <button onclick="history.go(-1)" class="btn btn-primary">GO BACK</button></center>
-
+</div>
 </center>
 </body>
 </html>

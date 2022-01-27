@@ -1,6 +1,8 @@
 <%@page import="com.payroll.model.Departments"%>
 <%@page import="com.payroll.model.Employee"%>
 <%@page import="com.payroll.dao.EmployeeDaoImpl"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -41,32 +43,24 @@
 </style>
 </head>
 <body>
-<%String salStatus=(String)session.getAttribute("statusSal");
-if(salStatus!=null){
-%>
-<h3><%=salStatus %></h3>
-<%session.removeAttribute("statusSal"); %>
-<%} %>
-<%String salInvalid=(String)session.getAttribute("salaryEntry");
-if(salInvalid!=null){
-%>
-<center>
-<h2><%=salInvalid %></h2>
-<%session.removeAttribute("salaryEntry"); %>
-</center>
-<%} %>
+<c:set var = "salStatus" scope = "session" value = "${statusSal}"/>
+	<c:if test="${not empty salStatus}">
+			<h2><c:out value="${salStatus}" /></h2>
+		</c:if>
 
-<%String InvalidEnter=(String)request.getAttribute("DateSal");
-if(InvalidEnter!=null){
-%>
-<h2><%=InvalidEnter %></h2>
-<%session.removeAttribute("DateSal"); %>
+<c:set var = "salInvalid" scope = "session" value = "${salaryEntry}"/>
+	<c:if test="${not empty salInvalid}">
+			<h2><c:out value="${salInvalid}" /></h2>
+		</c:if>
 
-<%} %>
+<c:set var = "InvalidEnter" scope = "session" value = "${DateSal}"/>
+	<c:if test="${not empty InvalidEnter}">
+			<h2><c:out value="${InvalidEnter}" /></h2>
+		</c:if>
 
 <h1><STRONG>ADMINISTRATOR &nbsp;</STRONG></h1>
 
-<form action="SalaryApprove.jsp" class="formSty" >
+<form action="ASE" class="formSty" >
 <br>
 <label for="employId">EMPLOYEE ID</label>
 <input type="number" name="eId" id="employId" min="1" pattern="[0-9]+" placeholder="enter employ Id"><br><br>

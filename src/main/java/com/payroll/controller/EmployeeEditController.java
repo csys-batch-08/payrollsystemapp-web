@@ -1,6 +1,8 @@
 package com.payroll.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -25,8 +27,10 @@ public class EmployeeEditController extends HttpServlet {
 		int empId = Integer.parseInt(request.getParameter("empId"));
 		EmployeeDaoImpl employDao = new EmployeeDaoImpl();
 		Employee employ = employDao.findEmployee(empId);
+		List<Employee> employeeList=new ArrayList<Employee>();
+		employeeList.add(employ);
 		HttpSession session=request.getSession();
-		session.setAttribute("Updemploy", employ);
+		session.setAttribute("editEmployee", employeeList);
 		RequestDispatcher requestDispatcher=request.getRequestDispatcher("EmployUpd.jsp");
 		requestDispatcher.forward(request, response);
 	}

@@ -2,6 +2,8 @@
 <%@page import="com.payroll.dao.DepartmentsDaoImpl"%>
 <%@page import="com.payroll.model.Employee"%>
 <%@page import="java.util.List"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <%@page import="com.payroll.dao.EmployeeDaoImpl"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -46,28 +48,21 @@
     
   </head>
   <body>
+  <c:set var = "empAdd" scope = "session" value = "${employInvalid}"/>
+	<c:if test="${not empty empAdd}">
+			<h2><c:out value="${empAdd}" /></h2>
+		</c:if>
+ 
   
-  <%String empAdd=(String)session.getAttribute("employInvalid");
-  if(empAdd!=null){
-	  %>
-	  <h2><%=empAdd %></h2>
-	  <%session.removeAttribute("employInvalid"); %>
-  <%} %>
-  
-  
-    <%String emp=(String)session.getAttribute("employalready");
-  if(emp!=null){
-	  %>
-	  <h2><%=emp %></h2>
-	  <%session.removeAttribute("employalready"); %>
-  <%} %>
-  
-      <%String grdDept=(String)session.getAttribute("gradeDept");
-  if(grdDept!=null){
-	  %>
-	  <h2><%=grdDept %></h2>
-	  <%session.removeAttribute("gradeDept"); %>
-  <%} %>
+   <c:set var = "emp" scope = "session" value = "${employalready}"/>
+	<c:if test="${not empty emp}">
+			<h2><c:out value="${emp}" /></h2>
+		</c:if>
+		
+  <c:set var = "grdDept" scope = "session" value = "${gradeDept}"/>
+	<c:if test="${not empty grdDept}">
+			<h2><c:out value="${grdDept}" /></h2>
+		</c:if>
   
   
   <div class="empDiv">

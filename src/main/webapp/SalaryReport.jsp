@@ -1,6 +1,8 @@
 <%@page import="com.payroll.model.Employee"%>
 <%@page import="com.payroll.dao.EmployeeDaoImpl"%>
 <%@page import="com.payroll.dao.GradeDaoImpl"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <%@page import="com.payroll.model.EmpSalary"%>
 <%@page import="com.payroll.dao.SalaryCalculateDaoImpl"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -50,29 +52,22 @@ tr:nth-child(even) {background-color: #f2f2f2;}
 <td>TOTAL SALARY</td>
 
 
-<%int employId=Integer.parseInt(request.getParameter("eId"));
-EmployeeDaoImpl employeeDao=new EmployeeDaoImpl();
-Employee employ=employeeDao.findEmployee(employId);
-if(employ!=null)
-{
-SalaryCalculateDaoImpl salaryCal=new SalaryCalculateDaoImpl();
-EmpSalary salary=salaryCal.salaryDetail(employId);
-GradeDaoImpl gradeDao=new GradeDaoImpl();
 
-%>
 </tr>
+
+<c:forEach items="${sessionScope.empSalList}" var="salRep">
 
 <tr>
-<td><%= salary.getEmp().getEmpId() %></td>
-<td><%= salary.getDept().getDeptName()%></td>
-<td><%= salary.getTotalLeave() %></td>
-<td><%= salary.getGrade().getGradeName()%></td>
-<td><%= salary.getSalaryDate() %></td>
-<td><%= salary.getGross() %></td>
-<td><%= salary.getSalary() %></td>
+<td>${salRep.emp.empId }</td>
+<td>${salRep.dept.deptName }</td>
+<td>${salRep.totalLeave }</td>
+<td>${salRep.grade.gradeName }</td>
+<td>${salRep.salaryDate }</td>
+<td>${salRep.gross }</td>
+<td>${salRep.salary }</td>
 
 </tr>
-<%} %>
+</c:forEach>
 </table>
 
 </div>

@@ -1,5 +1,7 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <%@page import="com.payroll.dao.SalaryCalculateDaoImpl"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -73,7 +75,7 @@ function totalAmount(){
     var toSal=document.getElementById("salTo").value;
     console.log(fromSal+"fromSal"+toSal+"toSalaryDt");
     
-	var url='totalAmount.jsp?fromSal='+fromSal+'&toSal='+toSal;  
+	var url='totalAmount?fromSal='+fromSal+'&toSal='+toSal;  
 	
 	if(window.XMLHttpRequest){  
 		request=new XMLHttpRequest();  

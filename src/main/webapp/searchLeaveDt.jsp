@@ -3,6 +3,8 @@
 <%@page import="java.util.Date"%>
 <%@page import="com.payroll.model.Leave"%>
 <%@page import="java.util.List"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <%@page import="com.payroll.dao.LeaveDaoImpl"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -42,22 +44,7 @@ background-color: #f2f2f2;
 </head>
 <body>
 <h2>BETWEEN LEAVE DATE</h2>
-<%
-SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
-Date fromDt=null;
-Date toDate=null;
-try{
-	 toDate=sdf.parse(request.getParameter("toDate"));
 
-	 fromDt =sdf.parse(request.getParameter("fromDt"));
-}
-catch(Exception e){
-	e.getStackTrace();
-}
-
-
-LeaveDaoImpl leaveDao=new LeaveDaoImpl();
-List<Leave> leaveList=leaveDao.searchLeave(fromDt, toDate); %>
 <table>
 
 <tr class="bg-primary">
@@ -67,19 +54,19 @@ List<Leave> leaveList=leaveDao.searchLeave(fromDt, toDate); %>
 <td>REASON</td>
 </tr>
 
-<%
 
-for(int i=0;i<leaveList.size();i++){
-	Leave leave=leaveList.get(i);
-	%>
+
+<c:forEach items="${sessionScope.leaveList}" var="leaveList">
+
 	<tr>
-	<td><%=leave.getLeaveId() %></td>
-	<td><%=leave.getEmploy().getEmpId() %></td>
-	<td><%=leave.getLeaveDt() %></td>
-	<td><%=leave.getLeaveReason() %></td>
+	<td>${leaveList.leaveId }</td>
+	<td>${leaveList.employ.empId }</td>
+	<td>${leaveList.leaveDt }</td>
+	<td>${leaveList.leaveReason}</td>
+	
 	</tr>
 	
-<%}%>
+</c:forEach>
 
 </table>
 <center>

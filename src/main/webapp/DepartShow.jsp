@@ -51,13 +51,12 @@ margin-right: 40px;
 </style>
 </head>
 <body>
-<%String deptDel=(String)request.getParameter("depDelete");
-if(deptDel!=null){
-%>
-<h3><%=deptDel %></h3>
-<%session.removeAttribute("depDelete"); %>
+<c:set var = "deptDel" scope = "session" value = "${depDelete}"/>
+	
+	<c:if test="${not empty deptDel}">
+			<h2><c:out value="${deptDel}" /></h2>
+		</c:if>
 
-<%} %>
 <div id="search">
 <form action="departmentSearch">
 

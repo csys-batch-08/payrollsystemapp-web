@@ -10,7 +10,7 @@ public class Leave {
 		this.leaveId = leaveId;
 		this.employ = employ;
 		this.leaveDt = leaveDt;
-		LeaveReason = leaveReason;
+		this.leaveReason = leaveReason;
 	}
 	public int getLeaveId() {
 		return leaveId;
@@ -20,7 +20,7 @@ public class Leave {
 	}
 	private Employee employ;
 	private Date leaveDt;
-	private String LeaveReason;
+	private String leaveReason;
 	public Leave() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -29,16 +29,16 @@ public class Leave {
 		super();
 		this.employ = employ;
 		this.leaveDt = leaveDt;
-		LeaveReason = leaveReason;
+		this.leaveReason = leaveReason;
 	}
 	
 	@Override
 	public String toString() {
-		return "employ = " + employ + "\n leaveDt = " + leaveDt + "\n LeaveReason = " + LeaveReason + "\n";
+		return "employ = " + employ + "\n leaveDt = " + leaveDt + "\n LeaveReason = " + leaveReason + "\n";
 	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(LeaveReason, employ);
+		return Objects.hash(leaveReason, employ);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -49,7 +49,7 @@ public class Leave {
 		if (getClass() != obj.getClass())
 			return false;
 		Leave other = (Leave) obj;
-		return Objects.equals(LeaveReason, other.LeaveReason) && Objects.equals(employ, other.employ);
+		return Objects.equals(leaveReason, other.leaveReason) && Objects.equals(employ, other.employ);
 	}
 	public Employee getEmploy() {
 		return employ;
@@ -64,10 +64,11 @@ public class Leave {
 		this.leaveDt = leaveDt;
 	}
 	public String getLeaveReason() {
-		return LeaveReason;
+		return leaveReason;
 	}
 	public void setLeaveReason(String leaveReason) {
-		LeaveReason = leaveReason;
+		this.leaveReason = leaveReason;
 	}
+	
 
 }

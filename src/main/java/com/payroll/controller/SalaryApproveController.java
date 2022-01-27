@@ -12,27 +12,28 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.payroll.dao.DepartmentsDaoImpl;
+import com.payroll.dao.EmployeeDaoImpl;
 import com.payroll.model.Departments;
+import com.payroll.model.Employee;
 
 /**
- * Servlet implementation class DepartmentEditController
+ * Servlet implementation class SalaryApproveController
  */
-@WebServlet("/EditDept")
-public class DepartmentEditController extends HttpServlet {
+@WebServlet("/ASE")
+public class SalaryApproveController extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int deptId=Integer.parseInt(request.getParameter("departId"));
+		int empId=Integer.parseInt(request.getParameter("eId"));
+		EmployeeDaoImpl employDao=new EmployeeDaoImpl();
+		Employee employ=employDao.findEmployee(empId);
+		List<Employee> employSalApprove=new ArrayList<Employee>();
+		employSalApprove.add(employ);
 		HttpSession session=request.getSession();
-		session.setAttribute("editDeptId", deptId);
-		DepartmentsDaoImpl departDao=new DepartmentsDaoImpl();
-		Departments depart=departDao.findDepartment(deptId);
-		List<Departments> department=new ArrayList<Departments>();
-		department.add(depart);
-		session.setAttribute("department", department);
-		RequestDispatcher dispatcher=request.getRequestDispatcher("DepartUpd.jsp");
-		dispatcher.forward(request, response);
+		session.setAttribute("salEmpApprove", employSalApprove);
+		RequestDispatcher requestDispatcher=request.getRequestDispatcher("SalaryApprove.jsp");
+		requestDispatcher.forward(request, response);
+
 	}
 
 	/**

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    
 <!DOCTYPE html>
 <html>
 
@@ -91,7 +93,7 @@ ADMIN CONTROLS
 <div class="navbar">
 <div class="dropdown" >
 <button class="dropbtn">
-&#9776>EMPLOYEE      
+&#9776>EMPLOYEE 
 <i class="fa fa-caret-down"></i>
 </button>
 <div class="dropdown-content" id="downNav">
@@ -118,7 +120,7 @@ ADMIN CONTROLS
 </button>
 <div class="dropdown-content" id="downNav">
 <a href="Grade.jsp">ADD Grade</a>
-<a href="GradeShow.jsp">Grade Show</a>
+<a href="GradeShow">Grade Show</a>
 </div>
 </div>
 
@@ -128,7 +130,7 @@ ADMIN CONTROLS
 </button>
 <div class="dropdown-content" id="downNav">
 <a href="LeaveDetail.jsp">ADD Leave</a>
-<a href="LeaveShow.jsp">Leave Show</a>
+<a href="LeaveShow">Leave Show</a>
 </div>
 </div>
 
@@ -137,9 +139,9 @@ ADMIN CONTROLS
 &#9776>SALARY
 </button>
 <div class="dropdown-content" id="downNav">
-<a href="SalaryAdd.jsp?employId=0">Enter Salary Detail</a>
+<a href="SalaryAdd.jsp">Enter Salary Detail</a>
 <a href="SalaryEmploy.jsp">Salary Report</a>
-<a href="ShowSalaryEmploy.jsp">Show Salary Detail</a>
+<a href="ShowSalaryEmpl">Show Salary Detail</a>
 </div>
 </div>
 

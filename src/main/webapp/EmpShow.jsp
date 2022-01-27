@@ -22,10 +22,7 @@
    
   background-size: cover;
   height: 100%;
-  
-	
-  
-    }
+ }
     
 table {
   border-collapse: collapse;
@@ -58,21 +55,16 @@ margin-right: 40px;
 </head>
 <body>
 
+<c:set var = "deleteError" scope = "session" value = "${delete}"/>
+	<c:if test="${not empty deleteError}">
+			<h2><c:out value="${deleteError}" /></h2>
+		</c:if>
 
-<%String deleteError=(String)session.getAttribute("delete");
-if(deleteError!=null){
-%>
-	<h2><%=deleteError %></h2>
-	<%session.removeAttribute("delete"); %>
-	
-<%} %>
-<%String delEmp=(String)session.getAttribute("employDel");
-if(delEmp!=null){
-%>
-	<h2><%=delEmp %></h2>
-	<%session.removeAttribute("employDel"); %>
-	
-<%} %>
+<c:set var = "delEmp" scope = "session" value = "${employDel}"/>
+	<c:if test="${not empty delEmp}">
+			<h2><c:out value="${delEmp}" /></h2>
+		</c:if>
+
 <div id="search">
 <form action="searchEmployee">
 <div class="input-group">

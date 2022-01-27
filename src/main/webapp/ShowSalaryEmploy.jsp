@@ -2,6 +2,8 @@
 <%@page import="com.payroll.dao.GradeDaoImpl"%>
 <%@page import="com.payroll.dao.DepartmentsDaoImpl"%>
 <%@page import="com.payroll.model.EmpSalary"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <%@page import="java.util.List"%>
 <%@page import="com.payroll.dao.SalaryCalculateDaoImpl"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -99,7 +101,7 @@ margin-left: 10px;
 <body>
 <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <a href="TotalSalary.jsp">Salary Count</a>
+  <a href="totalSal">Salary Count</a>
   <a href="SalaryInDate.jsp">Salary In-between</a>
   
 </div>
@@ -118,25 +120,18 @@ margin-left: 10px;
 <td>DELETE</td>
 </tr>
 
-<%SalaryCalculateDaoImpl salaryCal=new SalaryCalculateDaoImpl();
-List<EmpSalary> SalaryEmploy=salaryCal.showEmployee();
-for(int i=0;i<SalaryEmploy.size();i++){
-	EmpSalary salary=SalaryEmploy.get(i);
-	LeaveDaoImpl leaveDao=new LeaveDaoImpl();
-	int leave=leaveDao.leaveDays(salary.getEmp().getEmpId());
-	%>
-
+<c:forEach items="${sessionScope.salaryShowList}" var="salaryShowL">
 <tr>
-<td><%=salary.getEmp().getEmpId() %></td>
-<td><%=salary.getDept().getDeptName() %></td>
-<td><%=salary.getGrade().getGradeName() %></td>
-<td><%=leave %></td>
-<td><%=salary.getSalaryDate() %></td>
-<td><%=salary.getGross() %></td>
-<td><%=salary.getSalary() %></td>
-<td><a href="salDel?salId=<%=salary.getTransId() %>">DELETE</a></td>
+<td>${salaryShowL.empId}</td>
+<td>${salaryShowL.dept.deptName}</td>
+<td>${salaryShowL.grade.gradeName}</td>
+<td>${salaryShowL.totalLeave}</td>
+<td>${salaryShowL.salaryDate}</td>
+<td>${salaryShowL.gross}</td>
+<td>${salaryShowL.salary}</td>
+<td><a href="salDel?salId=${salaryShowL.transId }">DELETE</a></td>
 </tr>
-<%} %>
+</c:forEach>
 </table>
 </div>
 <center>

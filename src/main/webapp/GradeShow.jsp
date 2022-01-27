@@ -1,6 +1,8 @@
 <%@page import="com.payroll.model.Grade"%>
 <%@page import="java.util.List"%>
 <%@page import="com.payroll.dao.GradeDaoImpl"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -46,7 +48,7 @@ text-decoration: none;
 </head>
 <body>
 <div id="search">
-<form action="gradeSearch.jsp">
+<form action="GradeSearchController">
 <input type="text" name="gradeName" placeholder="search Grade" autofocus="autofocus">
 <button type="submit"  class="btn btn-primary">&#128269;</button>
 </form>
@@ -59,7 +61,6 @@ text-decoration: none;
 <td>GRADE NAME</td>
 <td>GRADE BASIC</td>
 <td>GRADE BONUS</td>
-
 <td>PROVIDENT FUND</td>
 <td>PROFESSIONAL TAX</td>
 <td>DEPARTMENT NAME</td>
@@ -67,30 +68,25 @@ text-decoration: none;
 <td>EDIT</td>
 </tr>
 
+<c:forEach items="${sessionScope.grdList}" var="grd">
 
-<%GradeDaoImpl gradeDao=new GradeDaoImpl();
-List<Grade> gradeList=gradeDao.showGrade();
-for(int i=0;i<gradeList.size();i++){
-	Grade grade=gradeList.get(i);
-	
-	%>
 	<tr>
-	<td><%=grade.getGradeId() %></td>
-	<td><%= grade.getGradeName() %></td>
-	<td><%= grade.getGradeBasic() %></td>
-	<td><%= grade.getGradeBonus() %></td>
+	<td>${grd.gradeId }</td>
+	<td>${grd.gradeName }</td>
+	<td>${grd.gradeBasic }</td>
+	<td>${grd.gradeBonus }</td>
 	
-	<td><%= grade.getGradePf() %></td>
-	<td><%= grade.getGradePt() %></td>
-	<td><%=grade.getDepartment().getDeptName() %>
-	<td><a href="GradeDel?gradeId=<%= grade.getGradeId() %>" >DELETE</a></td>
+	<td>${grd.gradePf }</td>
+	<td>${grd.gradePt }</td>
+	<td>${grd.department.deptName }
+	<td><a href="GradeDel?gradeId=${grd.gradeId }" >DELETE</a></td>
 	
-	<td><a href="GradeUpd.jsp?gradeId=<%= grade.getGradeId() %>">EDIT</a></td>
+	<td><a href="GradeEdit?gradeId=${grd.gradeId }">EDIT</a></td>
 	
 	</tr>
 	
 
-<%} %>
+</c:forEach>
 </table>
 <br>
 <center>

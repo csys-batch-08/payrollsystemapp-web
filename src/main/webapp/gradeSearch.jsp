@@ -1,6 +1,8 @@
 <%@page import="java.util.List"%>
 <%@page import="com.payroll.model.Grade"%>
 <%@page import="com.payroll.dao.GradeDaoImpl"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -49,25 +51,19 @@ background-color: #f2f2f2;
 <td>DEPARTMENT NAME</td>
 </tr>
 
-<%
-String name=request.getParameter("gradeName");
-GradeDaoImpl gradeDao=new GradeDaoImpl();
-List<Grade> listGrade=gradeDao.searchGrade(name);
-for(int i=0;i<listGrade.size();i++){
-
-	Grade grade=listGrade.get(i);
-%>
+<c:forEach items="${sessionScope.searchListGrade}" var="gradeSearch">
 
 <tr>
-<td><%=grade.getGradeId() %></td>
-<td><%=grade.getGradeName() %></td>
-<td><%=grade.getGradeBasic() %></td>
-<td><%=grade.getGradeBonus() %></td>
-<td><%=grade.getGradePf() %></td>
-<td><%=grade.getGradePt() %></td>
-<td><%=grade.getDepartment().getDeptName()%></td>
+<td>${gradeSearch.gradeId }</td>
+	<td>${gradeSearch.gradeName }</td>
+	<td>${gradeSearch.gradeBasic }</td>
+	<td>${gradeSearch.gradeBonus }</td>
+	
+	<td>${gradeSearch.gradePf }</td>
+	<td>${gradeSearch.gradePt }</td>
+	<td>${gradeSearch.department.deptName }
 </tr>
-<%} %>
+</c:forEach>
 </table>
 <center>
 <a href="AdminControl.jsp"><button type="button" class="btn btn-primary"><strong>Home Page</strong></button></a>

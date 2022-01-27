@@ -189,14 +189,15 @@ public class GradeDaoImpl {
 	
 	public  Grade findGrade(int gradeId) 
 	{	
-		String qry="select GRADE_ID,GRADE_NAME,GRADE_BASIC,GRADE_BONUS,GRADE_PF,GRADE_PT,DEPT_ID  from grades where GRADE_ID="+gradeId;
+		String qry="select GRADE_ID,GRADE_NAME,GRADE_BASIC,GRADE_BONUS,GRADE_PF,GRADE_PT,DEPT_ID  from grades where GRADE_ID=?";
 		ConnectionUtilImpl connection=new ConnectionUtilImpl();
 		Connection con=connection.dbConnect();
 		Grade grd=null;
-		Statement stmt=null;
+		PreparedStatement preparedStatement=null;
 		try {
-			stmt=con.createStatement();
-			ResultSet rs=stmt.executeQuery(qry);
+			preparedStatement=con.prepareStatement(qry);
+			preparedStatement.setInt(1, gradeId);
+			ResultSet rs=preparedStatement.executeQuery();
 			while(rs.next()) {
 				DepartmentsDaoImpl departmentDao=new DepartmentsDaoImpl();
 
@@ -207,7 +208,7 @@ public class GradeDaoImpl {
 			e.printStackTrace();
 		}
 		finally {
-			ConnectionUtilImpl.closeStatement(stmt, con);
+			ConnectionUtilImpl.closePreparedStatement(preparedStatement, con);
 		}
 		return grd;
 		
@@ -353,13 +354,15 @@ public class GradeDaoImpl {
 	{
 		ConnectionUtilImpl connection=new ConnectionUtilImpl();
 		Connection con=connection.dbConnect();
-		String query="select GRADE_ID,GRADE_NAME,GRADE_BASIC,GRADE_BONUS,GRADE_PF,GRADE_PT,DEPT_ID  from grades where upper(GRADE_NAME) like '"+grdName.toUpperCase()+"%'";
+		String query="select GRADE_ID,GRADE_NAME,GRADE_BASIC,GRADE_BONUS,GRADE_PF,GRADE_PT,DEPT_ID  from grades where upper(GRADE_NAME) like ?";
 		ResultSet rs=null;
 		List<Grade> gradeList=new ArrayList<Grade>();
 		PreparedStatement pstmt=null;
+		
 
 		try {
 			pstmt=con.prepareStatement(query);
+			pstmt.setString(1, grdName.toUpperCase() +"%");
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
 				DepartmentsDaoImpl departmentDao=new DepartmentsDaoImpl();

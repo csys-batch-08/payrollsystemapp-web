@@ -1,7 +1,6 @@
 package com.payroll.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -12,27 +11,24 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.payroll.dao.DepartmentsDaoImpl;
-import com.payroll.model.Departments;
+import com.payroll.dao.GradeDaoImpl;
+import com.payroll.model.Grade;
 
 /**
- * Servlet implementation class DepartmentEditController
+ * Servlet implementation class GradeSearchController
  */
-@WebServlet("/EditDept")
-public class DepartmentEditController extends HttpServlet {
+@WebServlet("/GradeSearchController")
+public class GradeSearchController extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		int deptId=Integer.parseInt(request.getParameter("departId"));
+		String name=request.getParameter("gradeName");
+		GradeDaoImpl gradeDao=new GradeDaoImpl();
+		List<Grade> listGrade=gradeDao.searchGrade(name);
 		HttpSession session=request.getSession();
-		session.setAttribute("editDeptId", deptId);
-		DepartmentsDaoImpl departDao=new DepartmentsDaoImpl();
-		Departments depart=departDao.findDepartment(deptId);
-		List<Departments> department=new ArrayList<Departments>();
-		department.add(depart);
-		session.setAttribute("department", department);
-		RequestDispatcher dispatcher=request.getRequestDispatcher("DepartUpd.jsp");
+		session.setAttribute("searchListGrade", listGrade);
+		RequestDispatcher dispatcher=request.getRequestDispatcher("gradeSearch.jsp");
 		dispatcher.forward(request, response);
+		
 	}
 
 	/**

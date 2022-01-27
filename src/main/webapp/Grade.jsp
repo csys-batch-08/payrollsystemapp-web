@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,22 +36,17 @@ body {
 </head>
 <body>
 
+<c:set var = "negative" scope = "session" value = "${negativeValue}"/>
+	<c:if test="${not empty negative}">
+			<h2><c:out value="${negative}" /></h2>
+		</c:if>
 
 
+<c:set var = "gradeExist" scope = "session" value = "${alreadyGrade}"/>
+	<c:if test="${not empty gradeExist}">
+			<h2><c:out value="${gradeExist}" /></h2>
+		</c:if>
 
-<% String negative=(String)session.getAttribute("negativeValue");
-if(negative!=null) {
-%>
-<h2><%=negative %></h2>
-<%session.removeAttribute("negativeValue"); %>
-<%} %>
-
-<%String gradeExist=(String)session.getAttribute("alreadyGrade");
-if(gradeExist!=null){
-%>
-<h2><%= gradeExist%></h2>
-<%session.removeAttribute("alreadyGrade");
-}%>
 <form action="gradeAdd">
 <div id="gradeAdd" >
 <center>

@@ -1,7 +1,8 @@
 package com.payroll.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -12,27 +13,35 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.payroll.dao.DepartmentsDaoImpl;
-import com.payroll.model.Departments;
+import com.payroll.dao.LeaveDaoImpl;
+import com.payroll.model.Leave;
 
 /**
- * Servlet implementation class DepartmentEditController
+ * Servlet implementation class LeaveInbetweenController
  */
-@WebServlet("/EditDept")
-public class DepartmentEditController extends HttpServlet {
+@WebServlet("/LeaveInbetweenController")
+public class LeaveInbetweenController extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		int deptId=Integer.parseInt(request.getParameter("departId"));
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+		Date fromDt=null;
+		Date toDate=null;
+		try{
+			 toDate=sdf.parse(request.getParameter("toDate"));
+
+			 fromDt =sdf.parse(request.getParameter("fromDt"));
+		}
+		catch(Exception e){
+			e.getStackTrace();
+		}
+
+		LeaveDaoImpl leaveDao=new LeaveDaoImpl();
+		List<Leave> leaveList=leaveDao.searchLeave(fromDt, toDate); 
 		HttpSession session=request.getSession();
-		session.setAttribute("editDeptId", deptId);
-		DepartmentsDaoImpl departDao=new DepartmentsDaoImpl();
-		Departments depart=departDao.findDepartment(deptId);
-		List<Departments> department=new ArrayList<Departments>();
-		department.add(depart);
-		session.setAttribute("department", department);
-		RequestDispatcher dispatcher=request.getRequestDispatcher("DepartUpd.jsp");
+		session.setAttribute("leaveList", leaveList);
+		RequestDispatcher dispatcher=request.getRequestDispatcher("searchLeaveDt.jsp");
 		dispatcher.forward(request, response);
+		
 	}
 
 	/**

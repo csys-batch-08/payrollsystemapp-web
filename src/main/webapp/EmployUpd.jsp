@@ -55,12 +55,10 @@
 
 </head>
 <body>
-<%String data=(String)session.getAttribute("dataInvalid");
-if(data!=null){
-	%>
-	<h3><%= data%></h3>
-	<%session.removeAttribute("dataInvalid"); %>
-<%} %>
+<c:set var = "data" scope = "session" value = "${dataInvalid}"/>
+	<c:if test="${not empty data}">
+			<h2><c:out value="${data}" /></h2>
+		</c:if>
 
  <div class="empDiv">
  
@@ -71,9 +69,9 @@ if(data!=null){
 <div >
 <br>
 <table>
+<c:forEach items="${sessionScope.editEmployee }" var="employ">
 
 <tr>
-<c:forEach items="${sessionScope.Updemploy}" var="employ">
 
 <td>
   <label for="empName">EMPLOYEE NAME</label>

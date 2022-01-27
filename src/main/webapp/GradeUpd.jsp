@@ -1,6 +1,8 @@
 <%@page import="java.util.List"%>
 <%@page import="com.payroll.model.Grade"%>
 <%@page import="com.payroll.dao.GradeDaoImpl"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" %>
 <!DOCTYPE html>
@@ -34,46 +36,36 @@
 </style>
 </head>
 <body>
-<% String negative=(String)session.getAttribute("negativeValue");
-if(negative!=null) {
-%>
-<h2><%=negative %></h2>
-<%session.removeAttribute("negativeValue"); %>
-<%} %>
-
-
-
-<%int gradeId=Integer.parseInt(request.getParameter("gradeId"));
-session.setAttribute("gradeId", gradeId);
-GradeDaoImpl gradeDao=new GradeDaoImpl();
-Grade grade=gradeDao.findGrade(gradeId);
-
-%>
-
+<c:set var = "negative" scope = "session" value = "${negativeValue}"/>
+	<c:if test="${not empty negative}">
+			<h2><c:out value="${negative}" /></h2>
+		</c:if>
 <form action="gradeUpd" class="formSty" >
 <br>
 
+<c:forEach items="${sessionScope.Grade}" var="grd">
 
 <label for="gradeBasic">BASIC SALARY</label>
-<input type="number" id="gradeBasic" min="1" name="basic" value="<%=grade.getGradeBasic()%>"><br><br>
+<input type="number" id="gradeBasic" min="1" name="basic" value="${grd.gradeBasic }"><br><br>
 
  <label for="gradeBonus">BONUS SALARY</label>
-<input type="number" id="gradeBonus" min="1" name="bonus" value="<%=grade.getGradeBonus()%>" ><br><br>
+<input type="number" id="gradeBonus" min="1" name="bonus" value="${grd.gradeBonus }" ><br><br>
 
  <label for="gradePf">PROVIDENT FUND</label>
-<input type="number" id="gradePf" min="1" name="pf" value="<%=grade.getGradePf()%>"><br><br>
+<input type="number" id="gradePf" min="1" name="pf" value="${grd.gradePf }"><br><br>
 
  <label for="gradePt">PROFESSIONAL TAX</label>
-<input type="number" id="gradePt" min="1" name="pt" value="<%=grade.getGradePt() %>" ><br><br>
+<input type="number" id="gradePt" min="1" name="pt" value="${grd.gradePt }" ><br><br>
 
 <center>
 <input type="submit" class="btn btn-primary">
 <input type="reset" class="btn btn-primary">
 
+</c:forEach>
 </form>
 <button onclick="history.back()" class="btn btn-primary">BACK</button>
 <a href="AdminControl.jsp"><button type="button" class="btn btn-primary"><strong>HOME</strong></button></a>
-
 </center>
+
 </body>
 </html>

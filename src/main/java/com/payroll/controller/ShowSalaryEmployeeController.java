@@ -1,7 +1,6 @@
 package com.payroll.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -12,26 +11,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.payroll.dao.DepartmentsDaoImpl;
-import com.payroll.model.Departments;
+import com.payroll.dao.LeaveDaoImpl;
+import com.payroll.dao.SalaryCalculateDaoImpl;
+import com.payroll.model.EmpSalary;
 
 /**
- * Servlet implementation class DepartmentEditController
+ * Servlet implementation class ShowSalaryEmployeeController
  */
-@WebServlet("/EditDept")
-public class DepartmentEditController extends HttpServlet {
+@WebServlet("/ShowSalaryEmpl")
+public class ShowSalaryEmployeeController extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		int deptId=Integer.parseInt(request.getParameter("departId"));
+		SalaryCalculateDaoImpl salaryCal=new SalaryCalculateDaoImpl();
+		List<EmpSalary> SalaryEmploy=salaryCal.showEmployee();
 		HttpSession session=request.getSession();
-		session.setAttribute("editDeptId", deptId);
-		DepartmentsDaoImpl departDao=new DepartmentsDaoImpl();
-		Departments depart=departDao.findDepartment(deptId);
-		List<Departments> department=new ArrayList<Departments>();
-		department.add(depart);
-		session.setAttribute("department", department);
-		RequestDispatcher dispatcher=request.getRequestDispatcher("DepartUpd.jsp");
+		session.setAttribute("salaryShowList", SalaryEmploy);
+		RequestDispatcher dispatcher=request.getRequestDispatcher("ShowSalaryEmploy.jsp");
 		dispatcher.forward(request, response);
 	}
 
