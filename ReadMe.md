@@ -1,77 +1,70 @@
-# Payroll Management
+Payroll Management
 
 
-#### objective
-*Salary Management*
+Module 1: Employee
 
+* Show Active Employee
 
-### Features
-1.Employee
+* particular department and grade exist then that employee entry is add in employee list
 
-2.Department
+* Show Inactive Employee
 
-3.Grade
+* Employee Add
 
-4.Salary
+* Update Employee
 
-5.Leave
+* Delete Employee
 
+* Search Employee
 
-1. >Admin login
- **UserName** :maniselvam11@gmail.com
- 
+* if you delete employee they add into inactive employee status
 
- **Password** :Maniselvam11@
+module 2: Department
 
+* Show Department
 
-## Employee
-1.Show Active Employee
+* Update Department
 
-2.Show Inactive Employee
+* Delete Department
 
-3.Employee Add
+* Search Department
 
-4.Update Employee
+module 3: Grade
 
-5.Delete Employee
+* Grade Add
 
-6.Search Employee
+* Department exist then add that department grade
 
-## Department
+* Grade Update
 
-1.Show Department
+* Grade Delete
 
-2.Update Department
+* Grade Show
 
-3.Delete Department
+* Search Grade
 
-4.Search Department
+Module 4: Leave
 
-## Grade
-1.Grade Add
+* Leave Add
 
-2.Grade Update
+* Leave Update
 
-3.Grade Delete
+* Leave Show
 
-4.Grade Show
+* Leave Delete
 
-5.Search Grade
+* show inbetween date employee leave
 
-## Leave
-1.Leave Add
+Module 5: Salary
 
-2.Leave Update
+* Salary Apply
 
-3.Leave Show
+* Search Particular Employee Salary
 
-4.Leave Delete
+* Salary Based on leave
 
-## Salary
-1.Salary Apply
+* Yearly tax Deducte & bonus approval asking
 
-2.Search Particular Employee Salary
+* Employee Salary approval,inactive and active employee count
 
-3.Salary Based on leave
-
-4.Yearly tax Deducte
+* Inbetween date how much they spend in salary
