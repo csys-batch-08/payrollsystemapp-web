@@ -18,6 +18,7 @@ import com.payroll.model.Employee;
 import com.payroll.model.Leave;
 @WebServlet("/LeaveAdd")
 public class LeaveAddController extends HttpServlet {
+	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
 		int empId=Integer.parseInt(request.getParameter("empId"));
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
