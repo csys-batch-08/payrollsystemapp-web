@@ -28,7 +28,7 @@ public class TotalSalaryController extends HttpServlet {
 		int salCount=salaryDao.salaryEmpCount();
 		session.setAttribute("inactEmp", inActiveEmp);
 		session.setAttribute("salCount", salCount);
-		RequestDispatcher dispatcher =request.getRequestDispatcher("TotalSalary.jsp");
+		RequestDispatcher dispatcher =request.getRequestDispatcher("salaryEmployCount.jsp");
 		dispatcher.forward(request, response);
 		
 	}

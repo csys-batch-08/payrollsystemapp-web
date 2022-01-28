@@ -80,7 +80,7 @@ public class SalaryAddController extends HttpServlet {
 						boolean result = salaryCal.insertSalary(emp, grade, depart, leaveDays, grossSalary,
 								salaryBonus);
 						try {
-							if (result != false) {
+							if (result) {
 								PrintWriter out = response.getWriter();
 								out.println("<script type=\"text/javascript\">");
 								out.println("alert('Salary Added Successfully');");
@@ -103,7 +103,7 @@ public class SalaryAddController extends HttpServlet {
 								PrintWriter out = response.getWriter();
 								out.println("<script type=\"text/javascript\">");
 								out.println("alert('Salary Added Successfully');");
-								out.println("location='AdminControl.jsp';");
+								out.println("location='adminControl.jsp';");
 								out.println("</script>");
 							} else {
 								throw new SalaryInvalidException();
@@ -111,7 +111,7 @@ public class SalaryAddController extends HttpServlet {
 						} catch (SalaryInvalidException e) {
 							HttpSession session = request.getSession();
 							session.setAttribute("salaryInvalid", e.getMessage());
-							response.sendRedirect("SalaryAdd.jsp");
+							response.sendRedirect("salaryAdd.jsp");
 						}
 					}
 
@@ -127,7 +127,7 @@ public class SalaryAddController extends HttpServlet {
 								PrintWriter out = response.getWriter();
 								out.println("<script type=\"text/javascript\">");
 								out.println("alert('Salary Added Successfully');");
-								out.println("location='AdminControl.jsp';");
+								out.println("location='adminControl.jsp';");
 								out.println("</script>");
 							} else {
 								throw new SalaryInvalidException();
@@ -136,7 +136,7 @@ public class SalaryAddController extends HttpServlet {
 						} catch (SalaryInvalidException e) {
 							HttpSession session = request.getSession();
 							session.setAttribute("salaryInvalid", e.getMessage());
-							response.sendRedirect("SalaryAdd.jsp");
+							response.sendRedirect("salaryAdd.jsp");
 						}
 					} else {
 						long salary = (((grossSalary) - (leaveDays * perDaySalary)));
@@ -144,11 +144,11 @@ public class SalaryAddController extends HttpServlet {
 						boolean result = salaryCal.insertSalary(emp, grade, depart, leaveDays, grossSalary, salary);
 						try {
 
-							if (result == true) {
+							if (result ) {
 								PrintWriter out = response.getWriter();
 								out.println("<script type=\"text/javascript\">");
 								out.println("alert('Salary Added Successfully');");
-								out.println("location='AdminControl.jsp';");
+								out.println("location='adminControl.jsp';");
 								out.println("</script>");
 
 							}
@@ -159,7 +159,7 @@ public class SalaryAddController extends HttpServlet {
 						} catch (SalaryInvalidException e) {
 							HttpSession session = request.getSession();
 							session.setAttribute("salaryEntry", e.getMessage());
-							response.sendRedirect("SalaryAdd.jsp");
+							response.sendRedirect("salaryAdd.jsp");
 						}
 
 					}
@@ -173,7 +173,7 @@ public class SalaryAddController extends HttpServlet {
 			catch(SalaryInvalidException s) {
 				HttpSession session = request.getSession();
 				session.setAttribute("statusSal", s.statusInactiveEmp());
-				response.sendRedirect("SalaryAdd.jsp");
+				response.sendRedirect("salaryAdd.jsp");
 			}
 
 		} 
@@ -183,7 +183,7 @@ public class SalaryAddController extends HttpServlet {
 		catch(SalaryInvalidException e) {
 			HttpSession session=request.getSession();
 			session.setAttribute("DateSal", e.getSalMessage());
-			response.sendRedirect("SalaryAdd.jsp");
+			response.sendRedirect("salaryAdd.jsp");
 		}
 
 	}

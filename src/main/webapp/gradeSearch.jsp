@@ -66,7 +66,7 @@ background-color: #f2f2f2;
 </c:forEach>
 </table>
 <center>
-<a href="AdminControl.jsp"><button type="button" class="btn btn-primary"><strong>Home Page</strong></button></a>
+<a href="adminControl.jsp"><button type="button" class="btn btn-primary"><strong>Home Page</strong></button></a>
 
  <input type="button" value="Go back!" onclick="history.go(-1)" class="btn btn-primary">
  </center>

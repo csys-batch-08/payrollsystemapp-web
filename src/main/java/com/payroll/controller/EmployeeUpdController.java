@@ -27,6 +27,7 @@ public class EmployeeUpdController extends HttpServlet {
 	
 
 	
+	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String name=request.getParameter("name");
@@ -36,7 +37,6 @@ public class EmployeeUpdController extends HttpServlet {
 			dob=new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("dob"));
 			doj=new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("doj"));
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	
 		
@@ -70,7 +70,7 @@ public class EmployeeUpdController extends HttpServlet {
 		PrintWriter out =response.getWriter();
 		out.println("<script type=\"text/javascript\">");
 		out.println("alert('Employee Updated Successfully');");
-		out.println("location='EmpShow.jsp';");
+		out.println("location='employeeShow.jsp';");
 		out.println("</script>");
 		}
 		else{
@@ -79,7 +79,7 @@ public class EmployeeUpdController extends HttpServlet {
 		catch(EmployeeDelException e) {
 			HttpSession session=request.getSession();
 			session.setAttribute("dataInvalid", e.getEmployeeEntry());
-			response.sendRedirect("EmployUpd.jsp");
+			response.sendRedirect("employeeUpdate.jsp");
 			
 		}
 		}

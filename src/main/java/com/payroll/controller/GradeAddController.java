@@ -43,15 +43,15 @@ public class GradeAddController extends HttpServlet {
 		
 			Grade gradeAdd=new Grade(department,gradeName,bonus,basic,pf,pt);
 			boolean flag=gradeDao.insertGrade(gradeAdd);
-			if(flag!=false) {
+			if(flag) {
 				PrintWriter out =response.getWriter();
 				out.println("<script type=\"text/javascript\">");
 				out.println("alert('Grade Added Successfully');");
-				out.println("location='GradeShow.jsp';");
+				out.println("location='gradeShow.jsp';");
 				out.println("</script>");
 			}
 			else {
-				response.sendRedirect("Grade.jsp");
+				response.sendRedirect("gradeAdd.jsp.jsp");
 				
 			}
 			}

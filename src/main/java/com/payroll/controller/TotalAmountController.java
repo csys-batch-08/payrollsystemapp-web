@@ -1,6 +1,7 @@
 package com.payroll.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -30,10 +31,9 @@ public class TotalAmountController extends HttpServlet {
 				Date toDt=sdf.parse(toSal);
 				SalaryCalculateDaoImpl salaryCal=new SalaryCalculateDaoImpl();
 				int total=salaryCal.totalSal(fromDt, toDt);
-				HttpSession session=request.getSession();
-				session.setAttribute("totalAmt", total);
-				RequestDispatcher dispatcher=request.getRequestDispatcher("SalaryInDate.jsp");
-				dispatcher.forward(request, response);
+				PrintWriter printWriter=response.getWriter();
+				printWriter.print(total);
+				
 				
 				
 			} catch (ParseException e) {

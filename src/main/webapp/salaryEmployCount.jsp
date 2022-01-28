@@ -63,7 +63,7 @@
 </tr>
 </table>
 <div id="bacSy">
-<a href="AdminControl.jsp"><button type="button" class="btn btn-primary">HOME</button></a>
+<a href="adminControl.jsp"><button type="button" class="btn btn-primary">HOME</button></a>
 <input type="button" value="Go back!" onclick="history.go(-1)" class="btn btn-primary">
 </div>
 </div>

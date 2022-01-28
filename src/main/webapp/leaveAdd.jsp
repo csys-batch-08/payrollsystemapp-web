@@ -59,7 +59,7 @@
 
 <button onclick="history.back()" class="btn btn-primary">BACK</button>
 
-<a href="AdminControl.jsp"><button type="button" class="btn btn-primary"><strong>HOME</strong></button></a>
+<a href="adminControl.jsp"><button type="button" class="btn btn-primary"><strong>HOME</strong></button></a>
 
 </center>
 </body>

@@ -26,7 +26,6 @@ public class LeaveUpdController extends HttpServlet {
 		try {
 			leaveDt=sdf.parse(request.getParameter("leaveDate"));
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		String reason=request.getParameter("reason");
@@ -37,7 +36,7 @@ public class LeaveUpdController extends HttpServlet {
 		int i=leaveDao.updateLeave(leave);
 		try {
 		if(i>0) {
-			response.sendRedirect("LeaveShow.jsp");
+			response.sendRedirect("leaveShow.jsp");
 			
 		}
 		else {
@@ -45,7 +44,7 @@ public class LeaveUpdController extends HttpServlet {
 		}}
 		catch(LeaveException e) {
 			session.setAttribute("updLeave",e.getMessage2());
-			response.sendRedirect("LeaveShow.jsp");
+			response.sendRedirect("leaveShow.jsp");
 			
 		}
 		

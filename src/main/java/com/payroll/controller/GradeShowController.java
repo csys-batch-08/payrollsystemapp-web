@@ -20,6 +20,7 @@ import com.payroll.model.Grade;
 @WebServlet("/GradeShow")
 public class GradeShowController extends HttpServlet {
 	
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		GradeDaoImpl gradeDao=new GradeDaoImpl();
@@ -27,7 +28,7 @@ public class GradeShowController extends HttpServlet {
 		HttpSession session=request.getSession();
 		session.setAttribute("grdList", gradeList);
 		
-		RequestDispatcher requestDispatcher=request.getRequestDispatcher("GradeShow.jsp");
+		RequestDispatcher requestDispatcher=request.getRequestDispatcher("gradeShow.jsp");
 		requestDispatcher.forward(request, response);
 		
 	}
@@ -36,7 +37,6 @@ public class GradeShowController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

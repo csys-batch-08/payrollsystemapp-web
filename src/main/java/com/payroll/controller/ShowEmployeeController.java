@@ -26,14 +26,13 @@ public class ShowEmployeeController extends HttpServlet {
 		HttpSession session=request.getSession();
 		session.setAttribute("empList", employeeList);
 		
-		RequestDispatcher requestDispatcher=request.getRequestDispatcher("EmpShow.jsp");
+		RequestDispatcher requestDispatcher=request.getRequestDispatcher("employeeShow.jsp");
 		requestDispatcher.forward(request, response);
 		
 	}
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

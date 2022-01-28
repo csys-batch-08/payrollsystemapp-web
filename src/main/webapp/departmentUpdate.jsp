@@ -55,7 +55,7 @@
 
 </form>
 </c:forEach>
-<a href="AdminControl.jsp"><button type="button" class="btn btn-primary">HOME</button></a>
+<a href="adminControl.jsp"><button type="button" class="btn btn-primary">HOME</button></a>
 
  <button onclick="history.go(-1)" class="btn btn-primary">GO BACK</button></center>
 </div>

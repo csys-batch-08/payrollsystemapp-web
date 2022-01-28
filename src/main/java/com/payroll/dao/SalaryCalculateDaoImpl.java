@@ -256,7 +256,7 @@ public class SalaryCalculateDaoImpl {
 			
 		}
 		public int totalSal(Date salFrom,Date salTo) {
-			String query="select sum(total_salary) total from salarys where PAID_DATE  between ? and ?;";
+			String query="select sum(TOTAL_SALARY) total from salarys where PAID_DATE  between ? and ?";
 			ConnectionUtilImpl connection=new ConnectionUtilImpl();
 			Connection con=connection.dbConnect();
 			int total=0;
@@ -270,6 +270,7 @@ public class SalaryCalculateDaoImpl {
 					total=rs.getInt(1);
 					
 				}
+				
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

@@ -31,7 +31,7 @@ public class SalaryApproveController extends HttpServlet {
 		employSalApprove.add(employ);
 		HttpSession session=request.getSession();
 		session.setAttribute("salEmpApprove", employSalApprove);
-		RequestDispatcher requestDispatcher=request.getRequestDispatcher("SalaryApprove.jsp");
+		RequestDispatcher requestDispatcher=request.getRequestDispatcher("salaryApprove.jsp");
 		requestDispatcher.forward(request, response);
 
 	}
@@ -40,7 +40,6 @@ public class SalaryApproveController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

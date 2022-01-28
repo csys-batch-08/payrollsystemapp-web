@@ -4,8 +4,6 @@
     
 <!DOCTYPE html>
 <html>
-
-
 <head>
 <meta charset="ISO-8859-1">
 <title>payroll management</title>
@@ -94,11 +92,10 @@ ADMIN CONTROLS
 <div class="dropdown" >
 <button class="dropbtn">
 &#9776>EMPLOYEE 
-<i class="fa fa-caret-down"></i>
 </button>
 <div class="dropdown-content" id="downNav">
 <a href="ShowEmployee">Show Active Employ</a>
-<a href="EmployAdd.jsp">ADD Employee </a>
+<a href="employeeAdd.jsp">ADD Employee </a>
 <a href="ShowInactiveEmploy">Show In-Active Employ</a>
 </div>
 </div>
@@ -108,7 +105,7 @@ ADMIN CONTROLS
 &#9776>DEPARTMENT
 </button>
 <div class="dropdown-content" id="downNav">
-<a href="DepartmentAdd.jsp">ADD Department </a>
+<a href="departmentAdd.jsp">ADD Department </a>
 <a href="showDept">Department Show</a>
 </div>
 </div>
@@ -119,7 +116,7 @@ ADMIN CONTROLS
 &#9776>GRADE
 </button>
 <div class="dropdown-content" id="downNav">
-<a href="Grade.jsp">ADD Grade</a>
+<a href="gradeAdd.jsp">ADD Grade</a>
 <a href="GradeShow">Grade Show</a>
 </div>
 </div>
@@ -129,7 +126,7 @@ ADMIN CONTROLS
 &#9776>LEAVE DETAIL
 </button>
 <div class="dropdown-content" id="downNav">
-<a href="LeaveDetail.jsp">ADD Leave</a>
+<a href="leaveAdd.jsp">ADD Leave</a>
 <a href="LeaveShow">Leave Show</a>
 </div>
 </div>
@@ -139,8 +136,8 @@ ADMIN CONTROLS
 &#9776>SALARY
 </button>
 <div class="dropdown-content" id="downNav">
-<a href="SalaryAdd.jsp">Enter Salary Detail</a>
-<a href="SalaryEmploy.jsp">Salary Report</a>
+<a href="salaryAdd.jsp">Enter Salary Detail</a>
+<a href="salaryEmployee.jsp">Salary Report</a>
 <a href="ShowSalaryEmpl">Show Salary Detail</a>
 </div>
 </div>

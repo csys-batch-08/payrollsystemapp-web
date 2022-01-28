@@ -39,16 +39,12 @@ public class LeaveInbetweenController extends HttpServlet {
 		List<Leave> leaveList=leaveDao.searchLeave(fromDt, toDate); 
 		HttpSession session=request.getSession();
 		session.setAttribute("leaveList", leaveList);
-		RequestDispatcher dispatcher=request.getRequestDispatcher("searchLeaveDt.jsp");
+		RequestDispatcher dispatcher=request.getRequestDispatcher("leaveInBetweenDate.jsp");
 		dispatcher.forward(request, response);
 		
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

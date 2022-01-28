@@ -19,7 +19,7 @@ public class GradeDelController extends HttpServlet {
 		PrintWriter out =response.getWriter();
 		out.println("<script type=\"text/javascript\">");
 		out.println("alert('Grade Deleted Successfully');");
-		out.println("location='GradeShow.jsp';");
+		out.println("location='gradeShow.jsp';");
 		out.println("</script>");
 		}
 

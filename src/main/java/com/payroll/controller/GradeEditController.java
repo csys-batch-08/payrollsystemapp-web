@@ -31,7 +31,7 @@ public class GradeEditController extends HttpServlet {
 		
 		grade.add(gradeList);
 		session.setAttribute("Grade", grade);
-		RequestDispatcher dispatcher=request.getRequestDispatcher("GradeUpd.jsp");
+		RequestDispatcher dispatcher=request.getRequestDispatcher("gradeUpdate.jsp");
 		dispatcher.forward(request, response);
 	}
 

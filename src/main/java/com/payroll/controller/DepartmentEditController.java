@@ -1,9 +1,9 @@
 package com.payroll.controller;
 
 import java.io.IOException;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,6 +20,8 @@ public class DepartmentEditController extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+			
+		
 		int deptId=Integer.parseInt(request.getParameter("departId"));
 		HttpSession session=request.getSession();
 		session.setAttribute("editDeptId", deptId);
@@ -28,8 +30,9 @@ public class DepartmentEditController extends HttpServlet {
 		List<Departments> department=new ArrayList<Departments>();
 		department.add(depart);
 		session.setAttribute("department", department);
-		RequestDispatcher dispatcher=request.getRequestDispatcher("DepartUpd.jsp");
+		RequestDispatcher dispatcher=request.getRequestDispatcher("departmentUpdate.jsp");
 		dispatcher.forward(request, response);
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

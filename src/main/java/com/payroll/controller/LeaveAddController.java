@@ -29,7 +29,6 @@ public class LeaveAddController extends HttpServlet {
 		try {
 			leaveDt= sdf.parse(request.getParameter("lDate"));
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		if(employ!=null) {
@@ -41,7 +40,7 @@ public class LeaveAddController extends HttpServlet {
 			PrintWriter out =response.getWriter();
 			out.println("<script type=\"text/javascript\">");
 			out.println("alert('Leave Added Successfully');");
-			out.println("location='AdminControl.jsp';");
+			out.println("location='adminControl.jsp';");
 			out.println("</script>");
 			
 		}

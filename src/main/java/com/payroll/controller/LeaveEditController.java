@@ -31,14 +31,13 @@ public class LeaveEditController extends HttpServlet {
 		List<Leave> leave=new ArrayList<Leave>();
 		leave.add(leaveList);
 		session1.setAttribute("leave", leave);
-		RequestDispatcher dispatcher=request.getRequestDispatcher("LeaveUpd.jsp");
+		RequestDispatcher dispatcher=request.getRequestDispatcher("leaveUpdate.jsp");
 		dispatcher.forward(request, response);
 		
 		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

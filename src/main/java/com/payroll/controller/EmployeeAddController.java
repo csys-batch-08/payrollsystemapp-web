@@ -25,8 +25,9 @@ import com.payroll.model.Grade;
 @WebServlet("/empAdd")
 public class EmployeeAddController extends HttpServlet {
 
+	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 		String name=request.getParameter("EmployeeName");
 		Date dob=null;
@@ -68,7 +69,7 @@ public class EmployeeAddController extends HttpServlet {
 			PrintWriter out =response.getWriter();
 			out.println("<script type=\"text/javascript\">");
 			out.println("alert('Employee Added Successfully');");
-			out.println("location='AdminControl.jsp';");
+			out.println("location='adminControl.jsp';");
 			out.println("</script>");
 		}
 		else{
@@ -78,7 +79,7 @@ public class EmployeeAddController extends HttpServlet {
 		catch(EmployeeDelException e) {
 			HttpSession session=request.getSession();
 			session.setAttribute("employInvalid", e.getEmployAdd());
-			response.sendRedirect("EmployAdd.jsp");
+			response.sendRedirect("employeeAdd.jsp");
 			
 		}}
 		else {
@@ -88,7 +89,7 @@ public class EmployeeAddController extends HttpServlet {
 		catch(DepartmentException d) {
 			HttpSession session=request.getSession();
 			session.setAttribute("gradeDept", d.gradeDept());
-			response.sendRedirect("EmployAdd.jsp");
+			response.sendRedirect("employeeAdd.jsp");
 			
 		}
 		}

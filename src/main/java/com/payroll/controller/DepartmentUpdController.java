@@ -21,6 +21,7 @@ import com.payroll.model.Departments;
 public class DepartmentUpdController extends HttpServlet {
     
     
+	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
 		
 		DepartmentsDaoImpl department=new DepartmentsDaoImpl();
@@ -39,7 +40,7 @@ public class DepartmentUpdController extends HttpServlet {
 		PrintWriter out =response.getWriter();
 		out.println("<script type=\"text/javascript\">");
 		out.println("alert('Department Updated Successfully');");
-		out.println("location='DepartShow.jsp';");
+		out.println("location='departmentShow.jsp';");
 		out.println("</script>");
 		}
 		else {
@@ -47,7 +48,7 @@ public class DepartmentUpdController extends HttpServlet {
 		}}
 		catch(DepartmentException d) {
 			session.setAttribute("deptUpdData", d.deptNotUpdate());
-			response.sendRedirect("DepartUpd.jsp");
+			response.sendRedirect("departmentUpdate.jsp");
 		}
 		
 	}

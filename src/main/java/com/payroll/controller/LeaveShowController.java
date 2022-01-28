@@ -26,7 +26,7 @@ public class LeaveShowController extends HttpServlet {
 		HttpSession session=request.getSession();
 		session.setAttribute("leave", leaveList);
 		
-		RequestDispatcher dispatcher=request.getRequestDispatcher("LeaveShow.jsp");
+		RequestDispatcher dispatcher=request.getRequestDispatcher("leaveShow.jsp");
 		dispatcher.forward(request, response);
 
 	}
@@ -35,7 +35,6 @@ public class LeaveShowController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

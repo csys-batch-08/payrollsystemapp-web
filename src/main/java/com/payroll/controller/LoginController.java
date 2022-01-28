@@ -37,7 +37,7 @@ public class LoginController extends HttpServlet {
 				
 				out.println("<script type=\"text/javascript\">");
     			out.println("alert('Login Successfully');");
-    			out.println("location='AdminControl.jsp';");
+    			out.println("location='adminControl.jsp';");
     			out.println("</script>");
 			}
 			else {

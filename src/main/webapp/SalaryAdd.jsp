@@ -67,7 +67,7 @@
 
 <input type="reset" class="btn btn-primary">
 <input type="submit" class="btn btn-primary">
-<a href="AdminControl.jsp"><button type="button" class="btn btn-primary">HOME</button></a>
+<a href="adminControl.jsp"><button type="button" class="btn btn-primary">HOME</button></a>
 
 
 <br><br>

@@ -19,6 +19,7 @@ import com.payroll.model.Grade;
 @WebServlet("/deptAdd")
 public class DepartmentAddController extends HttpServlet {
 
+	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -35,7 +36,7 @@ public class DepartmentAddController extends HttpServlet {
 						PrintWriter out = response.getWriter();
 						out.println("<script type=\"text/javascript\">");
 						out.println("alert('Department Added Successfully');");
-						out.println("location='AdminControl.jsp';");
+						out.println("location='adminControl.jsp';");
 						out.println("</script>");
 					} else {
 						throw new DepartmentException();
@@ -45,7 +46,7 @@ public class DepartmentAddController extends HttpServlet {
 				catch (DepartmentException e) {
 					HttpSession session = request.getSession();
 					session.setAttribute("deptAdd", e.getMessage());
-					response.sendRedirect("DepartmentAdd.jsp");
+					response.sendRedirect("departmentAdd.jsp");
 				}
 			} else {
 				throw new DepartmentException();

@@ -24,7 +24,7 @@ public class EmployStatusUpd extends HttpServlet {
 			PrintWriter out =response.getWriter();
 			out.println("<script type=\"text/javascript\">");
 			out.println("alert('Employee Status Updated ');");
-			out.println("location='ShowEmployee';");
+			out.println("location='employeeShow';");
 			out.println("</script>");
 		}
 		

@@ -25,14 +25,14 @@ public class SalaryDeleteController extends HttpServlet {
 			PrintWriter out = response.getWriter();
 			out.println("<script type=\"text/javascript\">");
 			out.println("alert('Salary Deleted Successfully');");
-			out.println("location='AdminControl.jsp';");
+			out.println("location='adminControl.jsp';");
 			out.println("</script>");
 		}
 		else {
 			PrintWriter out = response.getWriter();
 			out.println("<script type=\"text/javascript\">");
 			out.println("alert('Salary Not Deleted Successfully');");
-			out.println("location='AdminControl.jsp';");
+			out.println("location='adminControl.jsp';");
 			out.println("</script>");
 		}
 	}

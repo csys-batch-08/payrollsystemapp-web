@@ -21,22 +21,18 @@ import com.payroll.model.Employee;
 public class searchEmployeeController extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		String name=request.getParameter("empName");
 		EmployeeDaoImpl employDao=new EmployeeDaoImpl();
 
 		List<Employee> employeeList=employDao.searchEmployee(name);
 		HttpSession session=request.getSession();
 		session.setAttribute("searchEmp", employeeList);
-		RequestDispatcher dispatcher=request.getRequestDispatcher("searchEmployee.jsp");
+		RequestDispatcher dispatcher=request.getRequestDispatcher("employeeSearch.jsp");
 		dispatcher.forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

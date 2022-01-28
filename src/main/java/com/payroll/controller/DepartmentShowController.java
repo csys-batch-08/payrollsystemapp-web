@@ -25,7 +25,7 @@ public class DepartmentShowController extends HttpServlet {
 		List<Departments> departList=departDao.showDepartments();
 		HttpSession session=request.getSession();
 		session.setAttribute("deptList", departList);
-		RequestDispatcher dispatcher=request.getRequestDispatcher("DepartShow.jsp");
+		RequestDispatcher dispatcher=request.getRequestDispatcher("departmentShow.jsp");
 		dispatcher.forward(request, response);
 	}
 

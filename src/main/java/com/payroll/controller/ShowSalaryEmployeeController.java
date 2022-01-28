@@ -26,7 +26,7 @@ public class ShowSalaryEmployeeController extends HttpServlet {
 		List<EmpSalary> SalaryEmploy=salaryCal.showEmployee();
 		HttpSession session=request.getSession();
 		session.setAttribute("salaryShowList", SalaryEmploy);
-		RequestDispatcher dispatcher=request.getRequestDispatcher("ShowSalaryEmploy.jsp");
+		RequestDispatcher dispatcher=request.getRequestDispatcher("salaryShow.jsp");
 		dispatcher.forward(request, response);
 	}
 

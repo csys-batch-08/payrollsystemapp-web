@@ -21,6 +21,7 @@ import com.payroll.model.Employee;
 @WebServlet("/UpdEmp")
 public class EmployeeEditController extends HttpServlet {
 
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -31,12 +32,12 @@ public class EmployeeEditController extends HttpServlet {
 		employeeList.add(employ);
 		HttpSession session=request.getSession();
 		session.setAttribute("editEmployee", employeeList);
-		RequestDispatcher requestDispatcher=request.getRequestDispatcher("EmployUpd.jsp");
+		RequestDispatcher requestDispatcher=request.getRequestDispatcher("employeeUpdate.jsp");
 		requestDispatcher.forward(request, response);
 	}
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

@@ -26,7 +26,7 @@ public class LeaveDelController extends HttpServlet {
 		try{
 			if(i>0) {
 		
-			response.sendRedirect("LeaveShow.jsp");
+			response.sendRedirect("leaveShow.jsp");
 		}
 		else {
 			throw new LeaveException();
@@ -34,7 +34,7 @@ public class LeaveDelController extends HttpServlet {
 		catch(LeaveException e) {
 			HttpSession session=request.getSession();
 			session.setAttribute("deleteLeave", e.getMessage());
-			response.sendRedirect("LeaveShow.jsp");
+			response.sendRedirect("leaveShow.jsp");
 		}
 		
 	}

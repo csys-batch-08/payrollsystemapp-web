@@ -103,7 +103,7 @@ margin-left: 10px;
 <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
   <a href="totalSal">Salary Count</a>
-  <a href="SalaryInDate.jsp">Salary In-between</a>
+  <a href="salaryInBetweenDate.jsp">Salary In-between</a>
   
 </div>
 <div id="main">
@@ -123,7 +123,7 @@ margin-left: 10px;
 
 <c:forEach items="${sessionScope.salaryShowList}" var="salaryShowL">
 <tr>
-<td>${salaryShowL.empId}</td>
+<td>${salaryShowL.emp.empId}</td>
 <td>${salaryShowL.dept.deptName}</td>
 <td>${salaryShowL.grade.gradeName}</td>
 <td>${salaryShowL.totalLeave}</td>
@@ -139,7 +139,7 @@ margin-left: 10px;
 </div>
 <center>
 <br>
-<a href="AdminControl.jsp"><button type="button" class="btn btn-primary"><strong>Home Page</strong></button></a>
+<a href="adminControl.jsp"><button type="button" class="btn btn-primary"><strong>Home Page</strong></button></a>
 <input type="button" value="Go back!" onclick="history.go(-1)" class="btn btn-primary">
 </center>
 

@@ -41,11 +41,11 @@ public class GradeUpdController extends HttpServlet {
 				PrintWriter out =response.getWriter();
 				out.println("<script type=\"text/javascript\">");
 				out.println("alert('Grade Updated Successfully');");
-				out.println("location='GradeShow.jsp';");
+				out.println("location='gradeShow.jsp';");
 				out.println("</script>");
 			}
 			else {
-				response.sendRedirect("Grade.jsp");
+				response.sendRedirect("gradeAdd.jsp");
 			}
 			
 		}
@@ -55,7 +55,7 @@ public class GradeUpdController extends HttpServlet {
 		}
 		catch(InvalidAmount e) {
 			session.setAttribute("negativeValue", e.getMessage());
-			response.sendRedirect("GradeUpd.jsp");
+			response.sendRedirect("gradeUpdate.jsp");
 			
 			
 		}

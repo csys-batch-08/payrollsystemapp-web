@@ -24,8 +24,8 @@ import com.payroll.model.Employee;
 @WebServlet("/empDel")
 public class EmployeeDelController extends HttpServlet {
 	
+	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		int empId=Integer.parseInt(request.getParameter("empId"));
 		EmployeeDaoImpl employeeDao=new EmployeeDaoImpl();
 		Employee employ=employeeDao.findEmployee(empId);
@@ -34,8 +34,12 @@ public class EmployeeDelController extends HttpServlet {
 			
 		
 		if(i>0) {
-			RequestDispatcher dispatcher=request.getRequestDispatcher("ShowInactiveEmploy");
-			dispatcher.forward(request, response);
+			
+			PrintWriter out =response.getWriter();
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('Employee Status Updated To In-active');");
+			out.println("location='employeeShowInActive.jsp';");
+			out.println("</script>");
 			
 		}
 		else {
@@ -45,7 +49,7 @@ public class EmployeeDelController extends HttpServlet {
 		{
 			HttpSession session=request.getSession();
 			session.setAttribute("employDel", e.EmployeeDel());
-			response.sendRedirect("EmpShow.jsp");
+			response.sendRedirect("employeeShow.jsp");
 		}
 	
 	}
