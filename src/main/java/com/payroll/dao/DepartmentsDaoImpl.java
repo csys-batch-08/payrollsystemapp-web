@@ -44,13 +44,13 @@ public class DepartmentsDaoImpl implements DepartmentDao{
 	{
 
 		String findId="select dept_id from departments where dept_name = ?";
-		ConnectionUtilImpl connection=new ConnectionUtilImpl();
-		Connection connection2=connection.dbConnect();
+		ConnectionUtilImpl connectionUtilImpl=new ConnectionUtilImpl();
+		Connection connection=connectionUtilImpl.dbConnect();
 		PreparedStatement  preparedStatement=null;
 		int id = 0;
 		try {
 			
-			preparedStatement=connection2.prepareStatement(findId);
+			preparedStatement=connection.prepareStatement(findId);
 			preparedStatement.setString(1, dept.getDeptName());
 			ResultSet resultSet=preparedStatement.executeQuery();
 			
@@ -58,11 +58,10 @@ public class DepartmentsDaoImpl implements DepartmentDao{
 				id=resultSet.getInt(1);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		finally {
-			ConnectionUtilImpl.closePreparedStatement(preparedStatement, connection2);
+			ConnectionUtilImpl.closePreparedStatement(preparedStatement, connection);
 		}
 		
 	
@@ -71,16 +70,16 @@ public class DepartmentsDaoImpl implements DepartmentDao{
 	public int updateDept(Departments depart)
 	{
 		String insertQuery = "update departments set dept_name=? where dept_id=?";
-		ConnectionUtilImpl connection=new ConnectionUtilImpl();
-		Connection con=connection.dbConnect();
-		PreparedStatement pstmt = null;
+		ConnectionUtilImpl connectionUtilImpl=new ConnectionUtilImpl();
+		Connection connection=connectionUtilImpl.dbConnect();
+		PreparedStatement preparedStatement = null;
 		int i=0;
 		try {
 
-			pstmt = con.prepareStatement(insertQuery);
-			pstmt.setString(1,depart.getDeptName());
-			pstmt.setLong(2, depart.getDeptId());
-			i=pstmt.executeUpdate();
+			preparedStatement = connection.prepareStatement(insertQuery);
+			preparedStatement.setString(1,depart.getDeptName());
+			preparedStatement.setLong(2, depart.getDeptId());
+			i=preparedStatement.executeUpdate();
 
 		} 
 		catch (SQLException e) {
@@ -88,7 +87,7 @@ public class DepartmentsDaoImpl implements DepartmentDao{
 			e.printStackTrace();
 		}
 		finally {
-			ConnectionUtilImpl.closePreparedStatement(pstmt, con);
+			ConnectionUtilImpl.closePreparedStatement(preparedStatement, connection);
 		}
 		return i;
 		
@@ -96,22 +95,22 @@ public class DepartmentsDaoImpl implements DepartmentDao{
 	public boolean deleteDept(int  deptId)
 	{
 		String deleteQuery = "delete from departments where dept_id=?";
-		ConnectionUtilImpl connection=new ConnectionUtilImpl();
-		Connection con=connection.dbConnect();
+		ConnectionUtilImpl connectionUtilImpl=new ConnectionUtilImpl();
+		Connection connection=connectionUtilImpl.dbConnect();
 		boolean result=false;
-		PreparedStatement pstmt = null;
+		PreparedStatement preparedStatement = null;
 		try {
 			
 
-			pstmt = con.prepareStatement(deleteQuery);
-			pstmt.setInt(1, deptId);
-			pstmt.executeUpdate();
+			preparedStatement = connection.prepareStatement(deleteQuery);
+			preparedStatement.setInt(1, deptId);
+			preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		finally {
-			ConnectionUtilImpl.closePreparedStatement(pstmt, con);
+			ConnectionUtilImpl.closePreparedStatement(preparedStatement, connection);
 		}
 		return result;
 	}
@@ -120,24 +119,23 @@ public class DepartmentsDaoImpl implements DepartmentDao{
 		List<Departments> departmentList=new ArrayList<Departments>();
 		
 		String showQuery="select DEPT_ID,DEPT_NAME from Departments";
-		ConnectionUtilImpl connection=new ConnectionUtilImpl();
-		Connection con=connection.dbConnect();
-		Statement stmt=null;
+		ConnectionUtilImpl connectionUtilImpl=new ConnectionUtilImpl();
+		Connection connection=connectionUtilImpl.dbConnect();
+		Statement statement=null;
 		try {
-			stmt=con.createStatement();
-			ResultSet rs=stmt.executeQuery(showQuery);
-			while(rs.next())
+			statement=connection.createStatement();
+			ResultSet resultSet=statement.executeQuery(showQuery);
+			while(resultSet.next())
 			{
-				Departments department=new Departments(rs.getInt(1),rs.getString(2));
+				Departments department=new Departments(resultSet.getInt(1),resultSet.getString(2));
 				departmentList.add(department);
 			}
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		finally {
-			ConnectionUtilImpl.closeStatement(stmt, con);
+			ConnectionUtilImpl.closeStatement(statement, connection);
 			
 		}
 		
@@ -146,12 +144,12 @@ public class DepartmentsDaoImpl implements DepartmentDao{
 	public  Departments	findDepartment(int id)
 	{
 		String query="select DEPT_ID,DEPT_NAME from departments where dept_id=?";
-		ConnectionUtilImpl connection=new ConnectionUtilImpl();
-		Connection connection2=connection.dbConnect();		
+		ConnectionUtilImpl connectionUtilImpl=new ConnectionUtilImpl();
+		Connection connection=connectionUtilImpl.dbConnect();		
 		Departments departments=null;
 		PreparedStatement preparedStatement=null;
 		try {
-			preparedStatement=connection2.prepareStatement(query);
+			preparedStatement=connection.prepareStatement(query);
 			preparedStatement.setInt(1, id);
 			ResultSet resultSet=preparedStatement.executeQuery();
 			if(resultSet.next()) {
@@ -160,11 +158,10 @@ public class DepartmentsDaoImpl implements DepartmentDao{
 			}
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		finally {
-			ConnectionUtilImpl.closePreparedStatement(preparedStatement, connection2);
+			ConnectionUtilImpl.closePreparedStatement(preparedStatement, connection);
 		}
 		return departments;
 		

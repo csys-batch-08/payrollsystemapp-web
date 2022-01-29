@@ -25,14 +25,12 @@ public class ConnectionUtilImpl implements ConnectionDao{
 			catch (SQLException e) {
 				
 				e.printStackTrace();
-				System.out.println("sql error");
 				
 
 			}
 		 
 		catch (ClassNotFoundException e) {
 			e.printStackTrace();
-			System.out.println("class not found");
 		
 		}
 		return connection;
@@ -49,7 +47,6 @@ public class ConnectionUtilImpl implements ConnectionDao{
 			
 			
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		
@@ -65,8 +62,8 @@ public class ConnectionUtilImpl implements ConnectionDao{
 			}
 			
 			
+			
 		} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		

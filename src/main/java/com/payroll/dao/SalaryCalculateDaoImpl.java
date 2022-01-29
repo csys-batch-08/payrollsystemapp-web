@@ -15,61 +15,41 @@ import com.payroll.model.Grade;
 
 public class SalaryCalculateDaoImpl {
 
-		public  boolean insertSalary(Employee emp,Grade grade,Departments department,int noOfLeave,long grossSalary,long totalSalary) {
+		public  boolean insertSalary(Employee employ,Grade grade,Departments department,int noOfLeave,long grossSalary,long totalSalary) {
 			boolean result=false;
 			EmployeeDaoImpl employeeDaoImpl=new EmployeeDaoImpl();
 			DepartmentsDaoImpl departmentDao=new DepartmentsDaoImpl();
-			int empID=employeeDaoImpl.findEmployeeID(emp);
+			int empID=employeeDaoImpl.findEmployeeID(employ);
 			int deptID=departmentDao.findDepartmentID(department);
 			GradeDaoImpl gradeDaoImpl=new GradeDaoImpl();
 			int gradeID=gradeDaoImpl.findGradeID(grade);
 			
 			
 			String query="insert into salarys (EMP_ID,DEPT_ID,TOTAL_LEAVE,GRADE_ID,GROSS_SALARY,TOTAL_SALARY,nextpay_date) values(?,?,?,?,?,?,sysdate+30)";
-			ConnectionUtilImpl connection=new ConnectionUtilImpl();
-			Connection con=connection.dbConnect();
-			PreparedStatement pstmt=null;
+			ConnectionUtilImpl connectionUtilImpl=new ConnectionUtilImpl();
+			Connection connection=connectionUtilImpl.dbConnect();
+			PreparedStatement preparedStatement=null;
 			try {
-				pstmt=con.prepareStatement(query);
-				pstmt.setInt(1, empID);
-				pstmt.setInt(2, deptID);
-				pstmt.setInt(3, noOfLeave);
-				pstmt.setInt(4, gradeID);
-				pstmt.setLong(5, grossSalary);
-				pstmt.setLong(6, totalSalary);
-				pstmt.executeUpdate();
+				preparedStatement=connection.prepareStatement(query);
+				preparedStatement.setInt(1, empID);
+				preparedStatement.setInt(2, deptID);
+				preparedStatement.setInt(3, noOfLeave);
+				preparedStatement.setInt(4, gradeID);
+				preparedStatement.setLong(5, grossSalary);
+				preparedStatement.setLong(6, totalSalary);
+				preparedStatement.executeUpdate();
 				result=true;
 				return result;	
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 			finally {
-				ConnectionUtilImpl.closePreparedStatement(pstmt, con);
+				ConnectionUtilImpl.closePreparedStatement(preparedStatement, connection);
 			}
 			return result;
 			
 		}
-		public void updateSalary(int transId,long basic)
-		{
 		
-			String insertQuery = "update employees set ="+basic+" where trans_id="+transId;
-			ConnectionUtilImpl connection=new ConnectionUtilImpl();
-			Connection con=connection.dbConnect();
-			Statement stmt=null;
-			try {
-
-				stmt=con.createStatement();
-				stmt.executeUpdate(insertQuery);
-			} catch (SQLException e) {
-				//catch the exception and get that message
-				e.printStackTrace();
-			}
-			finally {
-				ConnectionUtilImpl.closeStatement(stmt, con);
-			}
-			
-			
-		}
 		public List<EmpSalary> showEmployee()
 		{
 			List<EmpSalary> salaryList=new ArrayList<EmpSalary>();
@@ -78,21 +58,21 @@ public class SalaryCalculateDaoImpl {
 			ConnectionUtilImpl connection=new ConnectionUtilImpl();
 			Connection con=connection.dbConnect();
 			EmployeeDaoImpl employeeDaoImpl=new EmployeeDaoImpl();
-			Statement stmt=null;
+			Statement statement=null;
 			try {
-				stmt=con.createStatement();
-				ResultSet rs=stmt.executeQuery(showQuery);
-				while(rs.next())
+				statement=con.createStatement();
+				ResultSet resultSet=statement.executeQuery(showQuery);
+				while(resultSet.next())
 				{
 					
-					Employee employ=employeeDaoImpl.findEmployee(rs.getInt(2));
+					Employee employ=employeeDaoImpl.findEmployee(resultSet.getInt(2));
 					DepartmentsDaoImpl departmentDao=new DepartmentsDaoImpl();
 					GradeDaoImpl gradeDaoImpl=new GradeDaoImpl();
 
-					Departments department=departmentDao.findDepartment(rs.getInt(3));
-					Grade grade=gradeDaoImpl.findGrade(rs.getInt(5));
+					Departments department=departmentDao.findDepartment(resultSet.getInt(3));
+					Grade grade=gradeDaoImpl.findGrade(resultSet.getInt(5));
 					
-					EmpSalary empSalary=new EmpSalary(employ,department,rs.getInt(1),rs.getInt(4),grade,rs.getLong(7),rs.getLong(8),rs.getDate(6));
+					EmpSalary empSalary=new EmpSalary(employ,department,resultSet.getInt(1),resultSet.getInt(4),grade,resultSet.getLong(7),resultSet.getLong(8),resultSet.getDate(6));
 					salaryList.add(empSalary);
 				}
 				
@@ -100,39 +80,38 @@ public class SalaryCalculateDaoImpl {
 				e.printStackTrace();
 			}
 			finally {
-				ConnectionUtilImpl.closeStatement(stmt, con);
+				ConnectionUtilImpl.closeStatement(statement, con);
 			}
 			
 			return salaryList;
 		}
 		public EmpSalary salaryDetail(int empId) {
 			String query="select TRANS_ID,EMP_ID,DEPT_ID,TOTAL_LEAVE,GRADE_ID,PAID_DATE,GROSS_SALARY,TOTAL_SALARY,NEXTPAY_DATE  from salarys where EMP_ID=?";
-			ConnectionUtilImpl connection=new ConnectionUtilImpl();
-			Connection con=connection.dbConnect();
+			ConnectionUtilImpl connectionUtilImpl=new ConnectionUtilImpl();
+			Connection connection=connectionUtilImpl.dbConnect();
 			EmpSalary salary=null;
-			PreparedStatement pstmt=null;
+			PreparedStatement preparedStatement=null;
 			try {
-				pstmt=con.prepareStatement(query);
-				pstmt.setInt(1, empId);
-				ResultSet rs=pstmt.executeQuery();
-				while(rs.next()) {
+				preparedStatement=connection.prepareStatement(query);
+				preparedStatement.setInt(1, empId);
+				ResultSet resultSet=preparedStatement.executeQuery();
+				while(resultSet.next()) {
 					EmployeeDaoImpl empDao=new EmployeeDaoImpl();
 					
-					Employee emp=empDao.findEmployee(rs.getInt(2));
+					Employee emp=empDao.findEmployee(resultSet.getInt(2));
 					GradeDaoImpl gradeDao=new GradeDaoImpl();
-					Grade grade=gradeDao.findGrade(rs.getInt(5));
+					Grade grade=gradeDao.findGrade(resultSet.getInt(5));
 					DepartmentsDaoImpl departDao=new DepartmentsDaoImpl();
-					Departments department=departDao.findDepartment(rs.getInt(3));
+					Departments department=departDao.findDepartment(resultSet.getInt(3));
 					
-					salary=new EmpSalary(emp,department,rs.getInt(4),grade,new java.sql.Date(rs.getDate(6).getTime()),rs.getLong(7),rs.getLong(8));
+					salary=new EmpSalary(emp,department,resultSet.getInt(4),grade,new java.sql.Date(resultSet.getDate(6).getTime()),resultSet.getLong(7),resultSet.getLong(8));
 					return salary;
 				}
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			finally {
-				ConnectionUtilImpl.closePreparedStatement(pstmt, con);
+				ConnectionUtilImpl.closePreparedStatement(preparedStatement, connection);
 			}
 			
 			return salary;
@@ -140,24 +119,23 @@ public class SalaryCalculateDaoImpl {
 			}
 		public Date salaryDate(int empId) {
 			String query="select paid_date from salarys where EMP_ID=?";
-			ConnectionUtilImpl connection=new ConnectionUtilImpl();
-			Connection con=connection.dbConnect();
+			ConnectionUtilImpl connectionUtilImpl=new ConnectionUtilImpl();
+			Connection connection=connectionUtilImpl.dbConnect();
 			Date paidDt=null;
-			PreparedStatement pstmt=null;
+			PreparedStatement preparedStatement=null;
 			try {
 				
-				pstmt=con.prepareStatement(query);
-				pstmt.setInt(1, empId);
-				ResultSet rs=pstmt.executeQuery();
-				while(rs.next()) {
-					paidDt=rs.getDate(1);
+				preparedStatement=connection.prepareStatement(query);
+				preparedStatement.setInt(1, empId);
+				ResultSet resultSet=preparedStatement.executeQuery();
+				while(resultSet.next()) {
+					paidDt=resultSet.getDate(1);
 				}
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			finally {
-				ConnectionUtilImpl.closePreparedStatement(pstmt, con);
+				ConnectionUtilImpl.closePreparedStatement(preparedStatement, connection);
 			}
 			
 			return paidDt;
@@ -165,46 +143,44 @@ public class SalaryCalculateDaoImpl {
 			}
 		public Date salaryNxtMonth(int empId) {
 			String query="select NEXTPAY_DATE from salarys where EMP_ID=?";
-			ConnectionUtilImpl connection=new ConnectionUtilImpl();
-			Connection con=connection.dbConnect();
+			ConnectionUtilImpl connectionUtilImpl=new ConnectionUtilImpl();
+			Connection connection=connectionUtilImpl.dbConnect();
 			Date paidDt=null;
-			PreparedStatement pstmt=null;
+			PreparedStatement preparedStatement=null;
 			try {
-				pstmt=con.prepareStatement(query);
-				pstmt.setInt(1, empId);
-				ResultSet rs=pstmt.executeQuery();
-				while(rs.next()) {
-					paidDt=rs.getDate(1);
+				preparedStatement=connection.prepareStatement(query);
+				preparedStatement.setInt(1, empId);
+				ResultSet resultSet=preparedStatement.executeQuery();
+				while(resultSet.next()) {
+					paidDt=resultSet.getDate(1);
 				}
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			finally {
-				ConnectionUtilImpl.closePreparedStatement(pstmt, con);
+				ConnectionUtilImpl.closePreparedStatement(preparedStatement, connection);
 			}
 			return paidDt;
 			
 			}
 		public int salaryEmpCount() {
 			String query="select count(emp_id) emp_Salary from salarys";
-			ConnectionUtilImpl connection=new ConnectionUtilImpl();
-			Connection con=connection.dbConnect();
+			ConnectionUtilImpl connectionUtilImpl=new ConnectionUtilImpl();
+			Connection connection=connectionUtilImpl.dbConnect();
 			int count=0;
-			PreparedStatement pstmt=null;
+			PreparedStatement preparedStatement=null;
 			try {
-				pstmt=con.prepareStatement(query);
-				ResultSet rs=pstmt.executeQuery();
-				if(rs.next()) {
-					count=rs.getInt(1);
+				preparedStatement=connection.prepareStatement(query);
+				ResultSet resultSet=preparedStatement.executeQuery();
+				if(resultSet.next()) {
+					count=resultSet.getInt(1);
 				}
 				
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			finally {
-				ConnectionUtilImpl.closePreparedStatement(pstmt, con);
+				ConnectionUtilImpl.closePreparedStatement(preparedStatement, connection);
 			}
 			
 			return count;
@@ -212,22 +188,21 @@ public class SalaryCalculateDaoImpl {
 		}
 		public int activeEmployee() {
 			String query="select count(*) active_emp from employees where status='active'";
-			ConnectionUtilImpl connection=new ConnectionUtilImpl();
-			Connection con=connection.dbConnect();
+			ConnectionUtilImpl connectionUtilImpl=new ConnectionUtilImpl();
+			Connection connection=connectionUtilImpl.dbConnect();
 			int activeCount=0;
-			PreparedStatement pstmt=null;
+			PreparedStatement preparedStatement=null;
 			try {
-				pstmt=con.prepareStatement(query);
-				ResultSet rs=pstmt.executeQuery();
-				if(rs.next()) {
-					activeCount=rs.getInt(1);
+				preparedStatement=connection.prepareStatement(query);
+				ResultSet resultSet=preparedStatement.executeQuery();
+				if(resultSet.next()) {
+					activeCount=resultSet.getInt(1);
 				}
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			finally {
-				ConnectionUtilImpl.closePreparedStatement(pstmt, con);
+				ConnectionUtilImpl.closePreparedStatement(preparedStatement, connection);
 				
 			}
 			return activeCount;
@@ -235,68 +210,66 @@ public class SalaryCalculateDaoImpl {
 		}
 		public int inActiveEmployee() {
 			String query="select count(*) active_emp from employees where status='inactive'";
-			ConnectionUtilImpl connection=new ConnectionUtilImpl();
-			Connection con=connection.dbConnect();
+			ConnectionUtilImpl  connectionUtilImpl=new ConnectionUtilImpl();
+			Connection connection=connectionUtilImpl.dbConnect();
 			int inActiveCount=0;
-			PreparedStatement pstmt=null;
+			PreparedStatement preparedStatement=null;
 			try {
-				pstmt=con.prepareStatement(query);
-				ResultSet rs=pstmt.executeQuery();
-				if(rs.next()) {
-					inActiveCount=rs.getInt(1);
+				preparedStatement=connection.prepareStatement(query);
+				ResultSet resultSet=preparedStatement.executeQuery();
+				if(resultSet.next()) {
+					inActiveCount=resultSet.getInt(1);
 				}
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			finally {
-				ConnectionUtilImpl.closePreparedStatement(pstmt, con);
+				ConnectionUtilImpl.closePreparedStatement(preparedStatement, connection);
 			}
 			return inActiveCount;
 			
 		}
 		public int totalSal(Date salFrom,Date salTo) {
 			String query="select sum(TOTAL_SALARY) total from salarys where PAID_DATE  between ? and ?";
-			ConnectionUtilImpl connection=new ConnectionUtilImpl();
-			Connection con=connection.dbConnect();
+			ConnectionUtilImpl connectionUtilImpl=new ConnectionUtilImpl();
+			Connection connection=connectionUtilImpl.dbConnect();
 			int total=0;
-			PreparedStatement pstmt=null;
+			PreparedStatement preparedStatement=null;
 			try {
-				pstmt=con.prepareStatement(query);
-				pstmt.setDate(1, new java.sql.Date(salFrom.getTime()));
-				pstmt.setDate(2, new java.sql.Date(salTo.getTime()));
-				ResultSet rs=pstmt.executeQuery();
-				if(rs.next()) {
-					total=rs.getInt(1);
+				preparedStatement=connection.prepareStatement(query);
+				preparedStatement.setDate(1, new java.sql.Date(salFrom.getTime()));
+				preparedStatement.setDate(2, new java.sql.Date(salTo.getTime()));
+				ResultSet resultSet=preparedStatement.executeQuery();
+				if(resultSet.next()) {
+					total=resultSet.getInt(1);
 					
 				}
 				
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			finally {
-				ConnectionUtilImpl.closePreparedStatement(pstmt, con);
+				ConnectionUtilImpl.closePreparedStatement(preparedStatement, connection);
 			}
 			
 			return total;
 		}
 		public int deleteSalary(int  transId) {
 			String query="delete from salarys where TRANS_ID =?";
-			ConnectionUtilImpl connection=new ConnectionUtilImpl();
-			Connection con=connection.dbConnect();
-			PreparedStatement pstmt=null;
+			ConnectionUtilImpl connectionUtilImpl=new ConnectionUtilImpl();
+			Connection connection=connectionUtilImpl.dbConnect();
+			PreparedStatement preparedStatement=null;
 			int i=0;
 			try {
-				pstmt = con.prepareStatement(query);
-				pstmt.setInt(1, transId);
-				i=pstmt.executeUpdate();
+				preparedStatement = connection.prepareStatement(query);
+				preparedStatement.setInt(1, transId);
+				i=preparedStatement.executeUpdate();
 
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 			finally {
-				ConnectionUtilImpl.closePreparedStatement(pstmt, con);
+				ConnectionUtilImpl.closePreparedStatement(preparedStatement, connection);
 			}
 			return i;
 			
