@@ -5,8 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-
-import com.payroll.Interface.AdminDao;
+import com.payroll.daoimpl.AdminDao;
 import com.payroll.model.Admin;
 
 public class AdminDaoImpl implements AdminDao{

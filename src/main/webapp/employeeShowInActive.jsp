@@ -3,6 +3,7 @@
 <%@page import="com.payroll.dao.EmployeeDaoImpl"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -81,11 +82,12 @@ text-decoration:none;
 </tr>
 
 
-<tr>
-<c:forEach items="${sessionScope.showInActiveEmp}" var="emp">
 
+<c:forEach items="${sessionScope.showInActiveEmp}" var="emp">
+<tr>
 <td>${emp.empId}</td>
-<td >${emp.empName}</td>
+<td >${fn:toUpperCase(emp.empName)}</td>
+
 <fmt:parseDate value="${emp.dob}" pattern="yyyy-MM-dd" var="dobDate" type="date"/>   
 <td ><fmt:formatDate pattern="dd-MM-yyyy" value="${dobDate}"/> </td>
 <fmt:parseDate value="${emp.doj}" pattern="yyyy-MM-dd" var="dojDate" type="date"/>   
@@ -108,7 +110,6 @@ text-decoration:none;
 
 </table>
 <center>
-
 </form>
 <button onclick="history.go(-1)" class="btn btn-primary">Go Back</button>
 

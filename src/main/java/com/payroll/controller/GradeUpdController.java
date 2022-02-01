@@ -19,6 +19,7 @@ import com.payroll.model.Grade;
 
 @WebServlet("/gradeUpd")
 public class GradeUpdController extends HttpServlet {
+	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
 		String gradeName=request.getParameter("name");
 		long basic=Long.parseLong(request.getParameter("basic"));
@@ -36,7 +37,7 @@ public class GradeUpdController extends HttpServlet {
 		if((basic>0)&&(bonus>0)&&(pf>0)&&(pt>0)) {
 			boolean flag=gradeDao.updateGrade(grade);
 			
-			if(flag!=false) {
+			if(flag) {
 				
 				PrintWriter out =response.getWriter();
 				out.println("<script type=\"text/javascript\">");

@@ -21,6 +21,7 @@ import com.payroll.model.Grade;
  */
 @WebServlet("/gradeAdd")
 public class GradeAddController extends HttpServlet {
+	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
 		String gradeName=request.getParameter("gradeName");
 		long basic=Long.parseLong(request.getParameter("basic"));

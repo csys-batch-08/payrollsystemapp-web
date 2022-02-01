@@ -8,7 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.payroll.Interface.DepartmentDao;
+import com.payroll.daoimpl.DepartmentDao;
 import com.payroll.model.Departments;
 
 

@@ -1,4 +1,4 @@
-package com.payroll.Interface;
+package com.payroll.daoimpl;
 
 
 import java.util.List;
@@ -16,6 +16,4 @@ public interface GradeDao {
 	public  Grade findGrade(String gradeName) ;
 	public  long perDaySalary(String gradeName);
 	
-
-
 }

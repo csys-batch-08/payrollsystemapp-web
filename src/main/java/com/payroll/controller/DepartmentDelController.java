@@ -29,7 +29,7 @@ public class DepartmentDelController extends HttpServlet {
 		
 		out.println("<script type=\"text/javascript\">");
 		out.println("alert('Department Deleted Successfully');");
-		out.println("location='departmentShow.jsp';");
+		out.println("location='adminControl.jsp';");
 		out.println("</script>");
 		}
 		else {

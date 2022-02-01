@@ -22,6 +22,7 @@ import com.payroll.model.Leave;
 @WebServlet("/LeaveEdit")
 public class LeaveEditController extends HttpServlet {
 	
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int leaveId=Integer.parseInt(request.getParameter("leaveId"));
 		HttpSession session1=request.getSession();
@@ -37,6 +38,7 @@ public class LeaveEditController extends HttpServlet {
 		
 	}
 
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}

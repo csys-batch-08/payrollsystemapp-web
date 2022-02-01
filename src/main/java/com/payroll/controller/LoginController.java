@@ -22,6 +22,7 @@ import com.payroll.model.Admin;
 @WebServlet("/login")
 public class LoginController extends HttpServlet {
 
+	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String mail=request.getParameter("email");

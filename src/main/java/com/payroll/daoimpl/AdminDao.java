@@ -1,12 +1,11 @@
-package com.payroll.Interface;
+package com.payroll.daoimpl;
 
 
 
-import java.sql.ResultSet;
 
 import com.payroll.model.Admin;
 
 public interface AdminDao {
 
 	public boolean validateAdmin(Admin admin);
-	}
+}

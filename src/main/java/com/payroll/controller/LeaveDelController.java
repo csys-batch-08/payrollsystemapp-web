@@ -26,7 +26,7 @@ public class LeaveDelController extends HttpServlet {
 		try{
 			if(i>0) {
 		
-			response.sendRedirect("leaveShow.jsp");
+			response.sendRedirect("adminControl.jsp");
 		}
 		else {
 			throw new LeaveException();

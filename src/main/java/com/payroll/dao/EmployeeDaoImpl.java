@@ -9,8 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.payroll.Interface.EmployeeDao;
-
+import com.payroll.daoimpl.EmployeeDao;
 import com.payroll.model.Departments;
 import com.payroll.model.Employee;
 import com.payroll.model.Grade;

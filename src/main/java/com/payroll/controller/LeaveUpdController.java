@@ -20,6 +20,7 @@ import com.payroll.model.Leave;
 @WebServlet("/leaveUpd")
 public class LeaveUpdController extends HttpServlet {
 	
+	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 		Date leaveDt=null;

@@ -65,7 +65,7 @@ public class EmployeeAddController extends HttpServlet {
 		boolean empResult=employDao.insertEmp(employ);
 		
 			
-		if(empResult!=false) {
+		if(empResult) {
 			PrintWriter out =response.getWriter();
 			out.println("<script type=\"text/javascript\">");
 			out.println("alert('Employee Added Successfully');");

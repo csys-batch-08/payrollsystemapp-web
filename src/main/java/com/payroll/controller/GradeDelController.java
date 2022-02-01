@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.payroll.dao.GradeDaoImpl;
 @WebServlet("/GradeDel")
 public class GradeDelController extends HttpServlet {
+	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
 		 GradeDaoImpl gradeDao=new GradeDaoImpl();
 		int gradeId=Integer.parseInt(request.getParameter("gradeId"));
@@ -19,7 +20,7 @@ public class GradeDelController extends HttpServlet {
 		PrintWriter out =response.getWriter();
 		out.println("<script type=\"text/javascript\">");
 		out.println("alert('Grade Deleted Successfully');");
-		out.println("location='gradeShow.jsp';");
+		out.println("location='adminControl.jsp';");
 		out.println("</script>");
 		}
 

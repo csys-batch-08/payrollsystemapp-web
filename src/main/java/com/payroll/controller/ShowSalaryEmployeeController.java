@@ -15,12 +15,11 @@ import com.payroll.dao.LeaveDaoImpl;
 import com.payroll.dao.SalaryCalculateDaoImpl;
 import com.payroll.model.EmpSalary;
 
-/**
- * Servlet implementation class ShowSalaryEmployeeController
- */
+
 @WebServlet("/ShowSalaryEmpl")
 public class ShowSalaryEmployeeController extends HttpServlet {
 	
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		SalaryCalculateDaoImpl salaryCal=new SalaryCalculateDaoImpl();
 		List<EmpSalary> SalaryEmploy=salaryCal.showEmployee();
@@ -30,11 +29,9 @@ public class ShowSalaryEmployeeController extends HttpServlet {
 		dispatcher.forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

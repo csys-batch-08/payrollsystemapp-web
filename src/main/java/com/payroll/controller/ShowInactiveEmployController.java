@@ -14,12 +14,11 @@ import javax.servlet.http.HttpSession;
 import com.payroll.dao.EmployeeDaoImpl;
 import com.payroll.model.Employee;
 
-/**
- * Servlet implementation class ShowInactiveEmploy
- */
+
 @WebServlet("/ShowInactiveEmploy")
 public class ShowInactiveEmployController extends HttpServlet {
 	
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		EmployeeDaoImpl employeeDao=new EmployeeDaoImpl();
 
@@ -30,9 +29,8 @@ public class ShowInactiveEmployController extends HttpServlet {
 		dispatcher.forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}

@@ -22,6 +22,7 @@ import com.payroll.model.Leave;
 @WebServlet("/LeaveInbetweenController")
 public class LeaveInbetweenController extends HttpServlet {
 	
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 		Date fromDt=null;
@@ -44,6 +45,7 @@ public class LeaveInbetweenController extends HttpServlet {
 		
 	}
 
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}

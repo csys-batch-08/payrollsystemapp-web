@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.payroll.Interface.ConnectionDao;
+import com.payroll.daoimpl.ConnectionDao;
 
 
 public class ConnectionUtilImpl implements ConnectionDao{

@@ -14,9 +14,7 @@ import com.payroll.dao.DepartmentsDaoImpl;
 import com.payroll.exception.DepartmentException;
 import com.payroll.model.Departments;
 
-/**
- * Servlet implementation class DepartmentUpdController
- */
+
 @WebServlet("/deptUpd")
 public class DepartmentUpdController extends HttpServlet {
     

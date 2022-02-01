@@ -17,6 +17,7 @@ import com.payroll.dao.SalaryCalculateDaoImpl;
 @WebServlet("/salDel")
 public class SalaryDeleteController extends HttpServlet {
 	
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int transId=Integer.parseInt(request.getParameter("salId"));
 		SalaryCalculateDaoImpl calculateDaoImpl=new SalaryCalculateDaoImpl();
@@ -38,8 +39,8 @@ public class SalaryDeleteController extends HttpServlet {
 	}
 
 	
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

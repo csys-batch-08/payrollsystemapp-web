@@ -3,6 +3,7 @@
 <%@page import="com.payroll.dao.GradeDaoImpl"%>
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 
 <%@page import="com.payroll.model.EmpSalary"%>
 <%@page import="com.payroll.dao.SalaryCalculateDaoImpl"%>
@@ -60,9 +61,10 @@ tr:nth-child(even) {background-color: #f2f2f2;}
 
 <tr>
 <td>${salRep.emp.empId }</td>
-<td>${salRep.dept.deptName }</td>
+<td>${fn:toUpperCase(salRep.dept.deptName) }</td>
+
 <td>${salRep.totalLeave }</td>
-<td>${salRep.grade.gradeName }</td>
+<td>${fn:toUpperCase(salRep.grade.gradeName) }</td>
 <fmt:parseDate value="${salRep.salaryDate}" pattern="yyyy-MM-dd" var="SalDate" type="date"/>   
 <td ><fmt:formatDate pattern="dd-MM-yyyy" value="${SalDate}"/> </td>
 

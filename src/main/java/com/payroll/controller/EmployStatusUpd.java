@@ -14,6 +14,7 @@ import com.payroll.model.Employee;
 @WebServlet("/EmpStatus")
 public class EmployStatusUpd extends HttpServlet {
 	
+	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int empId=Integer.parseInt(request.getParameter("statusId"));
 		EmployeeDaoImpl employeeDao=new EmployeeDaoImpl();

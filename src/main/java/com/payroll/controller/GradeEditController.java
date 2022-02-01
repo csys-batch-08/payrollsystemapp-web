@@ -21,6 +21,7 @@ import com.payroll.model.Grade;
 @WebServlet("/GradeEdit")
 public class GradeEditController extends HttpServlet {
 
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int gradeId=Integer.parseInt(request.getParameter("gradeId"));
 		HttpSession session=request.getSession();
@@ -35,11 +36,9 @@ public class GradeEditController extends HttpServlet {
 		dispatcher.forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

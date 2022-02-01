@@ -1,6 +1,7 @@
 <%@page import="com.payroll.model.Departments"%>
 <%@page import="java.util.List"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 
 <%@page import="com.payroll.dao.DepartmentsDaoImpl"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -65,11 +66,12 @@ margin-right: 40px;
 </button>
 </form>
 </div>
-<h3 class="text-primary">Department</h3>
+<h3 class="text-primary">DEPARTMENT</h3>
 
 &nbsp;&nbsp;
 
 <table >
+
 <tr class="bg-primary">
 <td>DEPARTMENT ID</td>
 <td>DEPARTMENT NAME</td>
@@ -84,7 +86,8 @@ margin-right: 40px;
 
 <tr>
 <td>${depart.deptId }</td>
-<td>${depart.deptName }</td>
+
+<td>${fn:toUpperCase(depart.deptName)}</td>
 
 <td><a href="departDel?deptId=${depart.deptId }">DELETE</a></td>
 <td><a href="EditDept?departId=${depart.deptId }">EDIT</a></td>

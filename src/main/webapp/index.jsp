@@ -93,20 +93,22 @@ top: 10px;
 </style>
 </head>
 <body>
-<c:set var = "userError" scope = "session" value = "${invalid}"/>
-	<font color="#F7DC6F"> 
-	<c:if test="${not empty userError}">
-			<h2><c:out value="${userError}" /></h2>
-		</c:if></font>
+
 
 	<div id="imgSty">
 	<img alt="" src="images/pngegg (1).png">
 </div>
 
 
-	<center>
+	
 	<h1 id="headpayroll" >PAYROLL MANAGEMENT</h1>
 		&nbsp;
+		<c:set var = "userError" scope = "session" value = "${invalid}"/>
+	<font color="#7D3C98"> 
+	<c:if test="${not empty userError}">
+			<h2><c:out value="${userError}" /></h2>
+		</c:if></font>
+		<center>
 		<div id="welcomeform" style="display: block;" >
 		
 			<h1 style="color:#7D3C98  " >

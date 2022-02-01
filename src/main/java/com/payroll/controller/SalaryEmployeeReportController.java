@@ -24,6 +24,7 @@ import com.payroll.model.Employee;
 @WebServlet("/SalaryReport")
 public class SalaryEmployeeReportController extends HttpServlet {
 	
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int employId=Integer.parseInt(request.getParameter("eId"));
 		EmployeeDaoImpl employeeDao=new EmployeeDaoImpl();
@@ -43,6 +44,7 @@ public class SalaryEmployeeReportController extends HttpServlet {
 	}
 
 	
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}

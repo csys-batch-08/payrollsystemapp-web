@@ -20,6 +20,7 @@ import com.payroll.model.Employee;
 @WebServlet("/searchEmployee")
 public class searchEmployeeController extends HttpServlet {
 	
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String name=request.getParameter("empName");
 		EmployeeDaoImpl employDao=new EmployeeDaoImpl();
@@ -32,6 +33,7 @@ public class searchEmployeeController extends HttpServlet {
 	}
 
 	
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}

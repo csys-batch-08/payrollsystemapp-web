@@ -27,6 +27,7 @@ import com.payroll.model.Grade;
 
 @WebServlet("/salaryInsert")
 public class SalaryAddController extends HttpServlet {
+	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -99,7 +100,7 @@ public class SalaryAddController extends HttpServlet {
 						long salary = (((grossSalary) - (leaveDays * perDaySalary)) - pt);
 						boolean result = salaryCal.insertSalary(emp, grade, depart, leaveDays, grossSalary, salary);
 						try {
-							if (result != false) {
+							if (result ) {
 								PrintWriter out = response.getWriter();
 								out.println("<script type=\"text/javascript\">");
 								out.println("alert('Salary Added Successfully');");
@@ -123,7 +124,7 @@ public class SalaryAddController extends HttpServlet {
 								salaryBonus);
 						try {
 
-							if (result != false) {
+							if (result ) {
 								PrintWriter out = response.getWriter();
 								out.println("<script type=\"text/javascript\">");
 								out.println("alert('Salary Added Successfully');");

@@ -22,6 +22,7 @@ import com.payroll.dao.SalaryCalculateDaoImpl;
 @WebServlet("/totalAmount")
 public class TotalAmountController extends HttpServlet {
 	
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		 SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 			try {
@@ -37,16 +38,13 @@ public class TotalAmountController extends HttpServlet {
 				
 				
 			} catch (ParseException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

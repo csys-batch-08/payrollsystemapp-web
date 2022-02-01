@@ -1,8 +1,10 @@
 <%@page import="com.payroll.model.Employee"%>
 <%@page import="java.util.List"%>
 <%@page import="com.payroll.dao.EmployeeDaoImpl"%>
-<%@page import="com.payroll.Interface.EmployeeDao"%>
+<%@page import="com.payroll.daoimpl.EmployeeDao"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -109,7 +111,10 @@ margin-right: 40px;
 <tr>
 <c:forEach items="${sessionScope.empList}" var="emp">
 <td>${emp.empId}</td>
-<td >${emp.empName}</td>
+
+ <c:set var = "empName" value = "${fn:toUpperCase(emp.empName)}" />
+<td >${empName}</td>
+
 <fmt:parseDate value="${emp.dob}" pattern="yyyy-MM-dd" var="dobDate" type="date"/>   
 <td ><fmt:formatDate pattern="dd-MM-yyyy" value="${dobDate}"/> </td>
 

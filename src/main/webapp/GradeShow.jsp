@@ -2,6 +2,7 @@
 <%@page import="java.util.List"%>
 <%@page import="com.payroll.dao.GradeDaoImpl"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -72,7 +73,8 @@ text-decoration: none;
 
 	<tr>
 	<td>${grd.gradeId }</td>
-	<td>${grd.gradeName }</td>
+	<td>${fn:toUpperCase(grd.gradeName)}</td>
+	
 	<td>${grd.gradeBasic }</td>
 	<td>${grd.gradeBonus }</td>
 	

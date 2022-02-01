@@ -38,7 +38,7 @@ public class EmployeeDelController extends HttpServlet {
 			PrintWriter out =response.getWriter();
 			out.println("<script type=\"text/javascript\">");
 			out.println("alert('Employee Status Updated To In-active');");
-			out.println("location='employeeShowInActive.jsp';");
+			out.println("location='adminControl.jsp';");
 			out.println("</script>");
 			
 		}

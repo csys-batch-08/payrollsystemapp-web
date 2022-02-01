@@ -99,7 +99,7 @@
 <label for="address">ADDRESS</label>
 </td>
 <td>
-<input type="text" pattern="[a-zA-z0-9/,\s]+" id="address" name="address" placeholder="Enter Address"><br><br>
+<input type="text" pattern="^[#.0-9a-zA-Z\s,-]+$" id="address" name="address" placeholder="Enter Address"><br><br>
 </td>
 </tr>
 <tr>
@@ -123,7 +123,7 @@
 <label for="mobileno">MOBILE NUMBER</label>
 </td>
 <td>
-<input type="number" pattern="[0-9]{10}" id="mobileno" maxlength="10"  name="mobileNumber" placeholder="Enter MobileNumber"><br><br>
+<input type="number" pattern="[0-9]{10}" id="mobileno" maxlength="10" name="mobileNumber" placeholder="Enter MobileNumber"><br><br>
 </td>
 </tr>
 <tr>
@@ -194,7 +194,7 @@ function today(){
     var dd = String(today.getDate()).padStart(2, '0');
     var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
     var yyyy = today.getFullYear();
-    var yyyy1= today.getFullYear()-24;
+    var yyyy1= today.getFullYear()-22;
 maxdate =yyyy1 + '-' + mm + '-'+ dd  ;
 
 document.getElementById("dob").setAttribute("max",maxdate);
