@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.payroll.dao.SalaryCalculateDaoImpl;
-import com.payroll.daoimpl.SalaryCalculateDao;
 
 @WebServlet("/totalSal")
 public class TotalSalaryController extends HttpServlet {
@@ -29,7 +28,6 @@ public class TotalSalaryController extends HttpServlet {
 		session.setAttribute("salCount", salCount);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("salaryEmployCount.jsp");
 		dispatcher.forward(request, response);
-
 	}
 
 }

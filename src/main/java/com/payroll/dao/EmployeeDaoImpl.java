@@ -56,10 +56,11 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		Employee employee = null;
 		DepartmentsDaoImpl deptDao = new DepartmentsDaoImpl();
 		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
 		try {
 			preparedStatement = connection.prepareStatement(findEmployeeQuery);
 			preparedStatement.setInt(1, empId);
-			ResultSet resultSet = preparedStatement.executeQuery();
+			resultSet = preparedStatement.executeQuery();
 
 			while (resultSet.next()) {
 				GradeDaoImpl gradeDao = new GradeDaoImpl();
@@ -75,14 +76,14 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
 			e.printStackTrace();
 		} finally {
-			ConnectionUtilImpl.closePreparedStatement(preparedStatement, connection);
+			ConnectionUtilImpl.closePreparedStatement(preparedStatement, connection, resultSet);
 		}
 		return employee;
 	}
 
 	public int updateEmp(Employee employ) {
 
-		String insertQuery = " update employees set EMP_NAME=?,EMP_DOB=?,EMP_DOJ=?,EMP_ADDRESS=?,EMP_CITY=?,EMP_PINCODE=?,EMP_MOBILE_NO=?,EMP_STATE=?,EMP_EMAIL_ID=?,EMP_PAN_NO=? ,DEPT_ID=?,GRADE_ID=?where emp_id= ?";
+		String insertQuery = "update employees set EMP_NAME=?,EMP_DOB=?,EMP_DOJ=?,EMP_ADDRESS=?,EMP_CITY=?,EMP_PINCODE=?,EMP_MOBILE_NO=?,EMP_STATE=?,EMP_EMAIL_ID=?,EMP_PAN_NO=? ,DEPT_ID=?,GRADE_ID=?where emp_id= ?";
 		ConnectionUtilImpl connectionUtilImpl = new ConnectionUtilImpl();
 		Connection connection = connectionUtilImpl.dbConnect();
 		int i = 0;
@@ -141,10 +142,11 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		Connection connection = connectionUtilImpl.dbConnect();
 		Statement statement = null;
 		int id = 0;
+		ResultSet resultSet =null;
 		try {
 			statement = connection.createStatement();
 
-			ResultSet resultSet = statement.executeQuery(findId);
+			resultSet = statement.executeQuery(findId);
 			if (resultSet.next()) {
 				id = resultSet.getInt(1);
 				return id;
@@ -152,7 +154,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			ConnectionUtilImpl.closeStatement(statement, connection);
+			ConnectionUtilImpl.closeStatement(statement, connection, resultSet);
 		}
 
 		return id;
@@ -166,9 +168,10 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		Connection connection = connectionUtilImpl.dbConnect();
 		DepartmentsDaoImpl deptDao = new DepartmentsDaoImpl();
 		Statement statement = null;
+		ResultSet resultSet =null;
 		try {
 			statement = connection.createStatement();
-			ResultSet resultSet = statement.executeQuery(showQuery);
+			resultSet = statement.executeQuery(showQuery);
 			while (resultSet.next()) {
 				GradeDaoImpl gradeDao = new GradeDaoImpl();
 				Grade grade = gradeDao.findGrade(resultSet.getInt(13));
@@ -183,7 +186,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			ConnectionUtilImpl.closeStatement(statement, connection);
+			ConnectionUtilImpl.closeStatement(statement, connection, resultSet);
 		}
 
 		return employeeList;
@@ -197,9 +200,10 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		Connection connection = connectionUtilImpl.dbConnect();
 		DepartmentsDaoImpl deptDao = new DepartmentsDaoImpl();
 		Statement statement = null;
+		ResultSet resultSet =null;
 		try {
 			statement = connection.createStatement();
-			ResultSet resultSet = statement.executeQuery(showQuery);
+			resultSet = statement.executeQuery(showQuery);
 			while (resultSet.next()) {
 				GradeDaoImpl gradeDao = new GradeDaoImpl();
 				Grade grade = gradeDao.findGrade(resultSet.getInt(13));
@@ -213,7 +217,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			ConnectionUtilImpl.closeStatement(statement, connection);
+			ConnectionUtilImpl.closeStatement(statement, connection, resultSet);
 		}
 		return employeeList;
 	}
@@ -226,10 +230,11 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
 		Employee employee = null;
 		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
 		try {
 			preparedStatement = connection.prepareStatement(findEmployeeQuery);
 			preparedStatement.setString(1, email);
-			ResultSet resultSet = preparedStatement.executeQuery();
+			resultSet = preparedStatement.executeQuery();
 
 			while (resultSet.next()) {
 				GradeDaoImpl gradeDao = new GradeDaoImpl();
@@ -244,7 +249,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
 			e.getMessage();
 		} finally {
-			ConnectionUtilImpl.closePreparedStatement(preparedStatement, connection);
+			ConnectionUtilImpl.closePreparedStatement(preparedStatement, connection, resultSet);
 		}
 		return employee;
 	}
@@ -333,7 +338,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
 			e.printStackTrace();
 		} finally {
-			ConnectionUtilImpl.closePreparedStatement(preparedStatement, connection);
+			ConnectionUtilImpl.closePreparedStatement(preparedStatement, connection, resultSet);
 		}
 		return employeeList;
 
@@ -345,11 +350,12 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		ConnectionUtilImpl connectionUtilImpl = new ConnectionUtilImpl();
 		Connection connection = connectionUtilImpl.dbConnect();
 		String status = null;
+		ResultSet resultSet = null;
 		PreparedStatement preparedStatement = null;
 		try {
 			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setInt(1, empId);
-			ResultSet resultSet = preparedStatement.executeQuery();
+			resultSet = preparedStatement.executeQuery();
 			if (resultSet.next()) {
 				status = resultSet.getString(1);
 			}
@@ -358,7 +364,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			ConnectionUtilImpl.closePreparedStatement(preparedStatement, connection);
+			ConnectionUtilImpl.closePreparedStatement(preparedStatement, connection, resultSet);
 
 		}
 
@@ -372,10 +378,11 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		ConnectionUtilImpl connectionUtilImpl = new ConnectionUtilImpl();
 		Connection connection = connectionUtilImpl.dbConnect();
 		Date today = null;
+		ResultSet resultSet =null;
 		PreparedStatement preparedStatement = null;
 		try {
 			preparedStatement = connection.prepareStatement(query);
-			ResultSet resultSet = preparedStatement.executeQuery();
+			resultSet = preparedStatement.executeQuery();
 			if (resultSet.next()) {
 				today = resultSet.getDate(1);
 			}
@@ -384,7 +391,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			ConnectionUtilImpl.closePreparedStatement(preparedStatement, connection);
+			ConnectionUtilImpl.closePreparedStatement(preparedStatement, connection, resultSet);
 		}
 
 		return today;
@@ -396,14 +403,14 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		ConnectionUtilImpl connectionUtilImpl = new ConnectionUtilImpl();
 		Connection connection = connectionUtilImpl.dbConnect();
 		DepartmentsDaoImpl deptDao = new DepartmentsDaoImpl();
-
+		ResultSet resultSet = null;
 		Employee employee = null;
 		PreparedStatement preparedStatement = null;
 		try {
 			preparedStatement = connection.prepareStatement(findEmployeeQuery);
 			preparedStatement.setInt(1, deptId);
 			preparedStatement.setInt(2, grdId);
-			ResultSet resultSet = preparedStatement.executeQuery();
+			resultSet = preparedStatement.executeQuery();
 
 			while (resultSet.next()) {
 				Departments dept = deptDao.findDepartment(resultSet.getInt(12));
@@ -418,7 +425,8 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
 			e.getMessage();
 		} finally {
-			ConnectionUtilImpl.closePreparedStatement(preparedStatement, connection);
+			ConnectionUtilImpl.closePreparedStatement(preparedStatement, connection, resultSet);
+			
 		}
 		return employee;
 	}

@@ -14,14 +14,11 @@ import javax.servlet.http.HttpSession;
 import com.payroll.dao.GradeDaoImpl;
 import com.payroll.model.Grade;
 
-/**
- * Servlet implementation class GradeSearchController
- */
 @WebServlet("/GradeSearchController")
 public class GradeSearchController extends HttpServlet {
 	
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String name=request.getParameter("gradeName");
 		GradeDaoImpl gradeDao=new GradeDaoImpl();
 		List<Grade> listGrade=gradeDao.searchGrade(name);
@@ -33,9 +30,6 @@ public class GradeSearchController extends HttpServlet {
 	}
 
 	
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
-	}
+	
 
 }

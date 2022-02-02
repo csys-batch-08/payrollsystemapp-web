@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.payroll.dao.LeaveDaoImpl;
 import com.payroll.dao.SalaryCalculateDaoImpl;
 import com.payroll.model.EmpSalary;
 
@@ -20,7 +19,7 @@ import com.payroll.model.EmpSalary;
 public class ShowSalaryEmployeeController extends HttpServlet {
 	
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		SalaryCalculateDaoImpl salaryCal=new SalaryCalculateDaoImpl();
 		List<EmpSalary> SalaryEmploy=salaryCal.showEmployee();
 		HttpSession session=request.getSession();
@@ -30,9 +29,5 @@ public class ShowSalaryEmployeeController extends HttpServlet {
 	}
 
 	
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
-	}
 
 }

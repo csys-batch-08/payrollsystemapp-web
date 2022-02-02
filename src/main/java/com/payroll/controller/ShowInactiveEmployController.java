@@ -19,7 +19,7 @@ import com.payroll.model.Employee;
 public class ShowInactiveEmployController extends HttpServlet {
 	
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		EmployeeDaoImpl employeeDao=new EmployeeDaoImpl();
 
 		List<Employee> employeeList=employeeDao.showInactiveEmployee();
@@ -30,9 +30,5 @@ public class ShowInactiveEmployController extends HttpServlet {
 	}
 
 	
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
-	}
 
 }

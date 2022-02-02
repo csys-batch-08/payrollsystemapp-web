@@ -15,14 +15,11 @@ import javax.servlet.http.HttpSession;
 import com.payroll.dao.GradeDaoImpl;
 import com.payroll.model.Grade;
 
-/**
- * Servlet implementation class GradeEditController
- */
 @WebServlet("/GradeEdit")
 public class GradeEditController extends HttpServlet {
 
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int gradeId=Integer.parseInt(request.getParameter("gradeId"));
 		HttpSession session=request.getSession();
 		session.setAttribute("gradeId", gradeId);
@@ -36,10 +33,5 @@ public class GradeEditController extends HttpServlet {
 		dispatcher.forward(request, response);
 	}
 
-	
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
-	}
 
 }

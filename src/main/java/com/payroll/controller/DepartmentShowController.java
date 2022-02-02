@@ -14,13 +14,11 @@ import javax.servlet.http.HttpSession;
 import com.payroll.dao.DepartmentsDaoImpl;
 import com.payroll.model.Departments;
 
-/**
- * Servlet implementation class DepartmentShowController
- */
 @WebServlet("/showDept")
 public class DepartmentShowController extends HttpServlet {
 	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	@Override
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DepartmentsDaoImpl departDao=new DepartmentsDaoImpl();
 		List<Departments> departList=departDao.showDepartments();
 		HttpSession session=request.getSession();
@@ -29,11 +27,9 @@ public class DepartmentShowController extends HttpServlet {
 		dispatcher.forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

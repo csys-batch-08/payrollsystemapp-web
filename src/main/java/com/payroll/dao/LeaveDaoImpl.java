@@ -45,12 +45,12 @@ public class LeaveDaoImpl {
 		String showQuery = "select LEAVE_ID,EMP_ID,LEAVE_DATE,REASON from leave_details";
 		ConnectionUtilImpl connectionUtilImpl = new ConnectionUtilImpl();
 		EmployeeDaoImpl employeeDaoImpl = new EmployeeDaoImpl();
-
+		ResultSet resultSet =null;
 		Connection connection = connectionUtilImpl.dbConnect();
 		Statement statement = null;
 		try {
 			statement = connection.createStatement();
-			ResultSet resultSet = statement.executeQuery(showQuery);
+			resultSet = statement.executeQuery(showQuery);
 			while (resultSet.next()) {
 				Employee employ = employeeDaoImpl.findEmployee(resultSet.getInt(2));
 
@@ -63,7 +63,7 @@ public class LeaveDaoImpl {
 
 			e.printStackTrace();
 		} finally {
-			ConnectionUtilImpl.closeStatement(statement, connection);
+			ConnectionUtilImpl.closeStatement(statement, connection, resultSet);
 		}
 
 		return leaveList;
@@ -82,19 +82,20 @@ public class LeaveDaoImpl {
 		Connection connection = connectionUtilImpl.dbConnect();
 		PreparedStatement preparedStatement = null;
 		int id = 0;
+		ResultSet resultSet = null;
 		try {
 			preparedStatement = connection.prepareStatement(findId);
 			preparedStatement.setInt(1, empID);
 			preparedStatement.setDate(2, new java.sql.Date(leave.getLeaveDt().getTime()));
 
-			ResultSet resultSet = preparedStatement.executeQuery();
+			resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
 				id = resultSet.getInt(1);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			ConnectionUtilImpl.closePreparedStatement(preparedStatement, connection);
+			ConnectionUtilImpl.closePreparedStatement(preparedStatement, connection, resultSet);
 		}
 		return id;
 	}
@@ -104,7 +105,7 @@ public class LeaveDaoImpl {
 		String qry = "select LEAVE_ID,EMP_ID,LEAVE_DATE,REASON from leave_details where LEAVE_DATE = ? and emp_id =  ?";
 		ConnectionUtilImpl connectionUtilImpl = new ConnectionUtilImpl();
 		Connection connection = connectionUtilImpl.dbConnect();
-
+		ResultSet resultSet = null;
 		Leave leave = null;
 		PreparedStatement preparedStatement = null;
 		try {
@@ -113,7 +114,7 @@ public class LeaveDaoImpl {
 			EmployeeDaoImpl employeeDaoImpl = new EmployeeDaoImpl();
 
 			preparedStatement.setInt(2, empId);
-			ResultSet resultSet = preparedStatement.executeQuery();
+			resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
 				Employee emp = employeeDaoImpl.findEmployee(resultSet.getInt(2));
 				leave = new Leave(emp, resultSet.getDate(3), resultSet.getString(4));
@@ -121,7 +122,7 @@ public class LeaveDaoImpl {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			ConnectionUtilImpl.closePreparedStatement(preparedStatement, connection);
+			ConnectionUtilImpl.closePreparedStatement(preparedStatement, connection, resultSet);
 		}
 
 		return leave;
@@ -129,24 +130,26 @@ public class LeaveDaoImpl {
 	}
 
 	public int leaveDays(int empID) {
-		String query = "select count(leave_id) as leave_count from leave_details where emp_id=" + empID
+		String query = "select count(leave_id) as leave_count from leave_details where emp_id=?" 
 				+ "group by emp_id";
 		ConnectionUtilImpl connectionUtilImpl = new ConnectionUtilImpl();
 		Connection connection = connectionUtilImpl.dbConnect();
 		int count = 0;
-		Statement statement = null;
+		PreparedStatement  preparedStatement=null;
+		ResultSet resultSet = null;
 
 		try {
-			statement = connection.createStatement();
-			ResultSet rs = statement.executeQuery(query);
-			if (rs.next()) {
-				count = rs.getInt(1);
+			preparedStatement=connection.prepareStatement(query);
+			preparedStatement.setInt(1, empID);
+			resultSet = preparedStatement.executeQuery();
+			if (resultSet.next()) {
+				count = resultSet.getInt(1);
 			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			ConnectionUtilImpl.closeStatement(statement, connection);
+			ConnectionUtilImpl.closePreparedStatement(preparedStatement, connection, resultSet);
 		}
 
 		return count;

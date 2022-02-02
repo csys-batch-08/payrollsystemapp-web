@@ -11,10 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.payroll.dao.DepartmentsDaoImpl;
-import com.payroll.dao.GradeDaoImpl;
 import com.payroll.exception.DepartmentException;
 import com.payroll.model.Departments;
-import com.payroll.model.Grade;
 
 @WebServlet("/deptAdd")
 public class DepartmentAddController extends HttpServlet {

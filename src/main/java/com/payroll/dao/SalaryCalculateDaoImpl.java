@@ -208,7 +208,7 @@ public class SalaryCalculateDaoImpl {
 	}
 
 	public int inActiveEmployee() {
-		String query = "select count(*) active_emp from employees where status='inactive'";
+		String query = "select count(*) as active_emp from employees where status='inactive'";
 		ConnectionUtilImpl connectionUtilImpl = new ConnectionUtilImpl();
 		Connection connection = connectionUtilImpl.dbConnect();
 		int inActiveCount = 0;
@@ -229,7 +229,7 @@ public class SalaryCalculateDaoImpl {
 	}
 
 	public int totalSal(Date salFrom, Date salTo) {
-		String query = "select sum(TOTAL_SALARY) total from salarys where PAID_DATE  between ? and ?";
+		String query = "select sum(TOTAL_SALARY) as total from salarys where PAID_DATE  between ? and ?";
 		ConnectionUtilImpl connectionUtilImpl = new ConnectionUtilImpl();
 		Connection connection = connectionUtilImpl.dbConnect();
 		int total = 0;

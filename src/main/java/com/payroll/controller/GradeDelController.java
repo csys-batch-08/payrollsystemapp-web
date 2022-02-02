@@ -23,5 +23,6 @@ public class GradeDelController extends HttpServlet {
 		out.println("location='adminControl.jsp';");
 		out.println("</script>");
 		}
+	
 
 }

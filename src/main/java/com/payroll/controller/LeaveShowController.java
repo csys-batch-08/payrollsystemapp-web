@@ -14,14 +14,11 @@ import javax.servlet.http.HttpSession;
 import com.payroll.dao.LeaveDaoImpl;
 import com.payroll.model.Leave;
 
-/**
- * Servlet implementation class LeaveShowController
- */
 @WebServlet("/LeaveShow")
 public class LeaveShowController extends HttpServlet {
 	
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		LeaveDaoImpl leaveDao=new LeaveDaoImpl();
 		List<Leave> leaveList=leaveDao.showLeaveDetail();
 		HttpSession session=request.getSession();
@@ -29,12 +26,8 @@ public class LeaveShowController extends HttpServlet {
 		
 		RequestDispatcher dispatcher=request.getRequestDispatcher("leaveShow.jsp");
 		dispatcher.forward(request, response);
-
 	}
 
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
-	}
+
 
 }

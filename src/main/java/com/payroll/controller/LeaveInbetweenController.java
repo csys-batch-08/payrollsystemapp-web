@@ -23,7 +23,7 @@ import com.payroll.model.Leave;
 public class LeaveInbetweenController extends HttpServlet {
 	
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 		Date fromDt=null;
 		Date toDate=null;
@@ -42,12 +42,7 @@ public class LeaveInbetweenController extends HttpServlet {
 		session.setAttribute("leaveList", leaveList);
 		RequestDispatcher dispatcher=request.getRequestDispatcher("leaveInBetweenDate.jsp");
 		dispatcher.forward(request, response);
-		
 	}
 
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
-	}
-
+	
 }

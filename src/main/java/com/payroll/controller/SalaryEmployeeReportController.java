@@ -13,19 +13,15 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.payroll.dao.EmployeeDaoImpl;
-import com.payroll.dao.GradeDaoImpl;
 import com.payroll.dao.SalaryCalculateDaoImpl;
 import com.payroll.model.EmpSalary;
 import com.payroll.model.Employee;
 
-/**
- * Servlet implementation class SalaryEmployeeReportController
- */
 @WebServlet("/SalaryReport")
 public class SalaryEmployeeReportController extends HttpServlet {
 	
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int employId=Integer.parseInt(request.getParameter("eId"));
 		EmployeeDaoImpl employeeDao=new EmployeeDaoImpl();
 		Employee employ=employeeDao.findEmployee(employId);
@@ -43,10 +39,5 @@ public class SalaryEmployeeReportController extends HttpServlet {
 		
 	}
 
-	
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
-	}
 
 }

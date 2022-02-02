@@ -15,14 +15,11 @@ import javax.servlet.http.HttpSession;
 import com.payroll.dao.EmployeeDaoImpl;
 import com.payroll.model.Employee;
 
-/**
- * Servlet implementation class EmployeeEditController
- */
 @WebServlet("/UpdEmp")
 public class EmployeeEditController extends HttpServlet {
 
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
 		int empId = Integer.parseInt(request.getParameter("empId"));
@@ -35,10 +32,6 @@ public class EmployeeEditController extends HttpServlet {
 		RequestDispatcher requestDispatcher=request.getRequestDispatcher("employeeUpdate.jsp");
 		requestDispatcher.forward(request, response);
 	}
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		doGet(request, response);
-	}
+	
 
 }

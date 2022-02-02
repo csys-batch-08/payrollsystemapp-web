@@ -16,9 +16,7 @@ import com.payroll.exception.InvalidAmount;
 import com.payroll.model.Departments;
 import com.payroll.model.Grade;
 
-/**
- * Servlet implementation class GradeAddController
- */
+
 @WebServlet("/gradeAdd")
 public class GradeAddController extends HttpServlet {
 	@Override

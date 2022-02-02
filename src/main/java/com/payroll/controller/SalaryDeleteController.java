@@ -11,14 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.payroll.dao.SalaryCalculateDaoImpl;
 
-/**
- * Servlet implementation class SalaryDeleteController
- */
 @WebServlet("/salDel")
 public class SalaryDeleteController extends HttpServlet {
 	
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int transId=Integer.parseInt(request.getParameter("salId"));
 		SalaryCalculateDaoImpl calculateDaoImpl=new SalaryCalculateDaoImpl();
 		int i=calculateDaoImpl.deleteSalary(transId);
@@ -39,9 +36,6 @@ public class SalaryDeleteController extends HttpServlet {
 	}
 
 	
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
-	}
+
 
 }

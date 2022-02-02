@@ -12,9 +12,7 @@ import com.payroll.dao.LeaveDaoImpl;
 import com.payroll.exception.LeaveException;
 import com.payroll.model.Leave;
 
-/**
- * Servlet implementation class LeaveDelController
- */
+
 @WebServlet("/empLeave")
 public class LeaveDelController extends HttpServlet {
 	
@@ -36,7 +34,6 @@ public class LeaveDelController extends HttpServlet {
 			session.setAttribute("deleteLeave", e.getMessage());
 			response.sendRedirect("leaveShow.jsp");
 		}
-		
 	}
 
 }

@@ -1,7 +1,6 @@
 package com.payroll.controller;
 
 import java.io.IOException;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
@@ -18,7 +17,8 @@ import com.payroll.model.Departments;
 @WebServlet("/EditDept")
 public class DepartmentEditController extends HttpServlet {
 	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	@Override
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 			
 		

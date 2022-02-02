@@ -1,5 +1,4 @@
 package com.payroll.dao;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,7 +6,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
 import com.payroll.model.Departments;
 import com.payroll.model.Grade;
 
@@ -45,15 +43,18 @@ public class GradeDaoImpl {
 		}
 	public  int findGradeID(Grade grade)
 	{
-		String findId="select grade_id from grades where grade_name= '"+grade.getGradeName()+"' and DEPT_ID="+grade.getDepartment().getDeptId();
+		String findId="select grade_id from grades where grade_name= ? and DEPT_ID=?";
 		ConnectionUtilImpl connectionUtilImpl=new ConnectionUtilImpl();
 		Connection connection=connectionUtilImpl.dbConnect();
-		Statement statement=null;
+		PreparedStatement preparedStatement=null;
 		int id = 0;
+		ResultSet resultSet=null;
 		try {
-			statement = connection.createStatement();
+			preparedStatement=connection.prepareStatement(findId);
+			preparedStatement.setString(1, grade.getGradeName());
+			preparedStatement.setInt(2, grade.getDepartment().getDeptId());
+			resultSet=preparedStatement.executeQuery();
 			
-			ResultSet resultSet=statement.executeQuery(findId);
 			if(resultSet.next()) {
 				id=resultSet.getInt(1);
 			}return id;
@@ -62,7 +63,7 @@ public class GradeDaoImpl {
 			e.printStackTrace();
 		}
 		finally {
-			ConnectionUtilImpl.closeStatement(statement, connection);
+			ConnectionUtilImpl.closePreparedStatement(preparedStatement, connection, resultSet);
 		}
 		
 		return id;
@@ -125,9 +126,10 @@ public class GradeDaoImpl {
 		ConnectionUtilImpl connectionUtilImpl=new ConnectionUtilImpl();
 		Connection connection=connectionUtilImpl.dbConnect();
 		Statement statement=null;
+		ResultSet resultSet=null;
 		try {
 			statement=connection.createStatement();
-			ResultSet resultSet=statement.executeQuery(showQuery);
+			resultSet=statement.executeQuery(showQuery);
 			while(resultSet.next())
 			{	DepartmentsDaoImpl departmentDao=new DepartmentsDaoImpl();
 				Departments department=departmentDao.findDepartment(resultSet.getInt(7));
@@ -139,7 +141,7 @@ public class GradeDaoImpl {
 			e.printStackTrace();
 		}
 		finally {
-			ConnectionUtilImpl.closeStatement(statement, connection);
+			ConnectionUtilImpl.closeStatement(statement, connection, resultSet);
 			
 		}
 		
@@ -149,38 +151,34 @@ public class GradeDaoImpl {
 	{	
 		
 		
-		String qry="select (grade_basic + grade_pf) gross from grades where grade_name = ? and DEPT_ID=?";
+		String qry="select (grade_basic + grade_pf) as gross from grades where grade_name = ? and DEPT_ID=?";
 		ConnectionUtilImpl connectionUtilImpl=new ConnectionUtilImpl();
 		Connection connection=connectionUtilImpl.dbConnect();
 		Long grossSalary=null;
-		
+		ResultSet resultSet=null;
 			PreparedStatement preparedStatement=null;
 			try {
 				preparedStatement = connection.prepareStatement(qry);
 				preparedStatement.setString(1, grdName);
 				preparedStatement.setInt(2, deptId);
 				
-				ResultSet rs=preparedStatement.executeQuery();
+				resultSet=preparedStatement.executeQuery();
 				
-				while(rs.next()) {
+				while(resultSet.next()) {
 					
-					grossSalary=rs.getLong(1);
+					grossSalary=resultSet.getLong(1);
 				}
 				
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 			finally {
-				ConnectionUtilImpl.closePreparedStatement(preparedStatement, connection);
+				ConnectionUtilImpl.closePreparedStatement(preparedStatement, connection, resultSet);
 			}
 			
-			
-			return grossSalary;
+		return grossSalary;
 
 
-		
-		
-		
 	}
 	
 	public  Grade findGrade(int gradeId) 
@@ -189,11 +187,12 @@ public class GradeDaoImpl {
 		ConnectionUtilImpl connectionUtilImpl=new ConnectionUtilImpl();
 		Connection connection=connectionUtilImpl.dbConnect();
 		Grade grd=null;
+		ResultSet resultSet=null;
 		PreparedStatement preparedStatement=null;
 		try {
 			preparedStatement=connection.prepareStatement(qry);
 			preparedStatement.setInt(1, gradeId);
-			ResultSet resultSet=preparedStatement.executeQuery();
+			resultSet=preparedStatement.executeQuery();
 			while(resultSet.next()) {
 				DepartmentsDaoImpl departmentDao=new DepartmentsDaoImpl();
 
@@ -204,7 +203,7 @@ public class GradeDaoImpl {
 			e.printStackTrace();
 		}
 		finally {
-			ConnectionUtilImpl.closePreparedStatement(preparedStatement, connection);
+			ConnectionUtilImpl.closePreparedStatement(preparedStatement, connection, resultSet);
 		}
 		return grd;
 		
@@ -212,8 +211,9 @@ public class GradeDaoImpl {
 	
 	public  long perDaySalary(String gradeName,int deptId) 
 	{
-		String query="select (grade_basic/30)perDaySalary from grades where grade_name = ? and DEPT_ID=?";
+		String query="select (grade_basic/30) as perDaySalary from grades where grade_name = ? and DEPT_ID=?";
 		long perDaySalary=0;
+		ResultSet resultSet=null;
 		ConnectionUtilImpl connectionUtilImpl=new ConnectionUtilImpl();
 		Connection connection=connectionUtilImpl.dbConnect();
 		PreparedStatement preparedStatement=null;
@@ -222,7 +222,7 @@ public class GradeDaoImpl {
 			preparedStatement.setString(1, gradeName);
 			preparedStatement.setInt(2, deptId);
 			
-			ResultSet resultSet=preparedStatement.executeQuery();
+			resultSet=preparedStatement.executeQuery();
 			
 			
 			while(resultSet.next()) {
@@ -233,7 +233,7 @@ public class GradeDaoImpl {
 			e.printStackTrace();
 		}
 		finally {
-			ConnectionUtilImpl.closePreparedStatement(preparedStatement, connection);
+			ConnectionUtilImpl.closePreparedStatement(preparedStatement, connection, resultSet);
 		}
 		
 		return perDaySalary ;
@@ -245,13 +245,14 @@ public class GradeDaoImpl {
 		ConnectionUtilImpl connectionUtilImpl=new ConnectionUtilImpl();
 		Connection connection=connectionUtilImpl.dbConnect();
 		PreparedStatement preparedStatement=null;
+		ResultSet resultSet=null;
 		try {
 			
 			preparedStatement=connection.prepareStatement(query);
 			preparedStatement.setString(1, gradeName);
 			preparedStatement.setInt(2, deptId);
 			
-			ResultSet resultSet=preparedStatement.executeQuery();
+			resultSet=preparedStatement.executeQuery();
 			while(resultSet.next()) {
 				basicSalary=resultSet.getLong(1);
 			}
@@ -260,7 +261,7 @@ public class GradeDaoImpl {
 			e.printStackTrace();
 		}
 		finally {
-			ConnectionUtilImpl.closePreparedStatement(preparedStatement, connection);
+			ConnectionUtilImpl.closePreparedStatement(preparedStatement, connection, resultSet);
 		}
 		
 		return basicSalary ;
@@ -271,13 +272,14 @@ public class GradeDaoImpl {
 		ConnectionUtilImpl connectionUtilImpl=new ConnectionUtilImpl();
 		Connection connection=connectionUtilImpl.dbConnect();
 		PreparedStatement preparedStatement=null;
+		ResultSet resultSet=null;
 		try {
 			
 			preparedStatement=connection.prepareStatement(query);
 			preparedStatement.setString(1, gradeName);
 			preparedStatement.setInt(2, deptId);
 			
-			ResultSet resultSet=preparedStatement.executeQuery();
+			resultSet=preparedStatement.executeQuery();
 			while(resultSet.next()) {
 				gradeBonus=resultSet.getLong(1);
 			}
@@ -287,7 +289,7 @@ public class GradeDaoImpl {
 			e.printStackTrace();
 		}
 		finally {
-			ConnectionUtilImpl.closePreparedStatement(preparedStatement, connection);
+			ConnectionUtilImpl.closePreparedStatement(preparedStatement, connection, resultSet);
 			
 		}
 		
@@ -299,13 +301,14 @@ public class GradeDaoImpl {
 		ConnectionUtilImpl connectionUtilImpl=new ConnectionUtilImpl();
 		Connection connection=connectionUtilImpl.dbConnect();
 		PreparedStatement preparedStatement=null;
+		ResultSet resultSet=null;
 		try {
 			
 			preparedStatement=connection.prepareStatement(query);
 			preparedStatement.setString(1, gradeName);
 			preparedStatement.setInt(2, deptId);
 			
-			ResultSet resultSet=preparedStatement.executeQuery();
+			resultSet=preparedStatement.executeQuery();
 			while(resultSet.next()) {
 				providentFund=resultSet.getLong(1);
 			}
@@ -314,10 +317,8 @@ public class GradeDaoImpl {
 			e.printStackTrace();
 		}
 		finally {
-			ConnectionUtilImpl.closePreparedStatement(preparedStatement, connection);
+			ConnectionUtilImpl.closePreparedStatement(preparedStatement, connection, resultSet);
 		}
-		
-		
 		return providentFund ;
 	}
 	public  long professionalTax(String gradeName ,int deptId) {
@@ -326,13 +327,14 @@ public class GradeDaoImpl {
 		ConnectionUtilImpl connectionUtilImpl=new ConnectionUtilImpl();
 		Connection connection=connectionUtilImpl.dbConnect();
 		PreparedStatement preparedStatement=null;
+		ResultSet resultSet=null;
 		try {
 			
 			preparedStatement=connection.prepareStatement(query);
 			preparedStatement.setString(1, gradeName);
 			preparedStatement.setInt(2, deptId);
 			
-			ResultSet resultSet=preparedStatement.executeQuery();
+			resultSet=preparedStatement.executeQuery();
 			while(resultSet.next()) {
 				professionalTax=resultSet.getLong(1);
 			}
@@ -341,7 +343,7 @@ public class GradeDaoImpl {
 			e.printStackTrace();
 		}
 		finally {
-			ConnectionUtilImpl.closePreparedStatement(preparedStatement, connection);
+			ConnectionUtilImpl.closePreparedStatement(preparedStatement, connection, resultSet);
 		}
 		
 		return professionalTax ;
@@ -375,7 +377,7 @@ public class GradeDaoImpl {
 			e.printStackTrace();
 		}
 		finally {
-			ConnectionUtilImpl.closePreparedStatement(preparedStatement, connection);
+			ConnectionUtilImpl.closePreparedStatement(preparedStatement, connection, resultSet);
 		}
 		return gradeList;
 		
@@ -388,12 +390,13 @@ public class GradeDaoImpl {
 		ConnectionUtilImpl connectionUtilImpl=new ConnectionUtilImpl();
 		Connection connection=connectionUtilImpl.dbConnect();
 		Grade grd=null;
+		ResultSet resultSet=null;
 		PreparedStatement preparedStatement=null;
 		try {
 			preparedStatement=connection.prepareStatement(qry);
 			preparedStatement.setString(1, gradeName);
 			preparedStatement.setInt(2, deptId);
-			ResultSet resultSet=preparedStatement.executeQuery();
+			resultSet=preparedStatement.executeQuery();
 			while(resultSet.next()) {
 				DepartmentsDaoImpl departDao= new DepartmentsDaoImpl();
 				Departments depart=departDao.findDepartment(resultSet.getInt(7));
@@ -404,7 +407,7 @@ public class GradeDaoImpl {
 			e.printStackTrace();
 		}
 		finally {
-			ConnectionUtilImpl.closePreparedStatement(preparedStatement, connection);
+			ConnectionUtilImpl.closePreparedStatement(preparedStatement, connection, resultSet);
 		}
 		
 		return grd;

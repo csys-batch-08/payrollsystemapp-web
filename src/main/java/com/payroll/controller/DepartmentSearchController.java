@@ -19,7 +19,7 @@ import com.payroll.model.Departments;
 public class DepartmentSearchController extends HttpServlet {
 	
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String name=request.getParameter("deptName");
 		DepartmentsDaoImpl departmentDao=new DepartmentsDaoImpl();
 		List<Departments> departmentList=departmentDao.searchDepartment(name);

@@ -14,14 +14,12 @@ import javax.servlet.http.HttpSession;
 import com.payroll.dao.EmployeeDaoImpl;
 import com.payroll.model.Employee;
 
-/**
- * Servlet implementation class ShowEmployee
- */
+
 @WebServlet("/ShowEmployee")
 public class ShowEmployeeController extends HttpServlet {
 	
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		EmployeeDaoImpl employeeDao=new  EmployeeDaoImpl();
 		List<Employee> employeeList=employeeDao.showEmployee();
 		HttpSession session=request.getSession();
@@ -32,10 +30,6 @@ public class ShowEmployeeController extends HttpServlet {
 		
 	}
 
-	
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
-	}
+
 
 }

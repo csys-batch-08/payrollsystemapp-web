@@ -13,17 +13,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.payroll.dao.LeaveDaoImpl;
-import com.payroll.model.Grade;
 import com.payroll.model.Leave;
 
-/**
- * Servlet implementation class LeaveEditController
- */
+
 @WebServlet("/LeaveEdit")
 public class LeaveEditController extends HttpServlet {
 	
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int leaveId=Integer.parseInt(request.getParameter("leaveId"));
 		HttpSession session1=request.getSession();
 		session1.setAttribute("leaveId", leaveId);
@@ -35,12 +32,7 @@ public class LeaveEditController extends HttpServlet {
 		RequestDispatcher dispatcher=request.getRequestDispatcher("leaveUpdate.jsp");
 		dispatcher.forward(request, response);
 		
-		
 	}
 
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
-	}
 
 }
