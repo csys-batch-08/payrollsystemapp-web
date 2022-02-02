@@ -16,6 +16,7 @@ import com.payroll.model.Departments;
 
 @WebServlet("/deptAdd")
 public class DepartmentAddController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
 
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)

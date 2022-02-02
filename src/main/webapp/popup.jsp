@@ -5,10 +5,10 @@
 <head>
 <meta charset="ISO-8859-1">
 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css'>
-<!-- Font Awesome CSS -->
 <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.3.1/css/all.css'>
 <title>Insert title here</title>
 <style>
+
 .container {
   padding: 2rem 0rem;
 }
@@ -34,6 +34,7 @@
  }
 
  body {
+ 
      background: #ecf0f3
  }
 
@@ -121,7 +122,7 @@
          padding: 40px 15px 15px 15px
      }
  }
-</st
+
 </style>
 </head>
 <body>

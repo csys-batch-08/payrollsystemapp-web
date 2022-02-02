@@ -12,13 +12,14 @@ import javax.servlet.http.HttpSession;
 
 import com.payroll.dao.DepartmentsDaoImpl;
 import com.payroll.dao.GradeDaoImpl;
-import com.payroll.exception.EmployeeDelException;
 import com.payroll.exception.InvalidAmount;
 import com.payroll.model.Departments;
 import com.payroll.model.Grade;
 
 @WebServlet("/gradeUpd")
-public class GradeUpdController extends HttpServlet {
+public class GradeUpdController extends HttpServlet 
+{
+	private static final long serialVersionUID = 1L;
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
 		String gradeName=request.getParameter("name");

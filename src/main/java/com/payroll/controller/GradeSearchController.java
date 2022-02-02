@@ -16,20 +16,19 @@ import com.payroll.model.Grade;
 
 @WebServlet("/GradeSearchController")
 public class GradeSearchController extends HttpServlet {
-	
-	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String name=request.getParameter("gradeName");
-		GradeDaoImpl gradeDao=new GradeDaoImpl();
-		List<Grade> listGrade=gradeDao.searchGrade(name);
-		HttpSession session=request.getSession();
-		session.setAttribute("searchListGrade", listGrade);
-		RequestDispatcher dispatcher=request.getRequestDispatcher("gradeSearch.jsp");
-		dispatcher.forward(request, response);
-		
-	}
+	private static final long serialVersionUID = 1L;
 
-	
-	
+	@Override
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String name = request.getParameter("gradeName");
+		GradeDaoImpl gradeDao = new GradeDaoImpl();
+		List<Grade> listGrade = gradeDao.searchGrade(name);
+		HttpSession session = request.getSession();
+		session.setAttribute("searchListGrade", listGrade);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("gradeSearch.jsp");
+		dispatcher.forward(request, response);
+
+	}
 
 }

@@ -16,27 +16,28 @@ import com.payroll.model.Departments;
 
 @WebServlet("/EditDept")
 public class DepartmentEditController extends HttpServlet {
-	
+	private static final long serialVersionUID = 1L;
+
 	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-			
-		
-		int deptId=Integer.parseInt(request.getParameter("departId"));
-		HttpSession session=request.getSession();
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		int deptId = Integer.parseInt(request.getParameter("departId"));
+		HttpSession session = request.getSession();
 		session.setAttribute("editDeptId", deptId);
-		DepartmentsDaoImpl departDao=new DepartmentsDaoImpl();
-		Departments depart=departDao.findDepartment(deptId);
-		List<Departments> department=new ArrayList<Departments>();
+		DepartmentsDaoImpl departDao = new DepartmentsDaoImpl();
+		Departments depart = departDao.findDepartment(deptId);
+		List<Departments> department = new ArrayList<Departments>();
 		department.add(depart);
 		session.setAttribute("department", department);
-		RequestDispatcher dispatcher=request.getRequestDispatcher("departmentUpdate.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("departmentUpdate.jsp");
 		dispatcher.forward(request, response);
-		
+
 	}
 
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doGet(request, response);
 	}
 

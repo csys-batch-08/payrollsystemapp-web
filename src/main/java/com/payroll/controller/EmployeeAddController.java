@@ -23,7 +23,9 @@ import com.payroll.model.Employee;
 import com.payroll.model.Grade;
 
 @WebServlet("/empAdd")
-public class EmployeeAddController extends HttpServlet {
+public class EmployeeAddController extends HttpServlet 
+{
+	private static final long serialVersionUID = 1L;
 
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

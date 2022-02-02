@@ -14,8 +14,11 @@ import com.payroll.model.Leave;
 
 
 @WebServlet("/empLeave")
-public class LeaveDelController extends HttpServlet {
+public class LeaveDelController extends HttpServlet 
+{
+	private static final long serialVersionUID = 1L;
 	
+	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int leaveId=Integer.parseInt(request.getParameter("leaveId"));
 		LeaveDaoImpl leaveDao=new LeaveDaoImpl();

@@ -10,19 +10,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.payroll.dao.GradeDaoImpl;
+
 @WebServlet("/GradeDel")
 public class GradeDelController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
 	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
-		 GradeDaoImpl gradeDao=new GradeDaoImpl();
-		int gradeId=Integer.parseInt(request.getParameter("gradeId"));
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		GradeDaoImpl gradeDao = new GradeDaoImpl();
+		int gradeId = Integer.parseInt(request.getParameter("gradeId"));
 		gradeDao.deleteGrade(gradeId);
-		PrintWriter out =response.getWriter();
+		PrintWriter out = response.getWriter();
 		out.println("<script type=\"text/javascript\">");
 		out.println("alert('Grade Deleted Successfully');");
 		out.println("location='adminControl.jsp';");
 		out.println("</script>");
-		}
-	
+	}
 
 }

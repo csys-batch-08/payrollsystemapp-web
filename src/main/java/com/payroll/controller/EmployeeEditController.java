@@ -17,6 +17,7 @@ import com.payroll.model.Employee;
 
 @WebServlet("/UpdEmp")
 public class EmployeeEditController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
 
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
@@ -25,13 +26,12 @@ public class EmployeeEditController extends HttpServlet {
 		int empId = Integer.parseInt(request.getParameter("empId"));
 		EmployeeDaoImpl employDao = new EmployeeDaoImpl();
 		Employee employ = employDao.findEmployee(empId);
-		List<Employee> employeeList=new ArrayList<Employee>();
+		List<Employee> employeeList = new ArrayList<Employee>();
 		employeeList.add(employ);
-		HttpSession session=request.getSession();
+		HttpSession session = request.getSession();
 		session.setAttribute("editEmployee", employeeList);
-		RequestDispatcher requestDispatcher=request.getRequestDispatcher("employeeUpdate.jsp");
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("employeeUpdate.jsp");
 		requestDispatcher.forward(request, response);
 	}
-	
 
 }

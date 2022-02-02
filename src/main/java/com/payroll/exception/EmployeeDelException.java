@@ -4,16 +4,18 @@ import java.sql.SQLIntegrityConstraintViolationException;
 
 public class EmployeeDelException extends SQLIntegrityConstraintViolationException{
 	
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 @Override
 	public String getMessage() {
-		// TODO Auto-generated method stub
 		return "Employee details can't be delete Setted as in-active";
 	
 	}
 
 public String getMessage1() {
-	// TODO Auto-generated method stub
-	return "Invalid user-name & password";
+	return "Invalid Email-Id & password";
 
 }
 public String getEmployAdd() {

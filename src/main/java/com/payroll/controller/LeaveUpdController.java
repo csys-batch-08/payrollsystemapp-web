@@ -22,14 +22,7 @@ public class LeaveUpdController extends HttpServlet {
 	
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
-		Date leaveDt=null;
-		try {
-			leaveDt=sdf.parse(request.getParameter("leaveDate"));
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		String reason=request.getParameter("reason");
+		
 		LeaveDaoImpl leaveDao=new LeaveDaoImpl();
 		HttpSession session=request.getSession();
 		int leaveId=(Integer)request.getAttribute("leaveId");
@@ -38,7 +31,6 @@ public class LeaveUpdController extends HttpServlet {
 		try {
 		if(i>0) {
 			response.sendRedirect("leaveShow.jsp");
-			
 		}
 		else {
 			throw new LeaveException();

@@ -15,7 +15,9 @@ import com.payroll.dao.DepartmentsDaoImpl;
 import com.payroll.model.Departments;
 
 @WebServlet("/showDept")
-public class DepartmentShowController extends HttpServlet {
+public class DepartmentShowController extends HttpServlet 
+{
+	private static final long serialVersionUID = 1L;
 	
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

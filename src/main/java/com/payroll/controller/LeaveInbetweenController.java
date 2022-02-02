@@ -16,11 +16,11 @@ import javax.servlet.http.HttpSession;
 import com.payroll.dao.LeaveDaoImpl;
 import com.payroll.model.Leave;
 
-/**
- * Servlet implementation class LeaveInbetweenController
- */
+
 @WebServlet("/LeaveInbetweenController")
-public class LeaveInbetweenController extends HttpServlet {
+public class LeaveInbetweenController extends HttpServlet 
+{
+	private static final long serialVersionUID = 1L;
 	
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
