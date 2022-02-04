@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.payroll.dao.GradeDaoImpl;
+import com.payroll.daoimpl.GradeDaoImpl;
 
 @WebServlet("/GradeDel")
 public class GradeDelController extends HttpServlet {

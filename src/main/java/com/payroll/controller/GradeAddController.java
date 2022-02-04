@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.payroll.dao.DepartmentsDaoImpl;
-import com.payroll.dao.GradeDaoImpl;
+import com.payroll.daoimpl.DepartmentsDaoImpl;
+import com.payroll.daoimpl.GradeDaoImpl;
 import com.payroll.exception.InvalidAmount;
 import com.payroll.model.Departments;
 import com.payroll.model.Grade;

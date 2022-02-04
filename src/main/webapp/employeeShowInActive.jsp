@@ -6,49 +6,14 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
 <title>payroll</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<style>
-    
-      
-     body {
-    font-family: Arial, Helvetica, sans-serif;
-    background-image: url("asset/images/pexels-nataliya-vaitkevich-6863183.jpg") ;
-    background-repeat:no-repeat center center fixed;
-   
-  background-size: cover;
-  height: 100%;
- }
-    table {
-  border-collapse: collapse;
-  width: 100%;
-}
+  <link rel="stylesheet" type="text/css" href="asset\css\employShowInactive.css">
 
- td,th {
-  text-align: left;
-  padding: 8px;
-}
-tr:hover{
-background-color: lime;
-}
-
-tr:nth-child(even) {
-background-color: #f2f2f2;
-}
-a{
-text-decoration:none;
-}
-.text-info {
-    margin-top: 10px;
-    --bs-text-opacity: 1;
-    color: rgba(var(--bs-info-rgb),var(--bs-text-opacity))!important;
-    margin-left: 69px;
-}
-    </style>
 </head>
 <body>
 <c:set var = "deleteError" scope = "session" value = "${delete}"/>
@@ -102,7 +67,7 @@ text-decoration:none;
 <td >${emp.dept.deptName}</td>
 <td>${emp.grade.gradeName }</td>
 
-<td><a href="EmpStatus?statusId=${emp.empId}">Active</a></td>
+<td><a href="EmpStatus?statusId=${emp.empId}">ACTIVE</a></td>
 </c:forEach>
 </tr>
 

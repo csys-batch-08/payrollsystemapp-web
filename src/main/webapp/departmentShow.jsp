@@ -2,60 +2,25 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 
-<%@page import="com.payroll.dao.DepartmentsDaoImpl"%>
+<%@page import="com.payroll.daoimpl.DepartmentsDaoImpl"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<title>payroll</title>
-<style type="text/css">
- body {
-    font-family: Arial, Helvetica, sans-serif;
-    background-image: url("asset/images/pexels-masood-aslami-10786529.jpg");
-    background-repeat: no-repeat;
-	background-size: cover;
-    }
-    
- table {
-  border-collapse: collapse;
-  width: 100%;
-}
-
-th, td {
-  text-align: left;
-  padding: 8px;
-}
-tr:hover{
-background-color: lime;
-}
-tr:nth-child(even) {background-color: #f2f2f2;}
-a{
-text-decoration:none;
-}
-.text-primary {
-    margin-top: 11px;
-    --bs-text-opacity: 1;
-    color: rgba(var(--bs-primary-rgb),var(--bs-text-opacity))!important;
-    margin-left: 573px;
-}
-#search{
-float: right;
-margin-top:10px;
-margin-right: 40px;
-}
-
-</style>
+  <link rel="stylesheet" type="text/css" href="asset\css\departmentShow.css">
+  
+<title>Show Department</title>
 </head>
 <body>
 <c:set var = "deptDel" scope = "session" value = "${depDelete}"/>
 	
 	<c:if test="${not empty deptDel}">
-			<h2><c:out value="${deptDel}" /></h2>
-			<c:remove var="deptDel"/>
+			<h2><c:out value="${deptDel}" />&#9888;</h2>
+			<c:remove var="deptDel" scope="session"/> 
 		</c:if>
 
 <div id="search">

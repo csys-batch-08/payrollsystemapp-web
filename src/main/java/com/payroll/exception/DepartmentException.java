@@ -1,6 +1,7 @@
 package com.payroll.exception;
 
 public class DepartmentException extends Exception{
+	private static final long serialVersionUID = 1L;
 
 	@Override
 	public String getMessage() {
@@ -21,6 +22,11 @@ public class DepartmentException extends Exception{
 	}
 	public String gradeDept() {
 		return "That Department Grade Not Exist";
+		
+	}
+	public String searchdepartfound() {
+		return "No Data Found";
+		
 		
 	}
 }

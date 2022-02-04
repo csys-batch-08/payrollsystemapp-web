@@ -5,9 +5,21 @@ import java.util.Objects;
 public class Departments {
 	private int deptId;
 	private String deptName;
-	
+	private String status;
 
 	
+	public Departments(int deptId, String deptName, String status) {
+		super();
+		this.deptId = deptId;
+		this.deptName = deptName;
+		this.status = status;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	public Departments() {
 		super();
 		// TODO Auto-generated constructor stub

@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.payroll.dao.DepartmentsDaoImpl;
+import com.payroll.daoimpl.DepartmentsDaoImpl;
 import com.payroll.exception.DepartmentException;
 import com.payroll.model.Departments;
 

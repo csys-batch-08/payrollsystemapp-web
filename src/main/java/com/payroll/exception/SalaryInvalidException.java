@@ -14,4 +14,9 @@ public class SalaryInvalidException extends Exception {
 		return "Salary Didn't Approve Inactive Employee";
 		
 	}
+	public String employInvalid() 
+	{
+		return "Employeee Not Found";
+		
+	}
 }

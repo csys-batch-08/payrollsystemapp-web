@@ -1,4 +1,4 @@
-package com.payroll.dao;
+package com.payroll.daoimpl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

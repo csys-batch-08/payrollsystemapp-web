@@ -1,4 +1,4 @@
-package com.payroll.dao;
+package com.payroll.daoimpl;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -9,12 +9,26 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.payroll.daoimpl.EmployeeDao;
+import com.payroll.dao.EmployeeDao;
 import com.payroll.model.Departments;
 import com.payroll.model.Employee;
 import com.payroll.model.Grade;
 
 public class EmployeeDaoImpl implements EmployeeDao {
+	static final String EMPID="EMP_ID";
+	static final String EMPNAME="EMP_NAME";
+	static final String EMPDOB="EMP_DOB";
+	static final String EMPDOJ="EMP_DOJ";
+	static final String EMPADDRESS="EMP_ADDRESS";
+	static final String EMPCITY="EMP_CITY";
+	static final String EMPPINCODE="EMP_PINCODE";
+	static final String EMPMOBILENO="EMP_MOBILE_NO";
+	static final String EMPSTATE="EMP_STATE";
+	static final String EMPEMAILID="EMP_EMAIL_ID";
+	static final String EMPPANNO="EMP_PAN_NO";
+	static final String DEPTID="DEPT_ID";
+	static final String GRADEID="GRADE_ID";
+	static final String STATUS="STATUS";
 	public boolean insertEmp(Employee emp) {
 		boolean result = false;
 		String insertQuery = "insert into employees (emp_name,emp_dob,emp_doj,emp_address,emp_city,emp_pincode,emp_mobile_no,"
@@ -64,11 +78,11 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
 			while (resultSet.next()) {
 				GradeDaoImpl gradeDao = new GradeDaoImpl();
-				Grade grade = gradeDao.findGrade(resultSet.getInt(13));
-				Departments dept = deptDao.findDepartment(resultSet.getInt(12));
-				employee = new Employee(resultSet.getInt(1), resultSet.getString(2), resultSet.getDate(3), resultSet.getDate(4), resultSet.getString(5),
-						resultSet.getString(6), resultSet.getLong(7), resultSet.getLong(8), resultSet.getString(9), resultSet.getString(10),
-						resultSet.getString(11), dept, grade);
+				Grade grade = gradeDao.findGrade(resultSet.getInt(GRADEID));
+				Departments dept = deptDao.findDepartment(resultSet.getInt(DEPTID));
+				employee = new Employee(resultSet.getInt(EMPID), resultSet.getString(EMPNAME), resultSet.getDate(EMPDOB), resultSet.getDate(EMPDOJ), resultSet.getString(EMPADDRESS),
+						resultSet.getString(EMPCITY), resultSet.getLong(EMPPINCODE), resultSet.getLong(EMPMOBILENO), resultSet.getString(EMPSTATE), resultSet.getString(EMPEMAILID),
+						resultSet.getString(EMPPANNO), dept, grade);
 			}
 			return employee;
 
@@ -148,7 +162,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
 			resultSet = statement.executeQuery(findId);
 			if (resultSet.next()) {
-				id = resultSet.getInt(1);
+				id = resultSet.getInt(EMPID);
 				return id;
 			}
 		} catch (SQLException e) {
@@ -161,7 +175,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	}
 
 	public List<Employee> showEmployee() {
-		List<Employee> employeeList = new ArrayList<Employee>();
+		List<Employee> employeeList = new ArrayList();
 
 		String showQuery = "select  EMP_ID,EMP_NAME,EMP_DOB,EMP_DOJ,EMP_ADDRESS,EMP_CITY,EMP_PINCODE,EMP_MOBILE_NO,EMP_STATE,EMP_EMAIL_ID,EMP_PAN_NO,DEPT_ID,GRADE_ID,STATUS  from employees where status = 'active' ";
 		ConnectionUtilImpl connectionUtilImpl = new ConnectionUtilImpl();
@@ -174,11 +188,11 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			resultSet = statement.executeQuery(showQuery);
 			while (resultSet.next()) {
 				GradeDaoImpl gradeDao = new GradeDaoImpl();
-				Grade grade = gradeDao.findGrade(resultSet.getInt(13));
-				Departments depart = deptDao.findDepartment(resultSet.getInt(12));
-				Employee employee = new Employee(resultSet.getInt(1), resultSet.getString(2), resultSet.getDate(3), resultSet.getDate(4),
-						resultSet.getString(5), resultSet.getString(6), resultSet.getLong(7), resultSet.getLong(8), resultSet.getString(9),
-						resultSet.getString(10), resultSet.getString(11), depart, grade);
+				Grade grade = gradeDao.findGrade(resultSet.getInt(GRADEID));
+				Departments depart = deptDao.findDepartment(resultSet.getInt(DEPTID));
+				Employee employee = new Employee(resultSet.getInt(EMPID), resultSet.getString(EMPNAME), resultSet.getDate(EMPDOB), resultSet.getDate(EMPDOJ),
+						resultSet.getString(EMPADDRESS), resultSet.getString(EMPCITY), resultSet.getLong(EMPPINCODE), resultSet.getLong(EMPMOBILENO), resultSet.getString(EMPSTATE),
+						resultSet.getString(EMPEMAILID), resultSet.getString(EMPPANNO), depart, grade);
 				employeeList.add(employee);
 			}
 			
@@ -193,7 +207,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	}
 
 	public List<Employee> showInactiveEmployee() {
-		List<Employee> employeeList = new ArrayList<Employee>();
+		List<Employee> employeeList = new ArrayList();
 
 		String showQuery = "select  EMP_ID,EMP_NAME,EMP_DOB,EMP_DOJ,EMP_ADDRESS,EMP_CITY,EMP_PINCODE,EMP_MOBILE_NO,EMP_STATE,EMP_EMAIL_ID,EMP_PAN_NO,DEPT_ID,GRADE_ID,STATUS  from employees where status= 'inactive' ";
 		ConnectionUtilImpl connectionUtilImpl = new ConnectionUtilImpl();
@@ -206,11 +220,11 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			resultSet = statement.executeQuery(showQuery);
 			while (resultSet.next()) {
 				GradeDaoImpl gradeDao = new GradeDaoImpl();
-				Grade grade = gradeDao.findGrade(resultSet.getInt(13));
-				Departments depart = deptDao.findDepartment(resultSet.getInt(12));
-				Employee employee = new Employee(resultSet.getInt(1), resultSet.getString(2), resultSet.getDate(3), resultSet.getDate(4),
-						resultSet.getString(5), resultSet.getString(6), resultSet.getLong(7), resultSet.getLong(8), resultSet.getString(9),
-						resultSet.getString(10), resultSet.getString(11), depart, grade);
+				Grade grade = gradeDao.findGrade(resultSet.getInt(GRADEID));
+				Departments depart = deptDao.findDepartment(resultSet.getInt(DEPTID));
+				Employee employee = new Employee(resultSet.getInt(EMPID), resultSet.getString(EMPNAME), resultSet.getDate(EMPDOB), resultSet.getDate(EMPDOJ),
+						resultSet.getString(EMPADDRESS), resultSet.getString(EMPCITY), resultSet.getLong(EMPPINCODE), resultSet.getLong(EMPMOBILENO), resultSet.getString(EMPSTATE),
+						resultSet.getString(EMPEMAILID), resultSet.getString(EMPPANNO), depart, grade);
 				employeeList.add(employee);
 			}
 
@@ -238,11 +252,11 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
 			while (resultSet.next()) {
 				GradeDaoImpl gradeDao = new GradeDaoImpl();
-				Grade grade = gradeDao.findGrade(resultSet.getInt(13));
-				Departments dept = deptDao.findDepartment(resultSet.getInt(12));
-				employee = new Employee(resultSet.getInt(1), resultSet.getString(2), resultSet.getDate(3), resultSet.getDate(4), resultSet.getString(5),
-						resultSet.getString(6), resultSet.getLong(7), resultSet.getLong(8), resultSet.getString(9), resultSet.getString(10),
-						resultSet.getString(11), dept, grade);
+				Grade grade = gradeDao.findGrade(resultSet.getInt(GRADEID));
+				Departments dept = deptDao.findDepartment(resultSet.getInt(DEPTID));
+				employee = new Employee(resultSet.getInt(EMPID), resultSet.getString(EMPNAME), resultSet.getDate(EMPDOB), resultSet.getDate(EMPDOJ), resultSet.getString(EMPADDRESS),
+						resultSet.getString(EMPCITY), resultSet.getLong(EMPPINCODE), resultSet.getLong(EMPMOBILENO), resultSet.getString(EMPSTATE), resultSet.getString(EMPEMAILID),
+						resultSet.getString(EMPPANNO), dept, grade);
 			}
 
 		} catch (SQLException e) {
@@ -255,18 +269,20 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	}
 
 	public void deleteEmp(String email) {
-		String deleteQuery = "delete from employees where EMP_EMAIL_ID='" + email + "'";
+		String deleteQuery = "delete from employees where EMP_EMAIL_ID=?";
 		ConnectionUtilImpl connectionUtilImpl = new ConnectionUtilImpl();
 		Connection connection = connectionUtilImpl.dbConnect();
-		Statement statement = null;
+		
+		PreparedStatement preparedStatement=null;
 		try {
-			statement = connection.createStatement();
-			statement.executeUpdate(deleteQuery);
+			preparedStatement = connection.prepareStatement(deleteQuery);
+			preparedStatement.setString(1, email);
+			preparedStatement.executeUpdate();
 
 		} catch (Exception e) {
 			e.getMessage();
 		} finally {
-			ConnectionUtilImpl.closeStatement(statement, connection);
+			ConnectionUtilImpl.closePreparedStatement(preparedStatement, connection);
 		}
 	}
 
@@ -316,7 +332,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		Connection connection = connectionUtilImpl.dbConnect();
 		String query = "select  EMP_ID,EMP_NAME,EMP_DOB,EMP_DOJ,EMP_ADDRESS,EMP_CITY,EMP_PINCODE,EMP_MOBILE_NO,EMP_STATE,EMP_EMAIL_ID,EMP_PAN_NO,DEPT_ID,GRADE_ID,STATUS  from employees where upper(EMP_NAME) like ?";
 		ResultSet resultSet = null;
-		List<Employee> employeeList = new ArrayList<Employee>();
+		List<Employee> employeeList = new ArrayList();
 		PreparedStatement preparedStatement = null;
 		try {
 			preparedStatement = connection.prepareStatement(query);
@@ -324,12 +340,12 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
 				GradeDaoImpl gradeDao = new GradeDaoImpl();
-				Grade grade = gradeDao.findGrade(resultSet.getInt(13));
+				Grade grade = gradeDao.findGrade(resultSet.getInt(GRADEID));
 				DepartmentsDaoImpl departDao = new DepartmentsDaoImpl();
-				Departments department = departDao.findDepartment(resultSet.getInt(12));
-				Employee employ = new Employee(resultSet.getInt(1), resultSet.getString(2), resultSet.getDate(3), resultSet.getDate(4),
-						resultSet.getString(5), resultSet.getString(6), resultSet.getLong(7), resultSet.getLong(8), resultSet.getString(9),
-						resultSet.getString(10), resultSet.getString(11), department, grade, resultSet.getString(14));
+				Departments department = departDao.findDepartment(resultSet.getInt(DEPTID));
+				Employee employ = new Employee(resultSet.getInt(EMPID), resultSet.getString(EMPNAME), resultSet.getDate(EMPDOB), resultSet.getDate(EMPDOJ),
+						resultSet.getString(EMPADDRESS), resultSet.getString(EMPCITY), resultSet.getLong(EMPPINCODE), resultSet.getLong(EMPMOBILENO), resultSet.getString(EMPSTATE),
+						resultSet.getString(EMPEMAILID), resultSet.getString(EMPPANNO), department, grade, resultSet.getString(STATUS));
 				employeeList.add(employ);
 			}
 
@@ -357,7 +373,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			preparedStatement.setInt(1, empId);
 			resultSet = preparedStatement.executeQuery();
 			if (resultSet.next()) {
-				status = resultSet.getString(1);
+				status = resultSet.getString(STATUS);
 			}
 			return status;
 
@@ -413,12 +429,12 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			resultSet = preparedStatement.executeQuery();
 
 			while (resultSet.next()) {
-				Departments dept = deptDao.findDepartment(resultSet.getInt(12));
+				Departments dept = deptDao.findDepartment(deptId);
 				GradeDaoImpl gradeDao = new GradeDaoImpl();
 				Grade grade = gradeDao.findGrade(grdId);
-				employee = new Employee(resultSet.getInt(1), resultSet.getString(2), resultSet.getDate(3), resultSet.getDate(4), resultSet.getString(5),
-						resultSet.getString(6), resultSet.getLong(7), resultSet.getLong(8), resultSet.getString(9), resultSet.getString(10),
-						resultSet.getString(11), dept, grade, resultSet.getString(14));
+				employee = new Employee(resultSet.getInt(EMPID), resultSet.getString(EMPNAME), resultSet.getDate(EMPDOB), resultSet.getDate(EMPDOJ), resultSet.getString(EMPADDRESS),
+						resultSet.getString(EMPCITY), resultSet.getLong(EMPPINCODE), resultSet.getLong(EMPMOBILENO), resultSet.getString(EMPSTATE), resultSet.getString(EMPEMAILID),
+						resultSet.getString(EMPPANNO), dept, grade, resultSet.getString(STATUS));
 			}
 
 		} catch (SQLException e) {
@@ -430,5 +446,54 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		}
 		return employee;
 	}
+	public boolean validateEmail(Employee employ) {
+		boolean flag = true;
+		PreparedStatement preparedStatement=null;
+		ResultSet resultSet=null;
+		Connection connection =null;
+		try {
+			ConnectionUtilImpl connectionUtilImpl = new ConnectionUtilImpl();
+			connection = connectionUtilImpl.dbConnect();
+			String query = "select EMP_EMAIL_ID from employees where EMP_EMAIL_ID=?";
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setString(1, employ.getMailId());
+		    resultSet = preparedStatement.executeQuery();
+			if (resultSet.next()) {
+				flag = false;
+			} 
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		finally {
+			ConnectionUtilImpl.closePreparedStatement(preparedStatement, connection, resultSet);
+		}
+		return flag;
+	}
+	public boolean validatePanNo(Employee employ) {
+		boolean flag = true;
+		PreparedStatement preparedStatement=null;
+		ResultSet resultSet=null;
+		Connection connection =null;
+		try {
+			ConnectionUtilImpl connectionUtilImpl = new ConnectionUtilImpl();
+			connection = connectionUtilImpl.dbConnect();
+			String query = "select EMP_PAN_NO from employees where EMP_PAN_NO=?";
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setString(1, employ.getPanNo());
+		    resultSet = preparedStatement.executeQuery();
+			if (resultSet.next()) {
+				flag = false;
+			} 
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		finally {
+			ConnectionUtilImpl.closePreparedStatement(preparedStatement, connection, resultSet);
+		}
+		return flag;
+	}
+	
+	
+
 
 }

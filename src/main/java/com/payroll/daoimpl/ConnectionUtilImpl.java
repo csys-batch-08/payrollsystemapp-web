@@ -1,4 +1,4 @@
-package com.payroll.dao;
+package com.payroll.daoimpl;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.payroll.daoimpl.ConnectionDao;
+import com.payroll.dao.ConnectionDao;
 
 
 public class ConnectionUtilImpl implements ConnectionDao{

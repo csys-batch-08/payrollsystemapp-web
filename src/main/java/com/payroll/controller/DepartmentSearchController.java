@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import com.payroll.dao.DepartmentsDaoImpl;
+
+import com.payroll.daoimpl.DepartmentsDaoImpl;
+import com.payroll.exception.DepartmentException;
 import com.payroll.model.Departments;
 
 @WebServlet("/departmentSearch")
@@ -22,10 +24,26 @@ public class DepartmentSearchController extends HttpServlet {
 		String name = request.getParameter("deptName");
 		DepartmentsDaoImpl departmentDao = new DepartmentsDaoImpl();
 		List<Departments> departmentList = departmentDao.searchDepartment(name);
+		try {
+			if(departmentList.isEmpty()) {
+				throw new DepartmentException();
+			}
+			else {
+				
+			
+		
 		HttpSession session = request.getSession();
 		session.setAttribute("searchDept", departmentList);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("departmentSearch.jsp");
 		dispatcher.forward(request, response);
+		}}
+		catch(DepartmentException departmentException) {
+			
+			HttpSession session = request.getSession();
+			session.setAttribute("departSearchNtFound", departmentException.searchdepartfound());
+			response.sendRedirect("departmentSearch.jsp");
+		}
+		
 	}
 
 	@Override

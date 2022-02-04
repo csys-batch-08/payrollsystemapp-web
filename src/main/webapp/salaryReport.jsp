@@ -7,37 +7,18 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
 <title>payroll</title>
+  <link rel="stylesheet" type="text/css" href="asset\css\salaryReport.css">
+
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet">
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<style>
-body {
-	font-family: Arial, Helvetica, sans-serif;
-	background-image: url("asset/images/pexels-masood-aslami-10786529.jpg");
-	background-repeat: no-repeat;
-	background-size: cover;
-}
 
-table {
-	border-collapse: collapse;
-	width: 100%;
-}
-
-th, td {
-	text-align: left;
-	padding: 8px;
-}
-
-tr:nth-child(even) {
-	background-color: #f2f2f2;
-}
-</style>
 </head>
 <body>
 	<h2>EMPLOYEE REPORT &nbsp;</h2>
@@ -83,13 +64,13 @@ tr:nth-child(even) {
 	<br>
 
 
-		<center>
+		
 			<a href="adminControl.jsp"><button type="button"
 					class="btn btn-primary">
 					<strong>Home Page</strong>
 				</button></a> <input type="button" value="Go back!" onclick="history.go(-1)"
 				class="btn btn-primary">
-		</center>
+		
 	
 	<script>
 		function showReport() {

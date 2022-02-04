@@ -51,7 +51,6 @@ constraint pk_gradeid primary key (grade_id),
 constraint fk_dept_id foreign key (dept_id)references departments (dept_id));
 
 insert into  grades(grade_name,grade_basic,grade_bonus,grade_pf,grade_pt) values('Trainee',15000,1500,1000,1700);
-select * from grades;
 
 ----------------salary table------------------
 create table salarys 
@@ -68,7 +67,6 @@ constraint pk_transid primary key (trans_id),
 constraint fk_empid foreign key (emp_id) references employees (emp_id),
 constraint fk_gradeid foreign key (grade_id) references grades (grade_id),
 constraint fk_deptid foreign key (dept_id) references departments (dept_id));
-desc salarys;
 
 ---------------------------------------------leave Details---------------------------------------------------------
 create table leave_details (leave_id int GENERATED ALWAYS AS IDENTITY START WITH 1,
@@ -79,51 +77,29 @@ constraint pk_leave_id primary key(leave_id),
 constraint fk_emp_id foreign key (emp_id) references employees(emp_id));
 
 
-desc departments;
 insert into departments values(11,'oracle',1202);
 insert into departments values(14,'service',1206);
 insert into departments values(15,'product',1203);
 
-select * from departments;
 insert into departments values(2,'product',1201);
 
 -----------perday salary--------------
-select grade_name,(grade_basic /(30 - (select count(leave_id),emp_id from leave_details where emp_id=2 group by emp_id ))) perday from grades;
+select grade_name,(grade_basic /(30 - (select count(leave_id),emp_id from leave_details where emp_id=2 group by emp_id ))) as perday from grades;
 select grade_basic,grade_name from grades;
 
-(30-(select count(leave_id),emp_id from leave_details group by emp_id));
-select (grade_basic/30)perDaySalary from grades where grade_name='Technical Lead';
+
+select (grade_basic/30) as perDaySalary from grades where grade_name='Technical Lead';
 
 
-select * from employee;
-select * from departments;
-with leave_days as
-(select count(leave_id),emp_id from leave_details group by emp_id)
-select g.grade_name,(g.grade_basic /(30 - l.leave_days)) perday from grades g join leave_days l;
-
-select grade_basic from grades;
-
-select * from employees;
-desc employees;
-select * from salarys;  
-desc salarys;
-select * from leave_details;
-desc leave_details;
-select * from employees where dept_id=1;
 
 
 select grade_id,grade_name,grade_basic,grade_bonus,grade_pf,grade_pt,(grade_basic + grade_bonus 
-+ grade_pt + grade_pf)gross,(grade_basic+grade_bonus)total 
++ grade_pt + grade_pf)gross,(grade_basic+grade_bonus) as total 
 from grades;
 
-------------basic + bonus---------
-select(grade_basic+grade_bonus)total 
-from grades;
+
 -----------basic--------
-select grade_basic from grades;
 insert into leave_details (emp_id,leave_date,reason) values(2,'11-03-2020','dengu');
-
-
 
 select e.emp_id,d.dept_id,g.grade_id,l.leave_id from leave_details l join employees e
 on l.emp_id=e.emp_id join departments d on e.dept_id=d.dept_id join grades g

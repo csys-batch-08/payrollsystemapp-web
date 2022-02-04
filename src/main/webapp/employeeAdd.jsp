@@ -3,7 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <title>payroll</title>
 <link
@@ -11,67 +11,39 @@
 	rel="stylesheet">
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-
-
-<link rel="stylesheet" href="styles.css" />
-
-
-<style>
-body {
-	font-family: Arial, Helvetica, sans-serif;
-	background-image: url("asset/images/employ.jpg");
-	background-repeat: no-repeat;
-	background-size: cover;
-}
-
-label {
-	width: 200px;
-	display: inline-block;
-	margin-bottom: 21px;
-}
-
-.empDiv {
-	text-align: center;
-}
-
-.formSty {
-	background-color: white;
-	border: 0px solid #ddbfbf;
-	padding: 0px 0px;
-	border-radius: 25px;
-	width: 33%;
-	margin-left: 440px;
-	background-color: #ccd1d4;
-}
-</style>
+	
+<link rel="stylesheet" type="text/css" href="asset/css/employeeAdd.css">
 
 </head>
 <body>
+
+<div id="employAdd">
 	<c:set var="empAdd" scope="session" value="${employInvalid}" />
 	<c:if test="${not empty empAdd}">
 		<h2>
-			<c:out value="${empAdd}U+26A0" />
+			<c:out value="${empAdd}U+26A0" />&#9888;
 		</h2>
-		<c:remove var="empAdd" />
+		<c:remove var="empAdd" scope="session"/> 
 	</c:if>
+
 
 
 	<c:set var="emp" scope="session" value="${employalready}" />
 	<c:if test="${not empty emp}">
 		<h2>
-			<c:out value="${emp}" />
+			<c:out value="${emp}"/>&#9888;
 		</h2>
-		<c:remove var="emp" />
+		<c:remove var="emp" scope="session"/> 
 	</c:if>
 
 	<c:set var="grdDept" scope="session" value="${gradeDept}" />
 	<c:if test="${not empty grdDept}">
 		<h2>
-			<c:out value="${grdDept}" />
+			<c:out value="${grdDept}" />&#9888;
 		</h2>
-		<c:remove var="grdDept" />
+		<c:remove var="grdDept" scope="session"/> 
 	</c:if>
-
+	</div>
 
 	<div class="empDiv">
 
@@ -83,81 +55,84 @@ label {
 			<div>
 				<table>
 					<tr>
-						<td><label for="name">NAME</label></td>
-						<td><input type="text" pattern="[a-zA-z\s]+" id="name"
-							name="EmployeeName" placeholder="Enter your name"
-							autofocus="autofocus"><br>
+						<td><label for="name">NAME <span>*</span></label></td>
+						<td><input type="text" pattern="[a-zA-Z\s]{3,30}+" id="name"
+							name="EmployeeName" placeholder="Enter Employee Name"
+							title="minimum 3 characters and accept only alphabets" 
+							autofocus="autofocus" required="required"><br>
 						<br></td>
 					</tr>
 					<tr>
-						<td><label for="dob">DATE OF BIRTH</label></td>
+						<td><label for="dob">DATE OF BIRTH<span>*</span></label></td>
 						<td><input type="date"
 							pattern="(0[1-9]|[12][0-9]|3[01])[-](0[1-9]|1[012])[-]\\d{4}"
-							id="dob" name="dob" placeholder="enter your DOB"><br>
+							id="dob" name="dob" placeholder="enter your DOB" required="required"><br>
 						<br></td>
 					</tr>
 					<tr>
-						<td><label for="doj">DATE OF JOINING</label></td>
+						<td><label for="doj">DATE OF JOINING<span>*</span></label></td>
 						<td><input type="date"
 							pattern="(0[1-9]|[12][0-9]|3[01])[-](0[1-9]|1[012])[-]\\d{4}"
-							id="doj" name="doj" placeholder="Date Of Joining"><br>
+							id="doj" name="doj" placeholder="Date Of Joining" required="required"><br>
 						<br></td>
 					</tr>
 					<tr>
-						<td><label for="address">ADDRESS</label></td>
+						<td><label for="address">ADDRESS<span>*</span></label></td>
 						<td><input type="text" pattern="^[#.0-9a-zA-Z\s,-]+$"
-							id="address" name="address" placeholder="Enter Address"><br>
+							id="address" name="address" placeholder="Enter Address" required="required"><br>
 						<br></td>
 					</tr>
 					<tr>
-						<td><label for="city">CITY</label></td>
-						<td><input type="text" pattern="[a-zA-z\s]+" id="city"
-							name="city" placeholder="Enter city"><br>
+						<td><label for="city">CITY<span>*</span></label></td>
+						<td><input type="text" pattern="^([a-zA-Z\u0080-\u024F]+(?:. |-| |'))*[a-zA-Z\u0080-\u024F]*$" id="city"
+							name="city" placeholder="Enter city" required="required"><br>
 						<br></td>
 					</tr>
 					<tr>
-						<td><label for="pincode">PINCODE</label></td>
+						<td><label for="pincode">PINCODE<span>*</span></label></td>
 						<td><input type="number" maxlength="6" id="pincode"
-							name="pincode" placeholder="pincode"><br>
+						pattern="([1-9]{1}[0-9]{5}|[1-9]{1}[0-9]{3}\\s[0-9]{3})"
+							name="pincode" placeholder="pincode" required="required"><br>
 						<br></td>
 					</tr>
 					<tr>
-						<td><label for="mobileno">MOBILE NUMBER</label></td>
-						<td><input type="number" pattern="[0-9]{10}" id="mobileno"
+						<td><label for="mobileno">MOBILE NUMBER<span>*</span></label></td>
+						<td><input type="number" pattern="/^(\+\d{1,3}[- ]?)?\d{10}$/" id="mobileno"
 							maxlength="10" name="mobileNumber"
-							placeholder="Enter MobileNumber"><br>
+							placeholder="Enter MobileNumber" required="required"><br>
 						<br></td>
 					</tr>
 					<tr>
-						<td><label for="state">STATE</label></td>
-						<td><input type="text" pattern="[a-zA-z\s]+" id="state"
-							name="state" placeholder="Enter State"><br>
+						<td><label for="state">STATE<span>*</span></label></td>
+						<td><input type="text" pattern="[a - zA - Z] + |[a - zA - Z] + \\s[a - zA - Z] + )"
+						 id="state"
+							name="state" placeholder="Enter State" required="required"><br>
 						<br></td>
 					</tr>
 					<tr>
-						<td><label for="mailId">EMAIL ID</label></td>
-						<td><input type="email"
-							pattern="[a-z][a-z0-9]+[@][a-z]+[.][a-z]+" id="mailId"
-							name="mailId" placeholder="Enter employ mail"><br>
+						<td><label for="mailId">EMAIL ID<span>*</span></label></td>
+						<td><input type="email" onchange="validateEmail()"
+							pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" id="mailId"
+							name="mailId" placeholder="Enter employ mail" required="required"><br>
 						<br></td>
 					</tr>
 					<tr>
-						<td><label for="panNumber">PAN NUMBER</label></td>
-						<td><input type="text" pattern="[a-zA-z0-9]+{10}"
+						<td><label for="panNumber">PAN NUMBER<span>*</span></label></td>
+						<td><input type="text"  onchange="panNoValid()" pattern="[A-Z]{3}[ABCFGHLJPTF]{1}[A-Z]{1}[0-9]{4}[A-Z]{1}"
 							maxlength="10" id="panNumber" name="panNo"
-							placeholder="Enter Pan Number"><br>
+							placeholder="Enter Pan Number" required="required"><br>
 						<br></td>
 					</tr>
 					<tr>
-						<td><label for="departName">DEPARTMENT NAME</label></td>
-						<td><input type="text" pattern="[a-zA-Z\s]+" name="deptName"
-							placeholder="Enter Department Name"><br>
+						<td><label for="departName">DEPARTMENT NAME<span>*</span></label></td>
+						<td><input type="text" id="departName" onchange="deptNameValid()" pattern="[a-zA-Z\s]+" name="deptName"
+							placeholder="Enter Department Name" required="required"><br>
 						<br></td>
 					</tr>
 					<tr>
-						<td><label for="gradeName">GRADE NAME</label></td>
-						<td><input type="text" pattern="[a-zA-Z\s]+" name="grdName"
-							placeholder="Enter grade Name"><br>
+						<td><label for="gradeName">GRADE NAME<span>*</span></label></td>
+						<td><input type="text" pattern="[a-zA-Z\s]+" onchange="grdNameValid()" id="gradeName" name="grdName"
+							placeholder="Enter grade Name" required="required"><br>
 						<br></td>
 					</tr>
 
@@ -180,9 +155,6 @@ label {
 		<br>
 		</center>
 	</div>
-
-</body>
-</html>
 <script>
 	today();
 	function today() {
@@ -196,8 +168,9 @@ label {
 		document.getElementById("dob").setAttribute("max", maxdate);
 
 	}
-</script>
-<script>
+	</script>
+	<script>
+
 	today();
 	function today() {
 		var today = new Date();
@@ -210,4 +183,123 @@ label {
 		document.getElementById("doj").setAttribute("max", maxdate);
 		document.getElementById("doj").setAttribute("min", mindate);
 	}
+
+function validateEmail() {
+	let email = document.getElementById("mailId").value;
+	var url = 'emailValidate?email=' + email;
+	if (window.XMLHttpRequest) {
+		request = new XMLHttpRequest();
+	} else if (window.ActiveXObject) {
+		request = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	try {
+		request.onreadystatechange = getInfoEmail;
+		request.open("GET", url, true);
+		request.send();
+	} catch (e) {
+		alert("Unable to connect to server");
+	}
+
+}
+function getInfoEmail(){
+	if (request.readyState == 4) {
+		var val = request.responseText;
+		if (val.includes("This Email Already Available")) {
+			alert(val);
+			document.getElementById("mailId").value = "";
+
+		}
+	
+}
+}
+function panNoValid() {
+	let panNo = document.getElementById("panNumber").value;
+	var url = 'panNoValidate?panNo=' + panNo;
+	if (window.XMLHttpRequest) {
+		request = new XMLHttpRequest();
+	} else if (window.ActiveXObject) {
+		request = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	try {
+		request.onreadystatechange = getInfoPanNo;
+		request.open("GET", url, true);
+		request.send();
+	} catch (e) {
+		alert("Unable to connect to server");
+	}
+
+}
+function getInfoPanNo(){
+	if (request.readyState == 4) {
+		var val = request.responseText;
+		if (val.includes("This PanNumber Already Available")) {
+			alert(val);
+			document.getElementById("panNumber").value = "";
+
+		}
+	
+}
+}
+/* department name validate */
+function deptNameValid() {
+	let deptName = document.getElementById("departName").value;
+	var url = 'deptNameValidate?deptName=' + deptName;
+	if (window.XMLHttpRequest) {
+		request = new XMLHttpRequest();
+	} else if (window.ActiveXObject) {
+		request = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	try {
+		request.onreadystatechange = getInfoDeptName;
+		request.open("GET", url, true);
+		request.send();
+	} catch (e) {
+		alert("Unable to connect to server");
+	}
+
+}
+function getInfoDeptName(){
+	if (request.readyState == 4) {
+		var val = request.responseText;
+		if (val.includes("This Department Name Not Found")) {
+			alert(val);
+			document.getElementById("departName").value = "";
+
+		}
+	
+}
+}
+
+/* grade Name validate */
+function grdNameValid() {
+	let grdName = document.getElementById("gradeName").value;
+	var url = 'GrdNameValidate?grdName=' + grdName;
+	if (window.XMLHttpRequest) {
+		request = new XMLHttpRequest();
+	} else if (window.ActiveXObject) {
+		request = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	try {
+		request.onreadystatechange = getInfogrdName;
+		request.open("GET", url, true);
+		request.send();
+	} catch (e) {
+		alert("Unable to connect to server");
+	}
+
+}
+function getInfogrdName(){
+	if (request.readyState == 4) {
+		var val = request.responseText;
+		if (val.includes("This Grade Name Not Found")) {
+			alert(val);
+			document.getElementById("gradeName").value = "";
+
+		}
+	
+}
+}
 </script>
+</body>
+
+</html>

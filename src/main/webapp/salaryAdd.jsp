@@ -4,47 +4,19 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
 <title>payroll</title>
+  <link rel="stylesheet" type="text/css" href="asset\css\salaryAdd.css">
+
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet">
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <style>
-body {
-	font-family: Arial, Helvetica, sans-serif;
-	background-image:
-		url("asset/images/carlos-muza-hpjSkU2UYSU-unsplash.jpg");
-	background-repeat: no-repeat;
-	background-size: cover;
-}
 
-.formSty {
-	background-color: white;
-	padding: 0px 20px;
-	border-radius: 25px;
-	width: 30%;
-	background-color: #B9B087;
-	margin-top: 10%;
-}
-
-.formSty {
-	background-color: white;
-	padding: 0px 20px;
-	border-radius: 25px;
-	width: 30%;
-	background-color: #d8dfe9;
-	margin-top: 10%;
-	margin-left: 737px;
-}
-
-label {
-	width: 150px;
-	display: inline-block;
-}
 </style>
 </head>
 <body>
@@ -70,6 +42,13 @@ label {
 			<c:out value="${InvalidEnter}" />
 		</h2>
 		<c:remove var="InvalidEnter" />
+	</c:if>
+	<c:set var="notFoundEmp" scope="session" value="${notFoundEmp}" />
+	<c:if test="${not empty notFoundEmp}">
+		<h2>
+			<c:out value="${notFoundEmp}" />
+		</h2>
+		<c:remove var="notFoundEmp" />
 	</c:if>
 
 	<h1>

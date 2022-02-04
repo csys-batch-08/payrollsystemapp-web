@@ -1,14 +1,15 @@
-package com.payroll.dao;
+package com.payroll.daoimpl;
 
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import com.payroll.daoimpl.AdminDao;
+import com.payroll.dao.AdminDao;
 import com.payroll.model.Admin;
 
 public class AdminDaoImpl implements AdminDao{
+	
 	
 	public boolean validateAdmin(Admin admin) {
 		

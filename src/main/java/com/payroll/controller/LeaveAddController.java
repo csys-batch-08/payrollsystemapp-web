@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.payroll.dao.EmployeeDaoImpl;
-import com.payroll.dao.LeaveDaoImpl;
+import com.payroll.daoimpl.EmployeeDaoImpl;
+import com.payroll.daoimpl.LeaveDaoImpl;
 import com.payroll.model.Employee;
 import com.payroll.model.Leave;
 @WebServlet("/LeaveAdd")

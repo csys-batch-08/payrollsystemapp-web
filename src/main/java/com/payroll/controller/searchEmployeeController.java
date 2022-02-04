@@ -11,22 +11,41 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.payroll.dao.EmployeeDaoImpl;
+import com.payroll.daoimpl.EmployeeDaoImpl;
+import com.payroll.exception.EmployeeDelException;
 import com.payroll.model.Employee;
 
 @WebServlet("/searchEmployee")
-public class searchEmployeeController extends HttpServlet {
-	
+public class searchEmployeeController extends HttpServlet 
+{
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String name=request.getParameter("empName");
 		EmployeeDaoImpl employDao=new EmployeeDaoImpl();
-
+		
 		List<Employee> employeeList=employDao.searchEmployee(name);
-		HttpSession session=request.getSession();
-		session.setAttribute("searchEmp", employeeList);
-		RequestDispatcher dispatcher=request.getRequestDispatcher("employeeSearch.jsp");
-		dispatcher.forward(request, response);
+		try {
+			
+		
+		if(employeeList.isEmpty()) {
+			
+			throw new EmployeeDelException();
+		}
+		else {
+			HttpSession session=request.getSession();
+			session.setAttribute("searchEmp", employeeList);
+			RequestDispatcher dispatcher=request.getRequestDispatcher("employeeSearch.jsp");
+			dispatcher.forward(request, response);
+		}
+		}
+		catch(EmployeeDelException delException) {
+			HttpSession session = request.getSession();
+			session.setAttribute("searchNtFound", delException.searchEmpNotFnd());
+			response.sendRedirect("employeeSearch.jsp");
+		}
+		
 	}
 	
 

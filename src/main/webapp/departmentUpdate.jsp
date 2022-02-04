@@ -4,48 +4,29 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
 <title>payroll</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<style type="text/css">
- body {
-    font-family: Arial, Helvetica, sans-serif;
-    background-image: url("asset/images/thought-catalog-505eectW54k-unsplash.jpg");
-    background-repeat: no-repeat;
-	background-size: cover;
-    }
-    
-    label{
-    width:200px;
-    display:inline-block;
-    }
-    .formSty {
-    background-color: white;
-    padding: 0px 20px;
-    border-radius: 25px;
-    width: 30%;
-    margin-top: 3%;
-    margin-left: 650px;
-    background-color: #c8c9c2;
-}
-    </style>
+<link rel="stylesheet" type="text/css" href="asset\css\departmentUpdate.css">
+
 </head>
 <body>
 <c:set var = "deptUpd" scope = "session" value = "${deptUpdData}"/>
 	
 	<c:if test="${not empty deptUpd}">
 			<h2><c:out value="${deptUpd}" /></h2>
-			<c:remove var="deptUpd"/>
+				<c:remove var="deptUpd" scope="session"/> 
 		</c:if>
 
-<center>
 <c:forEach items="${sessionScope.department}" var="department">
 
 <form action="deptUpd" method="post" >
 <br><br>
+
+<center>
 <div class="formSty">
 <br>
 <label for="deptName">DEPARTMENT NAME</label>

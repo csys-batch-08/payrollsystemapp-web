@@ -12,7 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.payroll.dao.EmployeeDaoImpl;
+import com.payroll.daoimpl.EmployeeDaoImpl;
+import com.payroll.exception.SalaryInvalidException;
 import com.payroll.model.Employee;
 
 @WebServlet("/ASE")
@@ -24,13 +25,28 @@ public class SalaryApproveController extends HttpServlet {
 		int empId=Integer.parseInt(request.getParameter("eId"));
 		EmployeeDaoImpl employDao=new EmployeeDaoImpl();
 		Employee employ=employDao.findEmployee(empId);
+		try {
+			
+		
+		if(employ==null) {
+			throw new SalaryInvalidException();
+			
+		}else {
+			
+		
 		List<Employee> employSalApprove=new ArrayList<Employee>();
 		employSalApprove.add(employ);
 		HttpSession session=request.getSession();
 		session.setAttribute("salEmpApprove", employSalApprove);
 		RequestDispatcher requestDispatcher=request.getRequestDispatcher("salaryApprove.jsp");
 		requestDispatcher.forward(request, response);
-	}
+	}}
+		catch(SalaryInvalidException invalidException) {
+			HttpSession session = request.getSession();
+			session.setAttribute("notFoundEmp", invalidException.employInvalid());
+			response.sendRedirect("salaryAdd.jsp");
+			}
+		}
 
 
 }

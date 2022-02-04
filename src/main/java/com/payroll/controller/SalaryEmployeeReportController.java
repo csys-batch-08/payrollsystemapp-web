@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.payroll.dao.EmployeeDaoImpl;
-import com.payroll.dao.SalaryCalculateDaoImpl;
+import com.payroll.daoimpl.EmployeeDaoImpl;
+import com.payroll.daoimpl.SalaryCalculateDaoImpl;
 import com.payroll.model.EmpSalary;
 import com.payroll.model.Employee;
 

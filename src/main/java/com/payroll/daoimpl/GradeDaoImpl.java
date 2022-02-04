@@ -1,4 +1,4 @@
-package com.payroll.dao;
+package com.payroll.daoimpl;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -413,6 +413,31 @@ public class GradeDaoImpl {
 		return grd;
 		
 	}
+	public boolean validateGradeName(Grade grade) {
+		boolean flag = true;
+		PreparedStatement preparedStatement=null;
+		ResultSet resultSet=null;
+		Connection connection =null;
+		try {
+			ConnectionUtilImpl connectionUtilImpl = new ConnectionUtilImpl();
+			connection = connectionUtilImpl.dbConnect();
+			String query = "select GRADE_NAME from grades where GRADE_NAME=?";
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setString(1, grade.getGradeName());
+		    resultSet = preparedStatement.executeQuery();
+			if (resultSet.next()) {
+				System.out.println(resultSet);
+				flag = false;
+			} 
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		finally {
+			ConnectionUtilImpl.closePreparedStatement(preparedStatement, connection, resultSet);
+		}
+		return flag;
+	}
+
 	
 	
 }

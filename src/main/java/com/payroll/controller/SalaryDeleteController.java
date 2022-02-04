@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.payroll.dao.SalaryCalculateDaoImpl;
+import com.payroll.daoimpl.SalaryCalculateDaoImpl;
 
 @WebServlet("/salDel")
 public class SalaryDeleteController extends HttpServlet {

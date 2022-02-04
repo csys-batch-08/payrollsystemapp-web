@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.payroll.dao.LeaveDaoImpl;
+import com.payroll.daoimpl.LeaveDaoImpl;
 import com.payroll.exception.LeaveException;
 import com.payroll.model.Leave;
 

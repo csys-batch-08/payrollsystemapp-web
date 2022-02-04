@@ -4,15 +4,20 @@ import java.sql.SQLIntegrityConstraintViolationException;
 
 public class EmployeeDelException extends SQLIntegrityConstraintViolationException{
 	
-/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
+	
+
 @Override
 	public String getMessage() {
 		return "Employee details can't be delete Setted as in-active";
 	
 	}
+
+public String searchEmpNotFnd() {
+	
+	return "Data Not Found" ;
+}
 
 public String getMessage1() {
 	return "Invalid Email-Id & password";
@@ -30,7 +35,7 @@ public String getEmployeeEntry() {
 	return "Invalid Employee Data Entry";
 	
 }
-public String EmployeeDel() {
+public String getEmployeeDel() {
 	return "Employee Not Deleted Successfully";
 	
 }

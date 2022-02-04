@@ -3,38 +3,18 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
 <title>Total Employee Salary</title>
+  <link rel="stylesheet" type="text/css" href="asset\css\salaryEmployCount.css">
+
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet">
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<style type="text/css">
-body {
-	font-family: Arial, Helvetica, sans-serif;
-	background-image:
-		url("asset/images/carlos-muza-hpjSkU2UYSU-unsplash.jpg");
-	background-repeat: no-repeat;
-	background-size: cover;
-}
 
-.salStyle {
-	padding: 33px 32px;
-	border-radius: 25px;
-	width: 30%;
-	background-color: #bcbce5;
-	margin-left: 793px;
-	margin-top: 136px;
-}
-
-#bacSy {
-	margin-top: 4px;
-	margin-left: 139px;
-}
-</style>
 </head>
 <body>
 	<c:set var="empActive" scope="session" value="${actEmp}" />

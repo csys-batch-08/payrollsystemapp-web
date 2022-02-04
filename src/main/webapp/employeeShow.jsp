@@ -6,67 +6,31 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
-<title>payroll</title>
+<title>employ show</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<style>
-    
-     body {
-    font-family: Arial, Helvetica, sans-serif;
-    background-image: url("asset/images/pexels-nataliya-vaitkevich-6863183.jpg") ;
-    background-repeat:no-repeat center center fixed;
-   
-  background-size: cover;
-  height: 100%;
- }
-    
-table {
-  border-collapse: collapse;
-  width: 100%;
-}
+  <link rel="stylesheet" type="text/css" href="asset\css\employShow.css">
 
- td,th {
-  text-align: left;
-  padding: 8px;
-}
-tr:hover{
-background-color: lime;
-}
-
-tr:nth-child(even) {
-background-color: #f2f2f2;
-}
-a{
-text-decoration:none;
-}
-#search{
-float: right;
-margin-top:10px;
-margin-right: 40px;
-}
-
-
-
-    </style>
 </head>
 <body>
 
+	<div id="exceptSty">	
 <c:set var = "deleteError" scope = "session" value = "${delete}"/>
 	<c:if test="${not empty deleteError}">
-			<h2><c:out value="${deleteError}" /></h2>
-				<c:remove var="deleteError"/>
+			<h2><c:out value="${deleteError}" />&#9888;</h2>
+				<c:remove var="deleteError" scope="session"/> 
 		</c:if>
 
 <c:set var = "delEmp" scope = "session" value = "${employDel}"/>
 	<c:if test="${not empty delEmp}">
-			<h2><c:out value="${delEmp}" /></h2>
-			<c:remove var="delEmp"/>
+			<h2><c:out value="${delEmp}" />&#9888;</h2>
+		<c:remove var="delEmp" scope="session"/> 
 		</c:if>
-
+</div>
 <div id="search">
 <form action="searchEmployee" method="post">
 <div class="input-group">

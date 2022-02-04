@@ -4,53 +4,15 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <title>Payroll</title>
+  <link rel="stylesheet" type="text/css" href="asset\css\employUpdate.css">
 
-<style>
-     body {
-    font-family: Arial, Helvetica, sans-serif;
-    background-image: url("asset/images/image3.jpg");
-    background-repeat: no-repeat;
-	background-size: cover;    
-	}
-    
-    
-    label{
-    width:200px;
-    display:inline-block;
-    margin-bottom: 19px;
-    margin-left: -29px;
-     }
-    .updSty{
-    text-align: center;
-  
-    }
-       .formSty {
-    background-color: white;
-    border: 0px solid #ddbfbf;
-    padding: 0px 37px;
-    border-radius: 25px;
-    width: 33%;
-    margin-left: 440px;
-    background-color: #bebfc3;
-}
-    
-.text-warning {
-    margin-left: -17px;
-    --bs-text-opacity: 1;
-    color: rgba(var(--bs-warning-rgb),var(--bs-text-opacity))!important;
-    margin-top: 24px;
-}
-.empDiv{
-    text-align: center;
-    }
 
-</style>
 
 </head>
 <body>

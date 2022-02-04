@@ -3,43 +3,17 @@
     	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
     
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
 <title>payroll</title>
+  <link rel="stylesheet" type="text/css" href="asset\css\leaveAdd.css">
+
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
-<style>
 
-  body {
-    font-family: Arial, Helvetica, sans-serif;
-    background-image: url("asset/images/pexels-anna-nekrashevich-6801874.jpg");
-    background-repeat: no-repeat;
-	background-size: cover;
-    }
-    a{
-    text-decoration: none;
-    }
-       
-    label{
-    width:200px;
-    display:inline-block;
-    }
-      .formSty{
-    background-color: white;
-    border: 0px solid red;
-  	padding: 0px 20px;
-  	border-radius: 25px;
-  	width:30%;
-  	margin-left: 440px;
-  	background-color: #a8acb7 ;
-  	margin-top: 10%;
-  	}
-   
 
-</style>
-</head>
 <body>
 <form action="LeaveAdd" class="formSty"  method="post">
 <h2>ADD LEAVE</h2>

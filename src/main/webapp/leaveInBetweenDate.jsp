@@ -7,7 +7,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
 <title>Search Leave Date</title>
@@ -16,32 +16,8 @@
 	rel="stylesheet">
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<style>
-body {
-	font-family: Arial, Helvetica, sans-serif;
-	background-image: url("images/pexels-masood-aslami-10786529.jpg");
-	background-repeat: no-repeat;
-	background-size: cover;
-}
+  <link rel="stylesheet" type="text/css" href="asset\css\leaveInBetweenDate.css">
 
-table {
-	border-collapse: collapse;
-	width: 100%;
-}
-
-td, th {
-	text-align: left;
-	padding: 8px;
-}
-
-tr:hover {
-	background-color: lime;
-}
-
-tr:nth-child(even) {
-	background-color: #f2f2f2;
-}
-</style>
 </head>
 <body>
 	<h2>BETWEEN LEAVE DATE</h2>

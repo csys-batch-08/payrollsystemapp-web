@@ -13,11 +13,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.payroll.dao.DepartmentsDaoImpl;
-import com.payroll.dao.EmployeeDaoImpl;
-import com.payroll.dao.GradeDaoImpl;
-import com.payroll.dao.LeaveDaoImpl;
-import com.payroll.dao.SalaryCalculateDaoImpl;
+import com.payroll.daoimpl.DepartmentsDaoImpl;
+import com.payroll.daoimpl.EmployeeDaoImpl;
+import com.payroll.daoimpl.GradeDaoImpl;
+import com.payroll.daoimpl.LeaveDaoImpl;
+import com.payroll.daoimpl.SalaryCalculateDaoImpl;
 import com.payroll.exception.SalaryInvalidException;
 import com.payroll.model.Departments;
 import com.payroll.model.Employee;

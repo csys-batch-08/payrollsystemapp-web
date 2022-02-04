@@ -4,39 +4,18 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
 <title>Salary Approve</title>
+  <link rel="stylesheet" type="text/css" href="asset\css\salaryApprove.css">
+
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet">
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<style type="text/css">
-body {
-	font-family: Arial, Helvetica, sans-serif;
-	background-image:
-		url("asset/images/pexels-anna-nekrashevich-6801874.jpg");
-	background-repeat: no-repeat;
-	background-size: cover;
-}
 
-label {
-	width: 200px;
-	display: inline-block;
-}
-
-.style {
-	background-color: white;
-	padding: 0px 20px;
-	border-radius: 25px;
-	width: 30%;
-	margin-left: 440px;
-	background-color: #b1c3e7;
-	margin-top: 10%;
-}
-</style>
 </head>
 <body>
 

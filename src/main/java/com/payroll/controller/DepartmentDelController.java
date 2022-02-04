@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.payroll.dao.DepartmentsDaoImpl;
+import com.payroll.daoimpl.DepartmentsDaoImpl;
 import com.payroll.exception.DepartmentException;
 
 @WebServlet("/departDel")
@@ -30,7 +30,7 @@ public class DepartmentDelController extends HttpServlet {
 				PrintWriter out = response.getWriter();
 
 				out.println("<script type=\"text/javascript\">");
-				out.println("alert('Department Deleted Successfully');");
+				out.println("alert('Department Status Inactive');");
 				out.println("location='adminControl.jsp';");
 				out.println("</script>");
 			} else {

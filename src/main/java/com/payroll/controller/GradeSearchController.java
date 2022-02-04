@@ -11,7 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.payroll.dao.GradeDaoImpl;
+import com.payroll.daoimpl.GradeDaoImpl;
+import com.payroll.exception.GradeException;
 import com.payroll.model.Grade;
 
 @WebServlet("/GradeSearchController")
@@ -24,10 +25,22 @@ public class GradeSearchController extends HttpServlet {
 		String name = request.getParameter("gradeName");
 		GradeDaoImpl gradeDao = new GradeDaoImpl();
 		List<Grade> listGrade = gradeDao.searchGrade(name);
-		HttpSession session = request.getSession();
-		session.setAttribute("searchListGrade", listGrade);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("gradeSearch.jsp");
-		dispatcher.forward(request, response);
+		try {
+			if(listGrade.isEmpty()) {
+				throw new GradeException();
+			}else {
+				HttpSession session = request.getSession();
+				session.setAttribute("searchListGrade", listGrade);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("gradeSearch.jsp");
+				dispatcher.forward(request, response);
+			}
+		}catch(GradeException exception) {
+			
+			HttpSession session = request.getSession();
+			session.setAttribute("grdSearchNtFound", exception.searchGraString());
+			response.sendRedirect("gradeSearch.jsp");
+		}
+		
 
 	}
 

@@ -16,6 +16,10 @@ public class Grade {
 		this.gradePf = gradePf;
 		this.gradePt = gradePt;
 	}
+	public Grade() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	public Departments getDepartment() {
 		return department;
 	}

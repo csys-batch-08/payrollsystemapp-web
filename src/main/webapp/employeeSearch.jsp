@@ -5,7 +5,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
 <title>search employee</title>
@@ -15,38 +15,17 @@
 	rel="stylesheet">
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<style>
-body {
-	font-family: Arial, Helvetica, sans-serif;
-	background-image: url("asset/images/pexels-masood-aslami-10786529.jpg");
-	background-repeat: no-repeat;
-	background-size: cover;
-}
+  <link rel="stylesheet" type="text/css" href="asset\css\employeeSearch.css">
 
-table {
-	border-collapse: collapse;
-	width: 100%;
-}
-
-td, th {
-	text-align: left;
-	padding: 8px;
-}
-
-tr:hover {
-	background-color: lime;
-}
-
-#seaID {
-	margin-left: 568px;
-}
-
-tr:nth-child(even) {
-	background-color: #f2f2f2;
-}
-</style>
 </head>
 <body>
+<div id="excepSty">
+<c:set var = "empNotSearch" scope = "session" value = "${searchNtFound}"/>
+	<c:if test="${not empty empNotSearch}">
+			<h2><c:out value="${empNotSearch}" />&#9888;</h2>
+				<c:remove var="empNotSearch"/>
+		</c:if>
+		</div>
 	<div id="seaID">
 		<h2>Search Employee</h2>
 	</div>

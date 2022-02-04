@@ -4,39 +4,23 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
 <title>search grade</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<style>
-    body {
-    font-family: Arial, Helvetica, sans-serif;
-    background-image: url("asset/images/pexels-masood-aslami-10786529.jpg");
-    background-repeat: no-repeat;
-	background-size: cover;
-    }
-    
-table {
-  border-collapse: collapse;
-  width: 100%;
-}
+  <link rel="stylesheet" type="text/css" href="asset\css\gradeSearch.css">
 
- td,th {
-  text-align: left;
-  padding: 8px;
-}
-tr:hover{
-background-color: lime;
-}
-
-tr:nth-child(even) {
-background-color: #f2f2f2;
-}
-</style>
 </head>
 <body>
+<div id="excepSty">
+<c:set var = "searchGrd" scope = "session" value = "${grdSearchNtFound}"/>
+	<c:if test="${not empty searchGrd}">
+			<h2><c:out value="${searchGrd}" />&#9888;</h2>
+				<c:remove var="searchGrd" scope="session"/> 
+		</c:if>
+		</div>
 <h2>Search Grade</h2>
 <table>
 <tr class="bg-primary">

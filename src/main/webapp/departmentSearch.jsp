@@ -1,60 +1,37 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
 <title>Department Search</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<style>
-     body {
-    font-family: Arial, Helvetica, sans-serif;
-    background-image: url("asset/images/pexels-masood-aslami-10786529.jpg");
-    background-repeat: no-repeat;
-	background-size: cover;
-    }
-    
-table {
-  border-collapse: collapse;
-  width: 100%;
-}
-
- td,th {
-  text-align: left;
-  padding: 8px;
-}
-tr:hover{
-background-color: lime;
-}
-
-tr:nth-child(even) {
-background-color: #f2f2f2;
-}
-tr:nth-child(odd) {
-background-color: #40E0D0;
-}
-</style>
+<link rel="stylesheet" type="text/css" href="asset\css\departmentSearch.css">
 </head>
 <body>
+<div id="excepSty">
+<c:set var = "dptNotSearch" scope = "session" value = "${departSearchNtFound}"/>
+	<c:if test="${not empty dptNotSearch}">
+			<h3><c:out value="${dptNotSearch}" />&#9888;</h3>
+					<c:remove var="dptNotSearch" scope="session"/> 
+		</c:if>
+		</div>
 <h2>Search Department</h2>
 <table>
 <tr class="bg-primary">
 <td>DEPARTMENT ID</td>
 <td>DEPARTMENT NAME</td>
+<td>STATUS</td>
 
 </tr>
-
-
 <c:forEach items="${sessionScope.searchDept}" var="searchdept">
-
-
 <tr>
 <td>${searchdept.deptId }</td>
 <td>${searchdept.deptName }</td>
+<td>${searchdept.status }</td>
 
 </tr>
 </c:forEach>

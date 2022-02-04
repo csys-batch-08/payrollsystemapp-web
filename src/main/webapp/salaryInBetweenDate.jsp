@@ -4,34 +4,18 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
 <title>Salary Inbetween Date</title>
+  <link rel="stylesheet" type="text/css" href="asset\css\salaryInBetweenDate.css">
+
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet">
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<style type="text/css">
-body {
-	font-family: Arial, Helvetica, sans-serif;
-	background-image:
-		url("asset/images/pexels-anna-nekrashevich-6801874.jpg");
-	background-repeat: no-repeat;
-	background-size: cover;
-}
 
-.salDate {
-	background-color: white;
-	padding: 15px 22px;
-	border-radius: 25px;
-	width: 30%;
-	background-color: #a7bce3;
-	margin-top: 5%;
-	margin-left: 54px;
-}
-</style>
 </head>
 <body>
 	<div class="salDate">
