@@ -14,7 +14,23 @@ import com.payroll.model.Employee;
 import com.payroll.model.Grade;
 
 public class SalaryCalculateDaoImpl {
+	static final String TRANSID="TRANS_ID";
+	static final String EMPID="EMP_ID";
+	static final String DEPTID="DEPT_ID";
+	static final String TOTALLEAVE="TOTAL_LEAVE";
+	static final String GRADEID="GRADE_ID";
+	static final String PAIDDATE="PAID_DATE";
+	static final String GROSSSALARY="GROSS_SALARY";
+	static final String TOTALSALARY="TOTAL_SALARY";
+	static final String NEXTPAYDATE="NEXTPAY_DATE";
+	static final String EMPSALARY="emp_Salary";
+	static final String ACTIVE="active_emp";
+	static final String INACTIVE="inactive_emp";
+	static final String TOTAL="total";
 
+
+
+	
 	public boolean insertSalary(Employee employ, Grade grade, Departments department, int noOfLeave, long grossSalary,
 			long totalSalary) {
 		boolean result = false;
@@ -62,15 +78,15 @@ public class SalaryCalculateDaoImpl {
 			ResultSet resultSet = statement.executeQuery(showQuery);
 			while (resultSet.next()) {
 
-				Employee employ = employeeDaoImpl.findEmployee(resultSet.getInt(2));
+				Employee employ = employeeDaoImpl.findEmployee(resultSet.getInt(EMPID));
 				DepartmentsDaoImpl departmentDao = new DepartmentsDaoImpl();
 				GradeDaoImpl gradeDaoImpl = new GradeDaoImpl();
 
-				Departments department = departmentDao.findDepartment(resultSet.getInt(3));
-				Grade grade = gradeDaoImpl.findGrade(resultSet.getInt(5));
+				Departments department = departmentDao.findDepartment(resultSet.getInt(DEPTID));
+				Grade grade = gradeDaoImpl.findGrade(resultSet.getInt(GRADEID));
 
-				EmpSalary empSalary = new EmpSalary(employ, department, resultSet.getInt(1), resultSet.getInt(4), grade,
-						resultSet.getLong(7), resultSet.getLong(8), resultSet.getDate(6));
+				EmpSalary empSalary = new EmpSalary(employ, department, resultSet.getInt(TRANSID), resultSet.getInt(TOTALLEAVE), grade,
+						resultSet.getLong(GROSSSALARY), resultSet.getLong(TOTALSALARY), resultSet.getDate(PAIDDATE));
 				salaryList.add(empSalary);
 			}
 
@@ -96,14 +112,14 @@ public class SalaryCalculateDaoImpl {
 			while (resultSet.next()) {
 				EmployeeDaoImpl empDao = new EmployeeDaoImpl();
 
-				Employee emp = empDao.findEmployee(resultSet.getInt(2));
+				Employee emp = empDao.findEmployee(resultSet.getInt(EMPID));
 				GradeDaoImpl gradeDao = new GradeDaoImpl();
-				Grade grade = gradeDao.findGrade(resultSet.getInt(5));
+				Grade grade = gradeDao.findGrade(resultSet.getInt(GRADEID));
 				DepartmentsDaoImpl departDao = new DepartmentsDaoImpl();
-				Departments department = departDao.findDepartment(resultSet.getInt(3));
+				Departments department = departDao.findDepartment(resultSet.getInt(DEPTID));
 
-				salary = new EmpSalary(emp, department, resultSet.getInt(4), grade,
-						new java.sql.Date(resultSet.getDate(6).getTime()), resultSet.getLong(7), resultSet.getLong(8));
+				salary = new EmpSalary(emp, department, resultSet.getInt(TOTALLEAVE), grade,
+						new java.sql.Date(resultSet.getDate(PAIDDATE).getTime()), resultSet.getLong(GROSSSALARY), resultSet.getLong(TOTALSALARY));
 				return salary;
 			}
 		} catch (SQLException e) {
@@ -128,7 +144,7 @@ public class SalaryCalculateDaoImpl {
 			preparedStatement.setInt(1, empId);
 			ResultSet resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
-				paidDt = resultSet.getDate(1);
+				paidDt = resultSet.getDate(PAIDDATE);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -151,7 +167,7 @@ public class SalaryCalculateDaoImpl {
 			preparedStatement.setInt(1, empId);
 			ResultSet resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
-				paidDt = resultSet.getDate(1);
+				paidDt = resultSet.getDate(NEXTPAYDATE);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -172,7 +188,7 @@ public class SalaryCalculateDaoImpl {
 			preparedStatement = connection.prepareStatement(query);
 			ResultSet resultSet = preparedStatement.executeQuery();
 			if (resultSet.next()) {
-				count = resultSet.getInt(1);
+				count = resultSet.getInt(EMPSALARY);
 			}
 
 		} catch (SQLException e) {
@@ -186,7 +202,7 @@ public class SalaryCalculateDaoImpl {
 	}
 
 	public int activeEmployee() {
-		String query = "select count(*) active_emp from employees where status='active'";
+		String query = "select count(*) as active_emp from employees where status='active'";
 		ConnectionUtilImpl connectionUtilImpl = new ConnectionUtilImpl();
 		Connection connection = connectionUtilImpl.dbConnect();
 		int activeCount = 0;
@@ -195,7 +211,7 @@ public class SalaryCalculateDaoImpl {
 			preparedStatement = connection.prepareStatement(query);
 			ResultSet resultSet = preparedStatement.executeQuery();
 			if (resultSet.next()) {
-				activeCount = resultSet.getInt(1);
+				activeCount = resultSet.getInt(ACTIVE);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -208,7 +224,7 @@ public class SalaryCalculateDaoImpl {
 	}
 
 	public int inActiveEmployee() {
-		String query = "select count(*) as active_emp from employees where status='inactive'";
+		String query = "select count(*) as inactive_emp from employees where status='inactive'";
 		ConnectionUtilImpl connectionUtilImpl = new ConnectionUtilImpl();
 		Connection connection = connectionUtilImpl.dbConnect();
 		int inActiveCount = 0;
@@ -217,7 +233,7 @@ public class SalaryCalculateDaoImpl {
 			preparedStatement = connection.prepareStatement(query);
 			ResultSet resultSet = preparedStatement.executeQuery();
 			if (resultSet.next()) {
-				inActiveCount = resultSet.getInt(1);
+				inActiveCount = resultSet.getInt(INACTIVE);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -240,7 +256,7 @@ public class SalaryCalculateDaoImpl {
 			preparedStatement.setDate(2, new java.sql.Date(salTo.getTime()));
 			ResultSet resultSet = preparedStatement.executeQuery();
 			if (resultSet.next()) {
-				total = resultSet.getInt(1);
+				total = resultSet.getInt(TOTAL);
 
 			}
 

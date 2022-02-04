@@ -22,7 +22,6 @@ public class LoginController extends HttpServlet {
 		String mail=request.getParameter("email");
 		String password=request.getParameter("pass");
 		Admin admin=new Admin(mail,password);
-		System.out.println(admin);
 		AdminDaoImpl adminDaoImpl=new AdminDaoImpl();
 		boolean adminFlag=adminDaoImpl.validateAdmin(admin);
 		try {

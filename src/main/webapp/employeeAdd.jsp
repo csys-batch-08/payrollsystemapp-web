@@ -118,7 +118,7 @@
 					</tr>
 					<tr>
 						<td><label for="panNumber">PAN NUMBER<span>*</span></label></td>
-						<td><input type="text"  onchange="panNoValid()" pattern="[A-Z]{3}[ABCFGHLJPTF]{1}[A-Z]{1}[0-9]{4}[A-Z]{1}"
+						<td><input type="text"  onchange="panNoValid()" pattern="[a-zA-z0-9]+{10}"
 							maxlength="10" id="panNumber" name="panNo"
 							placeholder="Enter Pan Number" required="required"><br>
 						<br></td>

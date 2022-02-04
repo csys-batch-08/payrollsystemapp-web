@@ -57,7 +57,7 @@
 
 	<form action="ASE" class="formSty" method="post">
 		<br> <label for="employId">EMPLOYEE ID</label> <input
-			type="number" name="eId" id="employId" min="1" pattern="[0-9]+"
+			type="number" name="eId" autofocus="autofocus" id="employId" min="1" pattern="[0-9]+"
 			placeholder="enter employ Id"><br>
 		<br> <input type="reset" class="btn btn-primary"> <input
 			type="submit" class="btn btn-primary"> <a
