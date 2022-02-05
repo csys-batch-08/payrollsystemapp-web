@@ -29,8 +29,8 @@ public class GradeSearchController extends HttpServlet {
 			if(listGrade.isEmpty()) {
 				throw new GradeException();
 			}else {
-				HttpSession session = request.getSession();
-				session.setAttribute("searchListGrade", listGrade);
+				
+				request.setAttribute("searchListGrade", listGrade);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("gradeSearch.jsp");
 				dispatcher.forward(request, response);
 			}

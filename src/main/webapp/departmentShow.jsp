@@ -33,25 +33,25 @@
 	<div id="search">
 		<form action="departmentSearch" method="post">
 
-			<input type="text" name="deptName"
+			<input type="text" name="deptName" id=""
 				placeholder="Enter Department Name" autofocus="autofocus">
 			<button type="submit" class="btn btn-primary">&#128269;</button>
 		</form>
 	</div>
-	<h3 class="text-primary">DEPARTMENT</h3>
+	<h3 class="text-primary"><label>DEPARTMENT</label></h3>
 
 	&nbsp;&nbsp;
 
 	<table>
-
+	<thead>
 		<tr class="bg-primary">
 			<td>DEPARTMENT ID</td>
 			<td>DEPARTMENT NAME</td>
 
-			<td>DELETE</td>
-			<td>EDIT</td>
+			<td><label>DELETE</label></td>
+			<td><label>EDIT</label></td>
 		</tr>
-
+	</thead>
 
 
 		<c:forEach items="${sessionScope.deptList}" var="depart">
@@ -67,13 +67,13 @@
 			</tr>
 		</c:forEach>
 	</table>
-	<center>
-		<br> <a href="adminControl.jsp"><button type="button"
+	<div>
+		 <a href="adminControl.jsp"><button type="button"
 				class="btn btn-primary">
 				<strong>Home Page</strong>
 			</button></a> <input type="button" value="Go back!" onclick="history.go(-1)"
 			class="btn btn-primary">
-	</center>
+	</div>
 
 </body>
 </html>

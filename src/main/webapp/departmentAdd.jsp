@@ -30,18 +30,21 @@
 
 	<div class="formSty">
 		<form action="deptAdd" method="post">
-			<br>
-			<br> <br>
-			<center>
-				<label for="deptName">DEPARTMENT NAME</label> <input type="text"
-					id="deptName" name="dptname" autofocus="autofocus"
-					placeholder="enter department name"><br>
-				<br> <input type="submit" class="btn btn-primary"> <input
-					type="reset" class="btn btn-primary"> <a
-					href="adminControl.jsp"><button type="button"
-						class="btn btn-primary">HOME</button></a> <br>
+
+
+			<label for="deptName">DEPARTMENT NAME</label> 
+			<input type="text"
+				id="deptName" name="dptname" autofocus="autofocus"
+				placeholder="enter department name"><br> <br> 
+				<input
+				type="submit" class="btn btn-primary"> 
+				<input type="reset"	class="btn btn-primary"> 
+				<a href="adminControl.jsp">
+				<button
+					type="button" class="btn btn-primary">HOME</button></a> <br>
 		</form>
-		</center>
+
+
 	</div>
 
 

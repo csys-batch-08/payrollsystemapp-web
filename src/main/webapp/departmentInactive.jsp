@@ -26,34 +26,36 @@
 	&nbsp;&nbsp;
 
 	<table>
-
+<thead>
 		<tr class="bg-primary">
 			<td>DEPARTMENT ID</td>
 			<td>DEPARTMENT NAME</td>
 			<td>STATUS</td>
 
 		</tr>
+		</thead>
 
-
-
-		<c:forEach items="${sessionScope.inactiveDeptList}" var="depart">
 
 			<tr>
+			<c:forEach items="${sessionScope.inactiveDeptList}" var="depart">
 				<td>${depart.deptId }</td>
 
 				<td>${fn:toUpperCase(depart.deptName)}</td>
 
-				<td><a href="deptStatus?statusId="${depart.deptId }">ACTIVE</a></td>
+				<td><a href="deptStatus?statusId="${depart.deptId}">ACTIVE</a></td>
+				</c:forEach>
 			</tr>
-		</c:forEach>
+		
 	</table>
-	<center>
-		<br> <a href="adminControl.jsp"><button type="button"
+	<div>
+		<br> <a href="adminControl.jsp">
+		<button type="button"
 				class="btn btn-primary">
 				<strong>Home Page</strong>
-			</button></a> <input type="button" value="Go back!" onclick="history.go(-1)"
+			</button></a>
+			 <input type="button" value="Go back!" onclick="history.go(-1)"
 			class="btn btn-primary">
-	</center>
+	</div>
 
 </body>
 </html>

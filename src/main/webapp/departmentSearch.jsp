@@ -29,12 +29,14 @@
 	</div>
 	<h2>Search Department</h2>
 	<table>
-		<tr class="bg-primary">
-			<td>DEPARTMENT ID</td>
-			<td>DEPARTMENT NAME</td>
-			<td>STATUS</td>
+		<thead>
+			<tr class="bg-primary">
+				<td>DEPARTMENT ID</td>
+				<td>DEPARTMENT NAME</td>
+				<td>STATUS</td>
 
-		</tr>
+			</tr>
+		</thead>
 		<c:forEach items="${sessionScope.searchDept}" var="searchdept">
 			<tr>
 				<td>${searchdept.deptId }</td>
@@ -46,10 +48,10 @@
 	</table>
 
 
-	<center>
-		<br> <a href="adminControl.jsp"><button type="button"
+	<div>
+		<a href="adminControl.jsp"><button type="button"
 				class="btn btn-primary">HOME</button></a> <input type="button"
 			value="Go back!" onclick="history.go(-1)" class="btn btn-primary">
-	</center>
+	</div>
 </body>
 </html>

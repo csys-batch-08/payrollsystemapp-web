@@ -33,7 +33,7 @@
 			<br>
 			<br>
 
-			<center>
+			
 				<div class="formSty">
 					<br> <label for="deptName">DEPARTMENT NAME</label> <input
 						type="text" id="deptName" name="name" autofocus="autofocus"
@@ -41,13 +41,14 @@
 					<br> <input type="submit" class="btn btn-primary">
 		</form>
 	</c:forEach>
+	
 	<a href="adminControl.jsp"><button type="button"
 			class="btn btn-primary">HOME</button></a>
 
 	<button onclick="history.go(-1)" class="btn btn-primary">GO
 		BACK</button>
-	</center>
-	</div>
-	</center>
+	
+	
+	
 </body>
 </html>

@@ -26,8 +26,8 @@ public class DepartmentsDaoImpl implements DepartmentDao {
 		int i = 0;
 		PreparedStatement preparedStatement = null;
 		try {
-			preparedStatement = connection.prepareStatement(insertQuery);
-			preparedStatement.setString(1, dprt.getDeptName());
+			 preparedStatement = connection.prepareStatement(insertQuery);
+			 preparedStatement.setString(1,dprt.getDeptName());
 
 			i = preparedStatement.executeUpdate();
 
@@ -61,6 +61,7 @@ public class DepartmentsDaoImpl implements DepartmentDao {
 			e.printStackTrace();
 		} finally {
 			ConnectionUtilImpl.closePreparedStatement(preparedStatement, connection, resultSet);
+			
 		}
 
 		return id;
@@ -117,9 +118,10 @@ public class DepartmentsDaoImpl implements DepartmentDao {
 		ConnectionUtilImpl connectionUtilImpl = new ConnectionUtilImpl();
 		Connection connection = connectionUtilImpl.dbConnect();
 		Statement statement = null;
+		
 		ResultSet resultSet =null;
 		try {
-			statement = connection.createStatement();
+			 statement = connection.createStatement();
 			resultSet = statement.executeQuery(showQuery);
 			while (resultSet.next()) {
 				Departments department = new Departments(resultSet.getInt(DEPTID), resultSet.getString(DEPTNAME));

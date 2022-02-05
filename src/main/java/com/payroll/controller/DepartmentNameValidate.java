@@ -20,7 +20,7 @@ import com.payroll.model.Departments;
 public class DepartmentNameValidate extends HttpServlet {
 	
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException,NullPointerException {
 		String departName=request.getParameter("deptName");
 		Departments department=new Departments();
 		department.setDeptName(departName);
