@@ -23,8 +23,7 @@ public class DepartmentShowController extends HttpServlet
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DepartmentsDaoImpl departDao=new DepartmentsDaoImpl();
 		List<Departments> departList=departDao.showDepartments();
-		HttpSession session=request.getSession();
-		session.setAttribute("deptList", departList);
+		request.setAttribute("deptList", departList);
 		RequestDispatcher dispatcher=request.getRequestDispatcher("departmentShow.jsp");
 		dispatcher.forward(request, response);
 	}

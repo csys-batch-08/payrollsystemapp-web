@@ -32,8 +32,8 @@ public class DepartmentSearchController extends HttpServlet {
 				
 			
 		
-		HttpSession session = request.getSession();
-		session.setAttribute("searchDept", departmentList);
+		
+		request.setAttribute("searchDept", departmentList);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("departmentSearch.jsp");
 		dispatcher.forward(request, response);
 		}}

@@ -21,6 +21,7 @@ import com.payroll.model.Employee;
 public class inactiveDeptUpdate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int deptId = Integer.parseInt(request.getParameter("statusId"));
 		DepartmentsDaoImpl  departmentsDaoImpl=new DepartmentsDaoImpl();
@@ -38,6 +39,7 @@ public class inactiveDeptUpdate extends HttpServlet {
 	}
 
 	
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}

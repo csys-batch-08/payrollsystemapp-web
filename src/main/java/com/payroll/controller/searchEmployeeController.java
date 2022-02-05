@@ -34,8 +34,7 @@ public class searchEmployeeController extends HttpServlet
 			throw new EmployeeDelException();
 		}
 		else {
-			HttpSession session=request.getSession();
-			session.setAttribute("searchEmp", employeeList);
+			request.setAttribute("searchEmp", employeeList);
 			RequestDispatcher dispatcher=request.getRequestDispatcher("employeeSearch.jsp");
 			dispatcher.forward(request, response);
 		}

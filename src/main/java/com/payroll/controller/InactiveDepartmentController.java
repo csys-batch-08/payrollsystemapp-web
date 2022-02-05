@@ -23,8 +23,7 @@ public class InactiveDepartmentController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DepartmentsDaoImpl departDao=new DepartmentsDaoImpl();
 		List<Departments> departList=departDao.showInactiveDepartments();
-		HttpSession session=request.getSession();
-		session.setAttribute("inactiveDeptList", departList);
+		request.setAttribute("inactiveDeptList", departList);
 		RequestDispatcher dispatcher=request.getRequestDispatcher("departmentInactive.jsp");
 		dispatcher.forward(request, response);
 		
@@ -32,6 +31,7 @@ public class InactiveDepartmentController extends HttpServlet {
 	}
 
 	
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}

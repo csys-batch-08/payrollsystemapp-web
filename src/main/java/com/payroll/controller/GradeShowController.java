@@ -25,8 +25,7 @@ public class GradeShowController extends HttpServlet
 		
 		GradeDaoImpl gradeDao=new GradeDaoImpl();
 		List<Grade> gradeList=gradeDao.showGrade();
-		HttpSession session=request.getSession();
-		session.setAttribute("grdList", gradeList);
+		request.setAttribute("grdList", gradeList);
 		
 		RequestDispatcher requestDispatcher=request.getRequestDispatcher("gradeShow.jsp");
 		requestDispatcher.forward(request, response);

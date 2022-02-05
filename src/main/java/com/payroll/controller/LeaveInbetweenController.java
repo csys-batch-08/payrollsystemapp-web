@@ -38,8 +38,7 @@ public class LeaveInbetweenController extends HttpServlet
 
 		LeaveDaoImpl leaveDao=new LeaveDaoImpl();
 		List<Leave> leaveList=leaveDao.searchLeave(fromDt, toDate); 
-		HttpSession session=request.getSession();
-		session.setAttribute("leaveList", leaveList);
+		request.setAttribute("leaveList", leaveList);
 		RequestDispatcher dispatcher=request.getRequestDispatcher("leaveInBetweenDate.jsp");
 		dispatcher.forward(request, response);
 	}

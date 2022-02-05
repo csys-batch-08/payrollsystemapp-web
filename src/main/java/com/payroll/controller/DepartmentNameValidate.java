@@ -19,6 +19,7 @@ import com.payroll.model.Departments;
 @WebServlet("/deptNameValidate")
 public class DepartmentNameValidate extends HttpServlet {
 	
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String departName=request.getParameter("deptName");
 		Departments department=new Departments();
@@ -43,6 +44,7 @@ public class DepartmentNameValidate extends HttpServlet {
 		
 	
 
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}

@@ -27,9 +27,9 @@ public class DepartmentEditController extends HttpServlet {
 		session.setAttribute("editDeptId", deptId);
 		DepartmentsDaoImpl departDao = new DepartmentsDaoImpl();
 		Departments depart = departDao.findDepartment(deptId);
-		List<Departments> department = new ArrayList<Departments>();
+		List<Departments> department = new ArrayList();
 		department.add(depart);
-		session.setAttribute("department", department);
+		request.setAttribute("department", department);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("departmentUpdate.jsp");
 		dispatcher.forward(request, response);
 

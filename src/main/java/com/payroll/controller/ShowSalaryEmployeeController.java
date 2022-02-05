@@ -9,7 +9,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.payroll.daoimpl.SalaryCalculateDaoImpl;
 import com.payroll.model.EmpSalary;
@@ -21,9 +20,8 @@ public class ShowSalaryEmployeeController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		SalaryCalculateDaoImpl salaryCal=new SalaryCalculateDaoImpl();
-		List<EmpSalary> SalaryEmploy=salaryCal.showEmployee();
-		HttpSession session=request.getSession();
-		session.setAttribute("salaryShowList", SalaryEmploy);
+		List<EmpSalary> salaryEmploy=salaryCal.showEmployee();
+		request.setAttribute("salaryShowList", salaryEmploy);
 		RequestDispatcher dispatcher=request.getRequestDispatcher("salaryShow.jsp");
 		dispatcher.forward(request, response);
 	}

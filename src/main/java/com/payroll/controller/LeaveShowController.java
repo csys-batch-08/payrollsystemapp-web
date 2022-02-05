@@ -9,7 +9,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.payroll.daoimpl.LeaveDaoImpl;
 import com.payroll.model.Leave;
@@ -23,8 +22,7 @@ public class LeaveShowController extends HttpServlet
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		LeaveDaoImpl leaveDao=new LeaveDaoImpl();
 		List<Leave> leaveList=leaveDao.showLeaveDetail();
-		HttpSession session=request.getSession();
-		session.setAttribute("leave", leaveList);
+		request.setAttribute("leave", leaveList);
 		
 		RequestDispatcher dispatcher=request.getRequestDispatcher("leaveShow.jsp");
 		dispatcher.forward(request, response);

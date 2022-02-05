@@ -28,9 +28,9 @@ public class LeaveEditController extends HttpServlet
 		session1.setAttribute("leaveId", leaveId);
 		LeaveDaoImpl leaveDao=new LeaveDaoImpl();
 		Leave leaveList=leaveDao.findLeave(leaveId);
-		List<Leave> leave=new ArrayList<Leave>();
+		List<Leave> leave=new ArrayList();
 		leave.add(leaveList);
-		session1.setAttribute("leave", leave);
+		request.setAttribute("leave", leave);
 		RequestDispatcher dispatcher=request.getRequestDispatcher("leaveUpdate.jsp");
 		dispatcher.forward(request, response);
 		

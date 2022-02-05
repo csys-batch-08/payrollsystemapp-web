@@ -18,6 +18,7 @@ public class gradeNameValidateController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
    
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String grdName=request.getParameter("grdName");
 		Grade grade=new Grade();
@@ -42,6 +43,7 @@ public class gradeNameValidateController extends HttpServlet {
 	}
 
 	
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}

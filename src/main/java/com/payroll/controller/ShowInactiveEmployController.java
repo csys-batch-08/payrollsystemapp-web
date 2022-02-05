@@ -9,8 +9,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import com.payroll.daoimpl.EmployeeDaoImpl;
 import com.payroll.model.Employee;
 
@@ -23,8 +21,7 @@ public class ShowInactiveEmployController extends HttpServlet {
 		EmployeeDaoImpl employeeDao=new EmployeeDaoImpl();
 
 		List<Employee> employeeList=employeeDao.showInactiveEmployee();
-		HttpSession session=request.getSession();
-		session.setAttribute("showInActiveEmp", employeeList);
+		request.setAttribute("showInActiveEmp", employeeList);
 		RequestDispatcher dispatcher=request.getRequestDispatcher("employeeShowInActive.jsp");
 		dispatcher.forward(request, response);
 	}

@@ -27,10 +27,10 @@ public class GradeEditController extends HttpServlet {
 		session.setAttribute("gradeId", gradeId);
 		GradeDaoImpl gradeDao = new GradeDaoImpl();
 		Grade gradeList = gradeDao.findGrade(gradeId);
-		List<Grade> grade = new ArrayList<Grade>();
+		List<Grade> grade = new ArrayList();
 
 		grade.add(gradeList);
-		session.setAttribute("Grade", grade);
+		request.setAttribute("Grade", grade);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("gradeUpdate.jsp");
 		dispatcher.forward(request, response);
 	}

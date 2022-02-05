@@ -15,17 +15,22 @@
 	rel="stylesheet">
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="asset\css\employeeSearch.css">
+<link rel="stylesheet" type="text/css"
+	href="asset\css\employeeSearch.css">
 
 </head>
 <body>
-<div id="excepSty">
-<c:set var = "empNotSearch" scope = "session" value = "${searchNtFound}"/>
-	<c:if test="${not empty empNotSearch}">
-			<h2><c:out value="${empNotSearch}" />&#9888;</h2>
-				<c:remove var="empNotSearch"/>
+	<div id="excepSty">
+		<c:set var="empNotSearch" scope="session" value="${searchNtFound}" />
+		<c:if test="${not empty empNotSearch}">
+			<h2>
+				<c:out value="${empNotSearch}" />
+				&#9888;
+			</h2>
+			<c:remove var="empNotSearch" scope="session" />
+
 		</c:if>
-		</div>
+	</div>
 	<div id="seaID">
 		<h2>Search Employee</h2>
 	</div>

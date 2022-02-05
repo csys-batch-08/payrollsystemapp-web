@@ -34,10 +34,9 @@ public class SalaryApproveController extends HttpServlet {
 		}else {
 			
 		
-		List<Employee> employSalApprove=new ArrayList<Employee>();
+		List<Employee> employSalApprove=new ArrayList();
 		employSalApprove.add(employ);
-		HttpSession session=request.getSession();
-		session.setAttribute("salEmpApprove", employSalApprove);
+		request.setAttribute("salEmpApprove", employSalApprove);
 		RequestDispatcher requestDispatcher=request.getRequestDispatcher("salaryApprove.jsp");
 		requestDispatcher.forward(request, response);
 	}}

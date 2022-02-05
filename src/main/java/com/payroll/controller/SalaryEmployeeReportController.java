@@ -29,10 +29,9 @@ public class SalaryEmployeeReportController extends HttpServlet {
 		{
 		SalaryCalculateDaoImpl salaryCal=new SalaryCalculateDaoImpl();
 		EmpSalary salary=salaryCal.salaryDetail(employId);
-		List<EmpSalary> empSalaryList=new ArrayList<EmpSalary>();
+		List<EmpSalary> empSalaryList=new ArrayList();
 		empSalaryList.add(salary);
-		HttpSession session=request.getSession();
-		session.setAttribute("empSalList", empSalaryList);
+		request.setAttribute("empSalList", empSalaryList);
 		RequestDispatcher dispatcher=request.getRequestDispatcher("salaryReport.jsp");
 		dispatcher.forward(request, response);
 		}

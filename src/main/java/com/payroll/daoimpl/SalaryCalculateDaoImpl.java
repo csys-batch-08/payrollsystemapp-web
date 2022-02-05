@@ -13,7 +13,8 @@ import com.payroll.model.EmpSalary;
 import com.payroll.model.Employee;
 import com.payroll.model.Grade;
 
-public class SalaryCalculateDaoImpl {
+public class SalaryCalculateDaoImpl 
+{
 	static final String TRANSID="TRANS_ID";
 	static final String EMPID="EMP_ID";
 	static final String DEPTID="DEPT_ID";
@@ -28,9 +29,6 @@ public class SalaryCalculateDaoImpl {
 	static final String INACTIVE="inactive_emp";
 	static final String TOTAL="total";
 
-
-
-	
 	public boolean insertSalary(Employee employ, Grade grade, Departments department, int noOfLeave, long grossSalary,
 			long totalSalary) {
 		boolean result = false;
