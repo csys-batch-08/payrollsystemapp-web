@@ -35,6 +35,7 @@
 		<h2>Search Employee</h2>
 	</div>
 	<table>
+	<thead>
 		<tr class="bg-primary">
 			<td>EMPLOY ID</td>
 			<td>EMPLOY NAME</td>
@@ -52,7 +53,7 @@
 			<td>GRADE NAME</td>
 
 		</tr>
-
+</thead>
 
 		<div id="empInfo">
 			<tr>
@@ -85,12 +86,12 @@
 		</div>
 
 	</table>
-	<center>
-		<br> <a href="adminControl.jsp"><button type="button"
+	<div>
+		<a href="adminControl.jsp"><button type="button"
 				class="btn btn-primary">
 				<strong>Home Page</strong>
 			</button></a> <input type="button" value="Go back!" onclick="history.go(-1)"
 			class="btn btn-primary">
-	</center>
+	</div>
 </body>
 </html>

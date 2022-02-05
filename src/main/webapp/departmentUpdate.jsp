@@ -7,7 +7,7 @@
 <html lang="en">
 <head>
 <meta charset="ISO-8859-1">
-<title>payroll</title>
+<title>Department update</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -39,15 +39,17 @@
 						type="text" id="deptName" name="name" autofocus="autofocus"
 						value="${department.deptName }"><br>
 					<br> <input type="submit" class="btn btn-primary">
+					</div>
 		</form>
+		
 	</c:forEach>
-	
+	<div>
 	<a href="adminControl.jsp"><button type="button"
 			class="btn btn-primary">HOME</button></a>
 
 	<button onclick="history.go(-1)" class="btn btn-primary">GO
 		BACK</button>
-	
+	</div>
 	
 	
 </body>

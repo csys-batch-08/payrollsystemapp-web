@@ -26,12 +26,14 @@
 	&nbsp;&nbsp;
 
 	<table>
+	
 <thead>
 		<tr class="bg-primary">
+		<th></th>
 			<td>DEPARTMENT ID</td>
 			<td>DEPARTMENT NAME</td>
 			<td>STATUS</td>
-
+			
 		</tr>
 		</thead>
 

@@ -33,6 +33,7 @@
 		<h3 class="text-info">INACTIVE-EMPLOYEE</h3>
 
 		<table class="table">
+		<thead>
 			<tr class="bg-primary">
 				<td>EMPLOYEE ID</td>
 				<td>EMPLOYEE NAME</td>
@@ -51,7 +52,7 @@
 
 			</tr>
 
-
+	<thead>
 
 			<c:forEach items="${sessionScope.showInActiveEmp}" var="emp">
 				<tr>

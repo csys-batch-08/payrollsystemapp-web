@@ -44,7 +44,7 @@
 		<form action="searchEmployee" method="post">
 			<div class="input-group">
 
-				<input type="search" name="empName"
+				<input type="search" name="empName" id=""
 					placeholder="Search Employee Name" class="form-control"
 					autofocus="autofocus">
 
@@ -61,9 +61,10 @@
 
 		<div class="gridtable">
 			<table>
+			<thead class="bg-primary" >
 
 
-				<tr class="bg-primary">
+				<tr >
 					<td>EMPLOYEE ID</td>
 					<td>EMPLOYEE NAME</td>
 					<td>DATE OF BIRTH</td>
@@ -81,7 +82,7 @@
 					<td>EDIT</td>
 
 				</tr>
-
+</thead>
 				<tr>
 					<c:forEach items="${sessionScope.empList}" var="emp">
 						<td>${emp.empId}</td>
@@ -117,8 +118,8 @@
 
 		<br>
 
-
-		<center>
+			<div>
+		
 			<button onclick="history.go(-1)" class="btn btn-primary">Go
 				Back</button>
 
@@ -126,8 +127,7 @@
 					class="btn btn-primary">
 					<strong>HOME</strong>
 				</button></a> <br>
-			<br>
-		</center>
+			</div>
 	</div>
 	<br>
 </body>
