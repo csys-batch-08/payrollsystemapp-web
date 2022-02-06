@@ -10,7 +10,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Show SalaryEmploy</title>
-  <link rel="stylesheet" type="text/css" href="asset\css\salaryShow.css">
+<link rel="stylesheet" type="text/css" href="asset\css\salaryShow.css">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link
@@ -28,11 +28,11 @@
 
 	</div>
 	<div id="main">
-		<span style="font-size: 30px; cursor: pointer" onclick="openNav()">&#9776;
+		<span style="font-size: 30px; cursor: pointer" onkeypress="openNav()">&#9776;
 			SALARY</span>
 
-		<table >
-		
+		<table>
+
 			<tr class="bg-primary">
 				<td>EMPLOYEE ID</td>
 				<td>DEPARTMENT NAME</td>

@@ -71,7 +71,7 @@
 				</ul>
 			</div>
 						<div class="checkBox">
-							<input type="checkbox" onclick="myFunction()" id=""> <label
+							<input type="checkbox" onkeypress="myFunction()" id=""> <label
 								class="showPassword">Show Password</label>
 						</div>
 						
