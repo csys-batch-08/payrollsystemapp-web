@@ -26,20 +26,21 @@ public class gradeNameValidateController extends HttpServlet {
 		PrintWriter write = null;
 		try {
 			write = response.getWriter();
+			if (grdName.length() > 0) {
+				GradeDaoImpl daoImpl=new GradeDaoImpl();
+				boolean condition = daoImpl.validateGradeName(grade);
+				
+				if (condition) {
+					write.print("This Grade Name Not Found");
+				} else {
+					
+					write.print(" Available");
+				}}
 		} catch (IOException e) {
 
 			e.printStackTrace();
 		}
-		if (grdName.length() > 0) {
-			GradeDaoImpl daoImpl=new GradeDaoImpl();
-			boolean condition = daoImpl.validateGradeName(grade);
-			
-			if (condition) {
-				write.print("This Grade Name Not Found");
-			} else {
-				
-				write.print(" Available");
-			}}
+	
 	}
 
 	

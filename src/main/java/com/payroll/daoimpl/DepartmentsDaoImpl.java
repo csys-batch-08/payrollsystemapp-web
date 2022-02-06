@@ -10,7 +10,6 @@ import java.util.List;
 
 import com.payroll.dao.DepartmentDao;
 import com.payroll.model.Departments;
-import com.payroll.model.Employee;
 
 public class DepartmentsDaoImpl implements DepartmentDao {
 	static final String DEPTID="dept_id";

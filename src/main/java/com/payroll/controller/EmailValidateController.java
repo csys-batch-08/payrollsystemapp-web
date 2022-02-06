@@ -24,19 +24,20 @@ public class EmailValidateController extends HttpServlet {
 		PrintWriter write = null;
 		try {
 			write = response.getWriter();
+			if (emailId.length() > 0) {
+				EmployeeDaoImpl employeeDaoImpl=new EmployeeDaoImpl(); 
+				boolean condition = employeeDaoImpl.validateEmail(employ);
+				
+				if (!condition) {
+					write.print("This Email Already Available");
+				} else {
+					write.print("Not Available");
+				}}
+		
 		} catch (IOException e) {
 
 			e.printStackTrace();
 		}
-		if (emailId.length() > 0) {
-			EmployeeDaoImpl employeeDaoImpl=new EmployeeDaoImpl(); 
-			boolean condition = employeeDaoImpl.validateEmail(employ);
-			
-			if (!condition) {
-				write.print("This Email Already Available");
-			} else {
-				write.print("Not Available");
-			}}
 	
 	}
 

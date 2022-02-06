@@ -25,19 +25,20 @@ public class PanNoValidate extends HttpServlet {
 		PrintWriter write = null;
 		try {
 			write = response.getWriter();
+			if (panNo.length() > 0) {
+				EmployeeDaoImpl employeeDaoImpl=new EmployeeDaoImpl(); 
+				boolean condition = employeeDaoImpl.validatePanNo(employ);
+				
+				if (!condition) {
+					write.print("This PanNumber Already Available");
+				} else {
+					write.print("Not Available");
+				}}
 		} catch (IOException e) {
 
 			e.printStackTrace();
 		}
-		if (panNo.length() > 0) {
-			EmployeeDaoImpl employeeDaoImpl=new EmployeeDaoImpl(); 
-			boolean condition = employeeDaoImpl.validatePanNo(employ);
-			
-			if (!condition) {
-				write.print("This PanNumber Already Available");
-			} else {
-				write.print("Not Available");
-			}}
+		
 	}
 
 

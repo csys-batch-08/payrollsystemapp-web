@@ -23,7 +23,8 @@ public class AdminDaoImpl implements AdminDao{
 			preparedStatement=connection.prepareStatement(query);
 			preparedStatement.setString(1, admin.getEmailId());
 			preparedStatement.setString(2, admin.getPassword());
-			int i=preparedStatement.executeUpdate();
+			int i=preparedStatement
+					.executeUpdate();
 			if(i>0) {
 				flag=true;
 			}

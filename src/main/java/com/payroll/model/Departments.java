@@ -22,7 +22,6 @@ public class Departments {
 	}
 	public Departments() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	public Departments(int deptId, String deptName) {
 		super();
