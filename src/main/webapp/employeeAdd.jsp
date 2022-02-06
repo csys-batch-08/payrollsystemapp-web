@@ -86,9 +86,9 @@
 					</tr>
 					<tr>
 						<td><label for="city">CITY<span>*</span></label></td>
-						<td><input type="text"
+						<td><input type="text" id="city" 
 							pattern="^([a-zA-Z\u0080-\u024F]+(?:. |-| |'))*[a-zA-Z\u0080-\u024F]*$"
-							id="city" name="city" placeholder="Enter city"
+							name="city" placeholder="Enter city"
 							required="required"><br> <br></td>
 					</tr>
 					<tr>
@@ -148,17 +148,19 @@
 
 
 
-			<center>
+			<div>
 				<button type="submit" class="btn btn-primary">Submit</button>
 
-				<input type="reset" class="btn btn-primary">
+				<input type="reset" id="" class="btn btn-primary">
+				</div>
 		</form>
+		<div>
 		<a href="adminControl.jsp"><button type="button"
 				class="btn btn-primary">
 				<strong>HOME</strong>
 			</button></a> <input type="button" value="Go back!" onclick="history.go(-1)"
 			class="btn btn-primary"> <br> <br>
-		</center>
+		</div>
 	</div>
 	<script>
 		today();

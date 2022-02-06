@@ -20,14 +20,15 @@
 <body>
 
 	<form action="salaryInsert" class="style" method="post">
-		<div id="salsty">
+		
 			<br>
+			<div id="salsty">
 			<c:forEach items="${sessionScope.salEmpApprove}" var="ApproveEmp">
 
 
 				<label for="gradeName">EMPLOYEE ID</label>
 
-				<input type="number" name="empId" value="${ApproveEmp.empId }">
+				<input type="number" id="" name="empId" value="${ApproveEmp.empId }">
 				<br>
 				<br>
 				<label for="gradeName">GRADE NAME</label>
@@ -52,15 +53,17 @@
 				<option value="yes">Yes</option>
 				<option value="no">No</option>
 
-			</select> <br> <br> <input type="reset" class="btn btn-primary">
+			</select> <br> <br> <input type="reset"  id="" class="btn btn-primary">
 			<button type="submit" class="btn btn-primary">Submit</button>
+			</div>
 	</form>
+	<div>
 	<button onclick="history.back()" class="btn btn-primary">BACK</button>
 	<a href="adminControl.jsp"><button type="button"
 			class="btn btn-primary">
 			<strong>HOME</strong>
 		</button></a>
-	</div>
+	
 	<br>
 	<br>
 	</div>

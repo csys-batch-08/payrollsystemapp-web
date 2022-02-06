@@ -32,7 +32,7 @@
 
 	<div id="search">
 		<form action="departmentSearch" method="post">
-
+			
 			<input type="text" name="deptName" id=""
 				placeholder="Enter Department Name" autofocus="autofocus">
 			<button type="submit" class="btn btn-primary">&#128269;</button>
@@ -43,15 +43,19 @@
 	&nbsp;&nbsp;
 
 	<table>
-	<thead>
+	
+	
 		<tr class="bg-primary">
+		
+		
 			<td>DEPARTMENT ID</td>
 			<td>DEPARTMENT NAME</td>
 
 			<td><label>DELETE</label></td>
 			<td><label>EDIT</label></td>
+			
 		</tr>
-	</thead>
+	
 
 
 		<c:forEach items="${sessionScope.deptList}" var="depart">

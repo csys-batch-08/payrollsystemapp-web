@@ -62,13 +62,13 @@
 			</c:forEach>
 		</table>
 	</div>
-	<center>
+	<div>
 		<br> <a href="adminControl.jsp"><button type="button"
 				class="btn btn-primary">
 				<strong>Home Page</strong>
 			</button></a> <input type="button" value="Go back!" onclick="history.go(-1)"
 			class="btn btn-primary">
-	</center>
+	</div>
 
 </body>
 </html>

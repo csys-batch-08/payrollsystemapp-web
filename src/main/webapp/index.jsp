@@ -18,8 +18,9 @@
 	
 
 <div>
-<img src="asset\images\pngegg (1).png" alt="payrollLogo">
-	<div><h2>PAYROLL MANAGEMENT</h2></div></div>
+<img src="asset\images\pngegg (1).png" width="" height="" alt="payrollLogo">
+	<div><h2>PAYROLL MANAGEMENT</h2></div>
+	</div>
 	<div class="container">
 	
 		<button type="button" class="btn btn-info btn-round"
@@ -46,13 +47,15 @@
 					<div class="text-center mt-4 name">Payroll</div>
 					<form class="p-3 mt-3" action="login" method="post">
 						<div class="form-field d-flex align-items-center">
-							<span class="far fa-user"></span> <input type="email"
+							<span class="far fa-user"></span>
+							 <input type="email"
 								name="email" required="required" id="userName"
 								pattern="[a-z][a-z0-9]+[@][a-z]+[.][a-z]+" 
 								placeholder="Email Id" autofocus="autofocus">
 						</div>
 						<div class="form-field d-flex align-items-center">
-							<span class="fas fa-key"></span> <input type="password"
+							<span class="fas fa-key"></span> 
+							<input type="password"
 								name="pass" id="pwd"  required="required"
 								onkeyup="checkpattern()"
 								pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,15}$"
@@ -68,7 +71,7 @@
 				</ul>
 			</div>
 						<div class="checkBox">
-							<input type="checkbox" onclick="myFunction()"> <label
+							<input type="checkbox" onclick="myFunction()" id=""> <label
 								class="showPassword">Show Password</label>
 						</div>
 						

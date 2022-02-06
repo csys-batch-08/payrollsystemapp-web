@@ -59,7 +59,7 @@
 		<br> <label for="employId">EMPLOYEE ID</label> <input
 			type="number" name="eId" autofocus="autofocus" id="employId" min="1" pattern="[0-9]+"
 			placeholder="enter employ Id"><br>
-		<br> <input type="reset" class="btn btn-primary"> <input
+		<br> <input type="reset" id="" class="btn btn-primary"> <input
 			type="submit" class="btn btn-primary"> <a
 			href="adminControl.jsp"><button type="button"
 				class="btn btn-primary">HOME</button></a> <br>

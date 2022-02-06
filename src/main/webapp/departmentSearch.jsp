@@ -28,9 +28,11 @@
 		</c:if>
 	</div>
 	<h2>Search Department</h2>
-	<table>
+	<table >
 		<thead>
+		
 			<tr class="bg-primary">
+			
 				<td>DEPARTMENT ID</td>
 				<td>DEPARTMENT NAME</td>
 				<td>STATUS</td>

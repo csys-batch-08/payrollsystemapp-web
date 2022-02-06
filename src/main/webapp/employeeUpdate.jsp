@@ -34,13 +34,13 @@
 
 		<form action="empUpdate" class="formSty" method="post">
 
-			<div>
+			
 				<br>
 				<table>
 					<c:forEach items="${sessionScope.editEmployee }" var="employ">
 
 						<tr>
-
+						
 							<td><label for="empName">EMPLOYEE NAME</label></td>
 							<td><input type="text" id="empName" name="name"
 								autofocus="autofocus" value="${employ.empName }"><br>
@@ -102,13 +102,13 @@
 						</tr>
 						<tr>
 							<td><label for="empDepart">DEPARTMENT ID</label></td>
-							<td><input type="text" id="deptName" name="dId"
+							<td><input type="text" id="empDepart" name="dId"
 								value="${employ.dept.deptId }"><br>
 							<br></td>
 						</tr>
 						<tr>
 							<td><label for="gradeId">GRADE ID</label></td>
-							<td><input type="number" min="1" name="grdId"
+							<td><input id="gradeId" type="number" min="1" name="grdId"
 								value="${employ.grade.gradeId}"><br>
 							<br></td>
 						</tr>
@@ -124,7 +124,7 @@
 			class="btn btn-primary"> <br>
 		<br>
 	</div>
-	</div>
+
 
 </body>
 </html>

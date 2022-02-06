@@ -79,12 +79,13 @@
 					<td>${emp.grade.gradeName }</td>
 
 					<td><a href="EmpStatus?statusId=${emp.empId}">ACTIVE</a></td>
+					</tr>
 			</c:forEach>
-			</tr>
+			
 
 
 		</table>
-		<center>
+	<div>
 
 			<button onclick="history.go(-1)" class="btn btn-primary">Go
 				Back</button>
@@ -93,8 +94,8 @@
 					class="btn btn-primary">
 					<strong>HOME</strong>
 				</button></a>
-		</center>
+		</div>
 	</div>
-	<br>
+	
 </body>
 </html>

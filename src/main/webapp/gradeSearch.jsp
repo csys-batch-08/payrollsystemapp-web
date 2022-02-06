@@ -30,6 +30,7 @@
 	<h2>Search Grade</h2>
 	<table>
 		<tr class="bg-primary">
+		
 			<td>GRADE ID</td>
 			<td>GRADE NAME</td>
 			<td>BASIC</td>
@@ -53,12 +54,12 @@
 			</tr>
 		</c:forEach>
 	</table>
-	<center>
+	<div>
 		<a href="adminControl.jsp"><button type="button"
 				class="btn btn-primary">
 				<strong>Home Page</strong>
 			</button></a> <input type="button" value="Go back!" onclick="history.go(-1)"
 			class="btn btn-primary">
-	</center>
+	</div>
 </body>
 </html>

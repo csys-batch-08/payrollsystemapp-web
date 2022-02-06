@@ -25,6 +25,7 @@
     width: 33%;
     margin-left: 440px;
     background-color: #bebfc3;
+    text-align: center;
 }
     
 .text-warning {
@@ -33,6 +34,3 @@
     color: rgba(var(--bs-warning-rgb),var(--bs-text-opacity))!important;
     margin-top: 24px;
 }
-.empDiv{
-    text-align: center;
-    }

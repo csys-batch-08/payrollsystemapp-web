@@ -25,17 +25,17 @@
 
 <label for="leaveReason"> REASON</label>
 <input type="text" name="reason" id="leaveReason" placeholder="enter leave reason"><br><br>
-<center>
+<div>
 <input type="submit" class="btn btn-primary">
-<input type="reset" class="btn btn-primary">
-
+<input type="reset" id="" class="btn btn-primary">
+</div>
 </form>
-
+<div>
 <button onclick="history.back()" class="btn btn-primary">BACK</button>
 
 <a href="adminControl.jsp"><button type="button" class="btn btn-primary"><strong>HOME</strong></button></a>
 
-</center>
+</div>
 </body>
 </html>
 <script>

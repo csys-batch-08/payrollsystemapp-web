@@ -34,63 +34,45 @@
 		<c:remove var="gradeExist" />
 	</c:if>
 
-	<form action="gradeAdd" method="post">
+
+
+	<h2>ADD GRADE</h2>
+	<br>
+	<div class="formDiv">
 		<div id="gradeAdd">
-			<center>
-				<h2>ADD GRADE</h2>
-				<br>
-				<div class="formDiv">
-					<br>
-					<table>
+			<form action="gradeAdd" method="post">
 
-						<label for="gradeNa">GRADE NAME</label>
-						<input type="text" name="gradeName" id="gradeNa"
-							pattern="[a-zA-z\s]+" placeholder="enter grade Name"
-							autofocus="autofocus">
-						<br>
-						<br>
-						<label for="gradeBasic">BASIC SALARY</label>
-						<input type="number" name="basic" id="gradeBasic" pattern="[0-9]+"
-							min="1" placeholder="enter basic salary">
-						<br>
-						<br>
-						<label for="gradeBonus">GRADE BONUS</label>
-						<input type="number" name="bonus" id="gradeBonus" pattern="[0-9]+"
-							min="1" placeholder="enter bonus amount">
-						<br>
-						<br>
-						<label for="gradePf">PROVIDENT FUND</label>
-						<input type="number" name="pf" id="gradePf" pattern="[0-9]+"
-							min="1" placeholder="enter providient fund ">
-						<br>
-						<br>
-						<label for="gradePt">PROFESSIONAL TAX</label>
-						<input type="number" name="pt" id="gradePt" pattern="[0-9]+"
-							min="1" placeholder="enter Professional tax ">
-						<br>
-						<br>
-						<label for="deptName">DEPARTMENT Name</label>
-						<input type="text" name="deptNa" id="deptName" pattern="[a-zA-Z]+"
-							placeholder="enter Department Name ">
-						<br>
-						<br>
+				<br> <label for="gradeNa">GRADE NAME</label> <input type="text"
+					name="gradeName" id="gradeNa" pattern="[a-zA-z\s]+"
+					placeholder="enter grade Name" autofocus="autofocus"> <br>
+				<br> <label for="gradeBasic">BASIC SALARY</label> <input
+					type="number" name="basic" id="gradeBasic" pattern="[0-9]+" min="1"
+					placeholder="enter basic salary"> <br> <br> <label
+					for="gradeBonus">GRADE BONUS</label> <input type="number"
+					name="bonus" id="gradeBonus" pattern="[0-9]+" min="1"
+					placeholder="enter bonus amount"> <br> <br> <label
+					for="gradePf">PROVIDENT FUND</label> <input type="number" name="pf"
+					id="gradePf" pattern="[0-9]+" min="1"
+					placeholder="enter providient fund "> <br> <br> <label
+					for="gradePt">PROFESSIONAL TAX</label> <input type="number"
+					name="pt" id="gradePt" pattern="[0-9]+" min="1"
+					placeholder="enter Professional tax "> <br> <br>
+				<label for="deptName">DEPARTMENT Name</label> <input type="text"
+					name="deptNa" id="deptName" pattern="[a-zA-Z]+"
+					placeholder="enter Department Name "> <br> <br> <input
+					type="submit" class="btn btn-primary">
 
-						<center>
-							<input type="submit" class="btn btn-primary">
-
-							</form>
-							<button onclick="history.go(-1)" class="btn btn-primary">BACK</button>
-							<a href="adminControl.jsp"><button type="button"
-									class="btn btn-primary">HOME</button></a>
+			</form>
+			<button onclick="history.go(-1)" class="btn btn-primary">BACK</button>
+			<a href="adminControl.jsp"><button type="button"
+					class="btn btn-primary">HOME</button></a>
 
 
-						</center>
-						<br>
-						<br>
 
-						</center>
-						</div>
 
-						</div>
+
+		</div>
+
+	</div>
 </body>
 </html>

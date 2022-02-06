@@ -9,13 +9,39 @@
 <title>admin Control</title>
 <link rel="stylesheet" type="text/css" href="asset\css\adminControl.css">
 
-
+<style>
+.cssmarquee {
+height: 50px;
+overflow: hidden;
+position: relative;
+}
+.cssmarquee h1 {
+position: absolute;
+width: 100%;
+height: 100%;
+color: turquoise;
+margin: 0;
+line-height: 50px;
+text-align: center;
+/* Starting position */
+transform:translateX(-100%);
+animation: cssmarquee 10s linear infinite;
+}
+@keyframes cssmarquee {
+0% {
+transform: translateX(-100%);
+}
+100% {
+transform: translateX(100%);
+}
+}
+</style>
 </head>
 <body>
-	<marquee width="100%" direction="LEFT" height="100px" scrollamount="10">
+<div class="cssmarquee">
 		<h1 style="color: rgb(240, 240, 240);">ADMIN CONTROLS</h1>
-	</marquee>
 
+</div>
 
 	<div class="navbar">
 		<div class="dropdown">

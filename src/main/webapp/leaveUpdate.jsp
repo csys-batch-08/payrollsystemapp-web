@@ -18,18 +18,20 @@
 <c:forEach items="${sessionScope.leave}" var="leaveUpd">
 
 <form action="leaveUpd" class="formSty" method="post">
-<center>
+<div>
 <label for="leaveDt">LEAVE DATE</label>
 <input type="date" id="leaveDt"  name="leaveDate" value="${leaveUpd.leaveDt }"><br><br>
 <label for="leaveRs">REASON</label>
 <input type="text" id="leaveRs"  name="reason" value="${leaveUpd.LeaveReason }"><br><br>
 <input type="submit" class="btn btn-primary">
-
+</div>
 </form>
+
 </c:forEach>
+<div>
 <button onclick="history.go(-1)" class="btn btn-primary">GO BACK</button>
 <a href="adminControl.jsp"><button type="button" class="btn btn-primary">HOME</button></a>
 
-</center>
+</div>
 </body>
 </html>
