@@ -68,21 +68,21 @@
 
 
 						<tr>
-							<td>EMPLOYEE ID</td>
-							<td>EMPLOYEE NAME</td>
-							<td>DATE OF BIRTH</td>
-							<td>DATE OF JOINING</td>
-							<td><fmt:message key="Address" /></td>
-							<td><fmt:message key="City" /></td>
-							<td><fmt:message key="Pincode" /></td>
-							<td>MOBILE NUMBER</td>
-							<td><fmt:message key="State" /></td>
-							<td>EMAIL ID</td>
-							<td>PAN NUMBER</td>
-							<td>DEPARTMENT NAME</td>
-							<td>GRADE NAME</td>
-							<td><fmt:message key="Delete" /></td>
-							<td><fmt:message key="Edit" /></td>
+							<th scope="col">EMPLOYEE ID</th>
+							<th scope="col">EMPLOYEE NAME</th>
+							<th scope="col">DATE OF BIRTH</th>
+							<th scope="col">DATE OF JOINING</th>
+							<th scope="col"><fmt:message key="Address" /></th>
+							<th scope="col"><fmt:message key="City" /></th>
+							<th scope="col"><fmt:message key="Pincode" /></th>
+							<th scope="col">MOBILE NUMBER</th>
+							<th scope="col"><fmt:message key="State" /></th>
+							<th scope="col">EMAIL ID</th>
+							<th scope="col">PAN NUMBER</th>
+							<th scope="col">DEPARTMENT NAME</th>
+							<th scope="col">GRADE NAME</th>
+							<th scope="col"><fmt:message key="Delete" /></th>
+							<th scope="col"><fmt:message key="Edit" /></th>
 
 						</tr>
 					</thead>

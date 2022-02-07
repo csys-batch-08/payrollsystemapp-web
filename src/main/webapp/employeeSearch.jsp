@@ -39,20 +39,20 @@
 			<fmt:bundle basename = "com.payroll.bundle.Label" prefix="nav.">
 	
 		<tr class="bg-primary">
-			<td>EMPLOY ID</td>
-			<td>EMPLOY NAME</td>
-			<td><fmt:message  key="Dob"/></td>
-			<td><fmt:message  key="Doj"/></td>
-			<td><fmt:message  key="Address"/></td>
-			<td><fmt:message  key="City"/></td>
-			<td><fmt:message  key="Pincode"/></td>
-			<td>MOBILE NO</td>
-			<td><fmt:message  key="State"/></td>
-			<td><fmt:message  key="Email"/></td>
-			<td>PAN NUMBER</td>
-			<td><fmt:message  key="Status"/></td>
-			<td>DEPARTMENT NAME</td>
-			<td>GRADE NAME</td>
+			<th scope="col">EMPLOY ID</th>
+			<th scope="col">EMPLOY NAME</th>
+			<th scope="col"><fmt:message  key="Dob"/></th>
+			<th scope="col"><fmt:message  key="Doj"/></th>
+			<th scope="col"><fmt:message  key="Address"/></th>
+			<th scope="col"><fmt:message  key="City"/></th>
+			<th scope="col"><fmt:message  key="Pincode"/></th>
+			<th scope="col">MOBILE NO</th>
+			<th scope="col"><fmt:message  key="State"/></th>
+			<th scope="col"><fmt:message  key="Email"/></th>
+			<th scope="col">PAN NUMBER</th>
+			<th scope="col"><fmt:message  key="Status"/></th>
+			<th scope="col">DEPARTMENT NAME</th>
+			<th scope="col">GRADE NAME</th>
 
 		</tr>
 		</fmt:bundle>

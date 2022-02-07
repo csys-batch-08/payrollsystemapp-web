@@ -34,14 +34,14 @@
 		<table>
 
 			<tr class="bg-primary">
-				<td>EMPLOYEE ID</td>
-				<td>DEPARTMENT NAME</td>
-				<td>GRADE NAME</td>
-				<td>TOTAL LEAVE</td>
-				<td>SALARY DATE</td>
-				<td>GROSS SALARY</td>
-				<td>ACTUAL SALARY</td>
-				<td>DELETE</td>
+				<th scope="col">EMPLOYEE ID</th>
+				<th scope="col">DEPARTMENT NAME</th>
+				<th scope="col">GRADE NAME</th>
+				<th scope="col">TOTAL LEAVE</th>
+				<th scope="col">SALARY DATE</th>
+				<th scope="col">GROSS SALARY</th>
+				<th scope="col">ACTUAL SALARY</th>
+				<th scope="col">DELETE</th>
 			</tr>
 
 			<c:forEach items="${sessionScope.salaryShowList}" var="salaryShowL">

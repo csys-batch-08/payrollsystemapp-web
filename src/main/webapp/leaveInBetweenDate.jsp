@@ -25,10 +25,10 @@
 	<table>
 
 		<tr class="bg-primary">
-			<td>LEAVE ID</td>
-			<td>EMPLOYEE ID</td>
-			<td>LEAVE DATE</td>
-			<td>REASON</td>
+			<th scope="col">LEAVE ID</th>
+			<th scope="col">EMPLOYEE ID</th>
+			<th scope="col">LEAVE DATE</th>
+			<th scope="col">REASON</th>
 		</tr>
 
 

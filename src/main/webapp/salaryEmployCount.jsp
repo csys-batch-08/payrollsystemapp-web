@@ -24,17 +24,17 @@
 	<div class="salStyle">
 		<table>
 			<tr>
-				<td><label for="actEmp">ACTIVE EMPLOYEE</label></td>
+				<th scope="col"><label for="actEmp">ACTIVE EMPLOYEE</label></th>
 				<td><input id="actEmp" name="empAct" value="${empActive}">
 				</td>
 			</tr>
 			<tr>
-				<td><label for="inactEmp">IN-ACTIVE EMPLOYEE</label></td>
+				<th scope="col"><label for="inactEmp">IN-ACTIVE EMPLOYEE</label></th>
 				<td><input id="inactEmp" name="empInact" value="${empinActive}">
 				</td>
 			</tr>
 			<tr>
-				<td><label for="salApprove">SALARY APPROVED EMPLOYEE</label></td>
+				<th scope="col"><label for="salApprove">SALARY APPROVED EMPLOYEE</label></th>
 				<td><input id="salApprove" name="salEmp" value="${salCt}">
 				</td>
 			</tr>

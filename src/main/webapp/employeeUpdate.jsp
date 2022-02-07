@@ -41,73 +41,73 @@
 
 						<tr>
 						
-							<td><label for="empName">EMPLOYEE NAME</label></td>
+							<th scope="col"><label for="empName">EMPLOYEE NAME</label></th>
 							<td><input type="text" id="empName" name="name"
 								autofocus="autofocus" value="${employ.empName }"><br>
 							<br></td>
 						</tr>
 						<tr>
-							<td><label for="empDob">DATE OF BIRTH</label></td>
+							<th scope="col"><label for="empDob">DATE OF BIRTH</label></th>
 							<td><input type="date" id="empDob" name="dob"
 								value="${employ.dob }"><br>
 							<br></td>
 						</tr>
 						<tr>
-							<td><label for="empDoj">DATE OF JOINING</label></td>
+							<th scope="col"><label for="empDoj">DATE OF JOINING</label></th>
 							<td><input type="date" id="empDoj" name="doj"
 								value="${employ.doj }"><br>
 							<br></td>
 						</tr>
 						<tr>
-							<td><label for="empAddress">ADDRESS</label></td>
+							<th scope="col"><label for="empAddress">ADDRESS</label></th>
 							<td><input type="text" id="empAddress" name="address"
 								value="${employ.address }"><br>
 							<br></td>
 						</tr>
 						<tr>
-							<td><label for="empCity">CITY</label></td>
+							<th scope="col"><label for="empCity">CITY</label></th>
 							<td><input type="text" id="empCity" name="city"
 								value="${employ.city }"><br>
 							<br></td>
 						</tr>
 						<tr>
-							<td><label for="empPin">PINCODE</label></td>
+							<th scope="col"><label for="empPin">PINCODE</label></th>
 							<td><input type="number" maxlength="6" id="empPin"
 								name="pincode" value="${employ.pincode }"><br>
 							<br></td>
 						</tr>
 						<tr>
-							<td><label for="empNo">MOBILE NUMBER</label></td>
+							<th scope="col"><label for="empNo">MOBILE NUMBER</label></th>
 							<td><input type="number" id="empNo" maxlength="10"
 								name="mobile" value="${employ.mobileNo }"><br>
 							<br></td>
 						</tr>
 						<tr>
-							<td><label for="empState">STATE</label></td>
+							<th scope="col"><label for="empState">STATE</label></th>
 							<td><input type="text" id="empState" name="state"
 								value="${employ.state }"><br>
 							<br></td>
 						</tr>
 						<tr>
-							<td><label for="empEmail">EMAIL ID</label></td>
+							<th scope="col"><label for="empEmail">EMAIL ID</label></th>
 							<td><input type="text" id="empEmail" name="email"
 								value="${employ.mailId }"><br>
 							<br></td>
 						</tr>
 						<tr>
-							<td><label for="empPan">PAN NUMBER</label></td>
+							<th scope="col"><label for="empPan">PAN NUMBER</label></th>
 							<td><input type="text" id="empPan" maxlength="10" name="pan"
 								value="${employ.panNo }"><br>
 							<br></td>
 						</tr>
 						<tr>
-							<td><label for="empDepart">DEPARTMENT ID</label></td>
+							<th scope="col"><label for="empDepart">DEPARTMENT ID</label></th>
 							<td><input type="text" id="empDepart" name="dId"
 								value="${employ.dept.deptId }"><br>
 							<br></td>
 						</tr>
 						<tr>
-							<td><label for="gradeId">GRADE ID</label></td>
+							<th scope="col"><label for="gradeId">GRADE ID</label></th>
 							<td><input id="gradeId" type="number" min="1" name="grdId"
 								value="${employ.grade.gradeId}"><br>
 							<br></td>

@@ -27,13 +27,13 @@
 	<div>
 		<table>
 			<tr class="bg-primary">
-				<td>EMPLOYEE ID</td>
-				<td>DEPARTMENT Name</td>
-				<td>TOTAL LEAVE</td>
-				<td>GRADE Name</td>
-				<td>SALARY DATE</td>
-				<td>GROSS SALARY</td>
-				<td>TOTAL SALARY</td>
+				<th scope="col">EMPLOYEE ID</th>
+				<th scope="col">DEPARTMENT Name</th>
+				<th scope="col">TOTAL LEAVE</th>
+				<th scope="col">GRADE Name</th>
+				<th scope="col">SALARY DATE</th>
+				<th scope="col">GROSS SALARY</th>
+				<th scope="col">TOTAL SALARY</th>
 
 
 

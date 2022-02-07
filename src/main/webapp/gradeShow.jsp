@@ -30,15 +30,15 @@
 	<h2>GRADE</h2>
 	<table>
 		<tr class="bg-primary">
-			<td>GRADE ID</td>
-			<td>GRADE NAME</td>
-			<td>GRADE BASIC</td>
-			<td>GRADE BONUS</td>
-			<td>PROVIDENT FUND</td>
-			<td>PROFESSIONAL TAX</td>
-			<td>DEPARTMENT NAME</td>
-			<td>DELETE</td>
-			<td>EDIT</td>
+			<th scope="col">GRADE ID</th>
+			<th scope="col">GRADE NAME</th>
+			<th scope="col">GRADE BASIC</th>
+			<th scope="col">GRADE BONUS</th>
+			<th scope="col">PROVIDENT FUND</th>
+			<th scope="col">PROFESSIONAL TAX</th>
+			<th scope="col">DEPARTMENT NAME</th>
+			<th scope="col">DELETE</th>
+			<th scope="col">EDIT</th>
 		</tr>
 
 		<c:forEach items="${sessionScope.grdList}" var="grd">
@@ -63,13 +63,13 @@
 		</c:forEach>
 	</table>
 	<br>
-	<center>
+	<div>
 		<a href="adminControl.jsp"><button type="button"
 				class="btn btn-primary">
 				<strong>Home Page</strong>
 			</button></a> <input type="button" value="Go back!" onclick="history.go(-1)"
 			class="btn btn-primary">
-	</center>
+	</div>
 
 </body>
 </html>

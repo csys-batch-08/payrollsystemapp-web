@@ -31,13 +31,13 @@
 	<table>
 		<tr class="bg-primary">
 		
-			<td>GRADE ID</td>
-			<td>GRADE NAME</td>
-			<td>BASIC</td>
-			<td>BONUS</td>
-			<td>PROVIDENT FUND</td>
-			<td>PROFESSIONAL TAX</td>
-			<td>DEPARTMENT NAME</td>
+			<th scope="col">GRADE ID</th>
+			<th scope="col">GRADE NAME</th>
+			<th scope="col">BASIC</th>
+			<th scope="col">BONUS</th>
+			<th scope="col">PROVIDENT FUND</th>
+			<th scope="col">PROFESSIONAL TAX</th>
+			<th scope="col">DEPARTMENT NAME</th>
 		</tr>
 
 		<c:forEach items="${sessionScope.searchListGrade}" var="gradeSearch">

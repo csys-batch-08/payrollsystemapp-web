@@ -21,30 +21,28 @@
 	<div class="salDate">
 		<table>
 			<tr>
-				<td><label for="salFrom">FROM DATE</label></td>
+				<th scope="col"><label for="salFrom">FROM DATE</label></th>
 				<td><input type="date" id="salFrom" name="salfromDt"></td>
 			</tr>
 			<tr>
-				<td><label for="salTo">TODATE</label></td>
+				<th scope="col"><label for="salTo">TODATE</label></th>
 				<td><input type="date" id="salTo" name="saltoDate"
 					onchange="totalAmount()"></td>
 
 			</tr>
 			<tr>
-				<td><label for="salTotal">TOTAL AMOUNT</label></td>
+				<th scope="col"><label for="salTotal">TOTAL AMOUNT</label></th>
 				<td><input id="salTotal" name="totalSal" value=""></td>
 			</tr>
 			<tr>
-				<td><button onclick="history.go(-1)" class="btn btn-primary">GO
-						BACK</button></td>
-				<td><a href="adminControl.jsp"><button type="button"
-							class="btn btn-primary">HOME</button></a></td>
+				<th scope="col"><button onclick="history.go(-1)" class="btn btn-primary">GO
+						BACK</button></th>
+				<th scope="col"><a href="adminControl.jsp"><button type="button"
+							class="btn btn-primary">HOME</button></a></th>
 			</tr>
 		</table>
 	</div>
-</body>
-</html>
-<script>
+	<script>
 	function totalAmount() {
 		var fromSal = document.getElementById("salFrom").value;
 		var toSal = document.getElementById("salTo").value;
@@ -73,3 +71,6 @@
 		}
 	}
 </script>
+	
+</body>
+</html>

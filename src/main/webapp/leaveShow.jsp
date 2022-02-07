@@ -48,12 +48,12 @@
 	<table>
 	
 		<tr class="bg-primary">
-			<td>EMPLOYEE ID</td>
-			<td>EMPLOYEE NAME</td>
-			<td>LEAVE DATE</td>
-			<td>REASON</td>
-			<td>DELETE</td>
-			<td>EDIT</td>
+			<th scope="col">EMPLOYEE ID</th>
+			<th scope="col">EMPLOYEE NAME</th>
+			<th scope="col">LEAVE DATE</th>
+			<th scope="col">REASON</th>
+			<th scope="col">DELETE</th>
+			<th scope="col">EDIT</th>
 		</tr>
 
 		<c:forEach items="${sessionScope.leave}" var="allLeave">
@@ -73,8 +73,8 @@
 		</c:forEach>
 	</table>
 
-	</form>
-	<center>
+	
+	<div>
 
 
 		<a href="adminControl.jsp"><button type="button"
@@ -82,6 +82,6 @@
 				<strong>HOME</strong>
 			</button></a> <input type="button" value="Go back!" onclick="history.go(-1)"
 			class="btn btn-primary">
-	</center>
+	</div>
 </body>
 </html>

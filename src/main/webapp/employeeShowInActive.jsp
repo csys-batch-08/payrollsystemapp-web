@@ -36,20 +36,20 @@
 		<table class="table">
 		<thead>
 			<tr class="bg-primary">
-				<td>EMPLOYEE ID</td>
-				<td>EMPLOYEE NAME</td>
-				<td>DATE OF BIRTH</td>
-				<td>DATE OF JOINING</td>
-				<td>ADDRESS</td>
-				<td>CITY</td>
-				<td>PINCODE</td>
-				<td>MOBILE NUMBER</td>
-				<td>STATE</td>
-				<td>EMAIL ID</td>
-				<td>PAN NUMBER</td>
-				<td>DEPARTMENT NAME</td>
-				<td>GRADE NAME</td>
-				<td>Status</td>
+				<th scope="col">EMPLOYEE ID</th>
+				<th scope="col">EMPLOYEE NAME</th>
+				<th scope="col">DATE OF BIRTH</th>
+				<th scope="col">DATE OF JOINING</th>
+				<th scope="col">ADDRESS</th>
+				<th scope="col">CITY</th>
+				<th scope="col">PINCODE</th>
+				<th scope="col">MOBILE NUMBER</th>
+				<th scope="col">STATE</th>
+				<th scope="col">EMAIL ID</th>
+				<th scope="col">PAN NUMBER</th>
+				<th scope="col">DEPARTMENT NAME</th>
+				<th scope="col">GRADE NAME</th>
+				<th scope="col">Status</th>
 
 			</tr>
 
