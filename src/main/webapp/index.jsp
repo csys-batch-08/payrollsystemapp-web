@@ -49,7 +49,7 @@
 						<div class="form-field d-flex align-items-center">
 							<span class="far fa-user"></span>
 							 <input type="email" aria-labelledby="email"
-								name="email" required="required" id="userName"
+								name="email" id="" required="required" id="userName"
 								pattern="[a-z][a-z0-9]+[@][a-z]+[.][a-z]+" 
 								placeholder="Email Id" autofocus="autofocus">
 						</div>
