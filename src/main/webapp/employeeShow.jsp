@@ -44,7 +44,7 @@
 		<form action="searchEmployee" method="post">
 			<div class="input-group">
 
-				<input type="search" name="empName" id=""
+				<input type="search" name="empName"  aria-label="empName"
 					placeholder="Search Employee Name" class="form-control"
 					autofocus="autofocus">
 

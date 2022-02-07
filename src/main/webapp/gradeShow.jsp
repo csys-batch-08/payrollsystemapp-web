@@ -21,7 +21,7 @@
 <body>
 	<div id="search">
 		<form action="GradeSearchController" method="post">
-			<input type="text" id="" name="gradeName" placeholder="search Grade"
+			<input type="text" aria-label="gradeName"name="gradeName" placeholder="search Grade"
 				autofocus="autofocus">
 			<button type="submit" class="btn btn-primary">&#128269;</button>
 		</form>

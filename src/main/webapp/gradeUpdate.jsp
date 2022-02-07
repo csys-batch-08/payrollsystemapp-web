@@ -56,7 +56,7 @@
 
 			<div>
 				<input type="submit" class="btn btn-primary"> <input
-					type="reset"  id="" class="btn btn-primary">
+					type="reset"  name="reset"  aria-label="reset" class="btn btn-primary" />
 					</div>
 		</c:forEach>
 	</form>
