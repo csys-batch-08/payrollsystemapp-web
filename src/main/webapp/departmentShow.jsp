@@ -35,7 +35,7 @@
 		<form action="departmentSearch" method="post">
 			
 			<input type="text" name="deptName" 
-				placeholder="Enter Department Name" autofocus="autofocus">
+				placeholder="Enter Department Name"  aria-label="firstname" autofocus="autofocus">
 			<button type="submit" class="btn btn-primary">&#128269;</button>
 		</form>
 	</div>
@@ -50,11 +50,11 @@
 		<tr class="bg-primary">
 		
 		
-			<td>DEPARTMENT ID</td>
-			<td>DEPARTMENT NAME</td>
+			<th scope="col">DEPARTMENT ID</th>
+			<th scope="col">DEPARTMENT NAME</th>
 
-			<td><fmt:message  key="Delete"/></td>
-			<td><fmt:message  key="Edit"/></td>
+			<th scope="col"><fmt:message  key="Delete"/></th>
+			<th scope="col"><fmt:message  key="Edit"/></th>
 			
 		</tr>
 	

@@ -60,48 +60,48 @@
 			<div>
 				<table>
 					<tr>
-						<td><label for="name">NAME <span>*</span></label></td>
+						<th scope="col"><label for="name">NAME <span>*</span></label></th>
 						<td><input type="text" pattern="[a-zA-Z\s]{3,30}+" id="name"
 							name="EmployeeName" placeholder="Enter Employee Name"
 							title="minimum 3 characters and accept only alphabets"
 							autofocus="autofocus" required="required"><br> <br></td>
 					</tr>
 					<tr>
-						<td><label for="dob">DATE OF BIRTH<span>*</span></label></td>
+						<th scope="col"><label for="dob">DATE OF BIRTH<span>*</span></label></th>
 						<td><input type="date"
 							pattern="(0[1-9]|[12][0-9]|3[01])[-](0[1-9]|1[012])[-]\\d{4}"
 							id="dob" name="dob" placeholder="enter your DOB"
 							required="required"><br> <br></td>
 					</tr>
 					<tr>
-						<td><label for="doj">DATE OF JOINING<span>*</span></label></td>
+						<th scope="col"><label for="doj">DATE OF JOINING<span>*</span></label></th>
 						<td><input type="date"
 							pattern="(0[1-9]|[12][0-9]|3[01])[-](0[1-9]|1[012])[-]\\d{4}"
 							id="doj" name="doj" placeholder="Date Of Joining"
 							required="required"><br> <br></td>
 					</tr>
 					<tr>
-						<td><label for="address"><fmt:message  key="Address"/><span>*</span></label></td>
+						<th scope="col"><label for="address"><fmt:message  key="Address"/><span>*</span></label></th>
 						<td><input type="text" pattern="^[#.0-9a-zA-Z\s,-]+$"
 							id="address" name="address" placeholder="Enter Address"
 							required="required"><br> <br></td>
 					</tr>
 					<tr>
-						<td><label for="city"><fmt:message  key="City"/><span>*</span></label></td>
+						<th scope="col"><label for="city"><fmt:message  key="City"/><span>*</span></label></th>
 						<td><input type="text" id="city" 
 							pattern="^([a-zA-Z\u0080-\u024F]+(?:. |-| |'))*[a-zA-Z\u0080-\u024F]*$"
 							name="city" placeholder="Enter city"
 							required="required"><br> <br></td>
 					</tr>
 					<tr>
-						<td><label for="pincode"><fmt:message  key="Pincode"/><span>*</span></label></td>
+						<th scope="col"><label for="pincode"><fmt:message  key="Pincode"/><span>*</span></label></th>
 						<td><input type="number" maxlength="6" id="pincode"
 							pattern="([1-9]{1}[0-9]{5}|[1-9]{1}[0-9]{3}\\s[0-9]{3})"
 							name="pincode" placeholder="pincode" required="required"><br>
 							<br></td>
 					</tr>
 					<tr>
-						<td><label for="mobileno">MOBILE NUMBER<span>*</span></label></td>
+						<th scope="col"><label for="mobileno">MOBILE NUMBER<span>*</span></label></th>
 						<td><input type="number"
 							pattern="/^(\+\d{1,3}[- ]?)?\d{10}$/" id="mobileno"
 							maxlength="10" name="mobileNumber"
@@ -109,35 +109,35 @@
 							<br></td>
 					</tr>
 					<tr>
-						<td><label for="state"><fmt:message  key="State"/><span>*</span></label></td>
+						<th scope="col"><label for="state"><fmt:message  key="State"/><span>*</span></label></th>
 						<td><input type="text"
 							pattern="[a - zA - Z] + |[a - zA - Z] + \\s[a - zA - Z] + )"
 							id="state" name="state" placeholder="Enter State"
 							required="required"><br> <br></td>
 					</tr>
 					<tr>
-						<td><label for="mailId">EMAIL ID<span>*</span></label></td>
+						<th scope="col"><label for="mailId">EMAIL ID<span>*</span></label></th>
 						<td><input type="email" onchange="validateEmail()"
 							pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" id="mailId"
 							name="mailId" placeholder="Enter employ mail" required="required"><br>
 							<br></td>
 					</tr>
 					<tr>
-						<td><label for="panNumber">PAN NUMBER<span>*</span></label></td>
+						<th scope="col"><label for="panNumber">PAN NUMBER<span>*</span></label></th>
 						<td><input type="text" onchange="panNoValid()"
 							pattern="[a-zA-z0-9]+{10}" maxlength="10" id="panNumber"
 							name="panNo" placeholder="Enter Pan Number" required="required"><br>
 							<br></td>
 					</tr>
 					<tr>
-						<td><label for="departName">DEPARTMENT NAME<span>*</span></label></td>
+						<th scope="col"><label for="departName">DEPARTMENT NAME<span>*</span></label></th>
 						<td><input type="text" id="departName"
 							onchange="deptNameValid()" pattern="[a-zA-Z\s]+" name="deptName"
 							placeholder="Enter Department Name" required="required"><br>
 							<br></td>
 					</tr>
 					<tr>
-						<td><label for="gradeName">GRADE NAME<span>*</span></label></td>
+						<th scope="col"><label for="gradeName">GRADE NAME<span>*</span></label></th>
 						<td><input type="text" pattern="[a-zA-Z\s]+"
 							onchange="grdNameValid()" id="gradeName" name="grdName"
 							placeholder="Enter grade Name" required="required"><br>
@@ -153,7 +153,7 @@
 			<div>
 				<button type="submit" class="btn btn-primary"><fmt:message  key="Submit"/></button>
 
-				<input type="reset"  class="btn btn-primary">
+				<input type="reset" name="reset" aria-label="firstname" class="btn btn-primary">
 				</div>
 				
 		</form>

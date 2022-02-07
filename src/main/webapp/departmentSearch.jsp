@@ -38,10 +38,10 @@
 		
 			<tr class="bg-primary">
 			
-				<td>DEPARTMENT ID</td>
-				<td>DEPARTMENT NAME</td>
+				 <th scope="col">DEPARTMENT ID</th>
+				 <th scope="col">DEPARTMENT NAME</th>
 				
-				<td><fmt:message  key="Status"/></td>
+				 <th scope="col"><fmt:message  key="Status"/></th>
 				
 
 			</tr>

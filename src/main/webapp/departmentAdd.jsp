@@ -39,10 +39,10 @@
 				placeholder="enter department name"><br> <br> 
 				<input
 				type="submit" class="btn btn-primary"> 
-				<input type="reset"	 class="btn btn-primary"> 
+				<input type="reset"	name="firstname" aria-label="firstname" class="btn btn-primary"> 
 				<a href="adminControl.jsp">
 				<button
-					type="button" class="btn btn-primary"><fmt:message  key="Home"/></button></a> <br>
+					type="button" class="btn btn-primary"><fmt:message key="Home"/></button></a> <br>
 					   </fmt:bundle>
 		</form>
 

@@ -24,7 +24,8 @@ public class DepartmentNameValidate extends HttpServlet {
 		
 		try {
 			write = response.getWriter();
-			if (departName.length() > 0) {
+			if (departName.length() > 0) 
+			{
 				DepartmentsDaoImpl daoImpl=new DepartmentsDaoImpl();
 				boolean condition = daoImpl.validateDepartName(department);
 				
@@ -32,8 +33,10 @@ public class DepartmentNameValidate extends HttpServlet {
 					write.print("This Department Name Not Found");
 				} else {
 					write.print(" Available");
-				}}
-		} catch (IOException e) {
+				}
+				}
+		} catch (IOException e) 
+		{
 
 			e.printStackTrace();
 		}
