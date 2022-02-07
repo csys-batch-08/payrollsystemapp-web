@@ -30,7 +30,6 @@
 
 
 	<div id="empShowForm">
-			<fmt:bundle basename="com.payroll.bundle.Label" prefix="nav.">
 	
 		<h3 class="text-info">INACTIVE-EMPLOYEE</h3>
 
