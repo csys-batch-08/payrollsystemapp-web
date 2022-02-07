@@ -1,5 +1,6 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -30,27 +31,30 @@
 	<c:forEach items="${sessionScope.department}" var="department">
 
 		<form action="deptUpd" method="post">
-			<br>
-			<br>
+			<br> <br>
 
-			
-				<div class="formSty">
-					<br> <label for="deptName">DEPARTMENT NAME</label> <input
-						type="text" id="deptName" name="name" autofocus="autofocus"
-						value="${department.deptName }"><br>
-					<br> <input type="submit" class="btn btn-primary">
-					</div>
+
+			<div class="formSty">
+				<br> <label for="deptName">DEPARTMENT NAME</label> <input
+					type="text" id="deptName" name="name" autofocus="autofocus"
+					value="${department.deptName }"><br> <br> <input
+					type="submit" class="btn btn-primary">
+			</div>
 		</form>
-		
-	</c:forEach>
-	<div>
-	<a href="adminControl.jsp"><button type="button"
-			class="btn btn-primary">HOME</button></a>
 
-	<button onclick="history.go(-1)" class="btn btn-primary">GO
-		BACK</button>
+	</c:forEach>
+	
+	<div>
+		<fmt:bundle basename = "com.payroll.bundle.Label" prefix="nav.">
+	
+		<a href="adminControl.jsp"><button type="button"
+				class="btn btn-primary"><fmt:message  key="Home"/></button></a>
+				</fmt:bundle>
+
+		<button onclick="history.go(-1)" class="btn btn-primary">GO
+			BACK</button>
 	</div>
-	
-	
+
+
 </body>
 </html>

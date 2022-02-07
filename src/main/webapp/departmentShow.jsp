@@ -34,7 +34,7 @@
 	<div id="search">
 		<form action="departmentSearch" method="post">
 			
-			<input type="text" name="deptName" id=""
+			<input type="text" name="deptName" 
 				placeholder="Enter Department Name" autofocus="autofocus">
 			<button type="submit" class="btn btn-primary">&#128269;</button>
 		</form>

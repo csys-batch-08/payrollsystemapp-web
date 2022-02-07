@@ -36,27 +36,31 @@
 	</div>
 	<table>
 	<thead>
+			<fmt:bundle basename = "com.payroll.bundle.Label" prefix="nav.">
+	
 		<tr class="bg-primary">
 			<td>EMPLOY ID</td>
 			<td>EMPLOY NAME</td>
-			<td>DOB</td>
-			<td>DOJ</td>
-			<td>ADDRESS</td>
-			<td>CITY</td>
-			<td>PINCODE</td>
+			<td><fmt:message  key="Dob"/></td>
+			<td><fmt:message  key="Doj"/></td>
+			<td><fmt:message  key="Address"/></td>
+			<td><fmt:message  key="City"/></td>
+			<td><fmt:message  key="Pincode"/></td>
 			<td>MOBILE NO</td>
-			<td>STATE</td>
-			<td>EMAIL</td>
+			<td><fmt:message  key="State"/></td>
+			<td><fmt:message  key="Email"/></td>
 			<td>PAN NUMBER</td>
-			<td>STATUS</td>
+			<td><fmt:message  key="Status"/></td>
 			<td>DEPARTMENT NAME</td>
 			<td>GRADE NAME</td>
 
 		</tr>
+		</fmt:bundle>
 </thead>
 
-		<div id="empInfo">
+		
 			<tr>
+			<div id="empInfo">
 				<c:forEach items="${sessionScope.searchEmp}" var="searchEmploy">
 
 					<td>${searchEmploy.empId}</td>
@@ -81,11 +85,13 @@
 					<td>${searchEmploy.dept.deptName}</td>
 					<td>${searchEmploy.grade.gradeName }</td>
 				</c:forEach>
+				</div>
 			</tr>
 
-		</div>
+		
 
 	</table>
+	
 	<div>
 		<a href="adminControl.jsp"><button type="button"
 				class="btn btn-primary">

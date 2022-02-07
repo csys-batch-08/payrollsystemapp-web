@@ -55,79 +55,87 @@
 
 	</div>
 	<div id="empShowForm">
-		<h3 class="text-warning">ACTIVE EMPLOYEE</h3>
+		<fmt:bundle basename="com.payroll.bundle.Label" prefix="nav.">
+
+			<h3 class="text-warning">ACTIVE EMPLOYEE</h3>
 		&nbsp;&nbsp;
 
 
 		<div class="gridtable">
-			<table>
-			<thead class="bg-primary" >
+				<table>
+
+					<thead class="bg-primary">
 
 
-				<tr >
-					<td>EMPLOYEE ID</td>
-					<td>EMPLOYEE NAME</td>
-					<td>DATE OF BIRTH</td>
-					<td>DATE OF JOINING</td>
-					<td>ADDRESS</td>
-					<td>CITY</td>
-					<td>PINCODE</td>
-					<td>MOBILE NUMBER</td>
-					<td>STATE</td>
-					<td>EMAIL ID</td>
-					<td>PAN NUMBER</td>
-					<td>DEPARTMENT NAME</td>
-					<td>GRADE NAME</td>
-					<td>DELETE</td>
-					<td>EDIT</td>
+						<tr>
+							<td>EMPLOYEE ID</td>
+							<td>EMPLOYEE NAME</td>
+							<td>DATE OF BIRTH</td>
+							<td>DATE OF JOINING</td>
+							<td><fmt:message key="Address" /></td>
+							<td><fmt:message key="City" /></td>
+							<td><fmt:message key="Pincode" /></td>
+							<td>MOBILE NUMBER</td>
+							<td><fmt:message key="State" /></td>
+							<td>EMAIL ID</td>
+							<td>PAN NUMBER</td>
+							<td>DEPARTMENT NAME</td>
+							<td>GRADE NAME</td>
+							<td><fmt:message key="Delete" /></td>
+							<td><fmt:message key="Edit" /></td>
 
-				</tr>
-</thead>
-				<tr>
+						</tr>
+					</thead>
 					<c:forEach items="${sessionScope.empList}" var="emp">
-						<td>${emp.empId}</td>
 
-						<c:set var="empName" value="${fn:toUpperCase(emp.empName)}" />
-						<td>${empName}</td>
+						<tr>
+							<td>${emp.empId}</td>
 
-						<fmt:parseDate value="${emp.dob}" pattern="yyyy-MM-dd"
-							var="dobDate" type="date" />
-						<td><fmt:formatDate pattern="dd-MM-yyyy" value="${dobDate}" />
-						</td>
+							<c:set var="empName" value="${fn:toUpperCase(emp.empName)}" />
+							<td>${empName}</td>
 
-						<fmt:parseDate value="${emp.doj}" pattern="yyyy-MM-dd"
-							var="dojDate" type="date" />
-						<td><fmt:formatDate pattern="dd-MM-yyyy" value="${dojDate}" />
-						</td>
-						<td>${emp.address}</td>
-						<td>${emp.city }</td>
-						<td>${emp.pincode }</td>
-						<td>${emp.mobileNo }</td>
-						<td>${emp.state }</td>
-						<td>${emp.mailId }</td>
-						<td>${emp.panNo }</td>
-						<td>${emp.dept.deptName}</td>
-						<td>${emp.grade.gradeName }</td>
-						<td><a href="empDel?empId=${emp.empId }">DELETE</a></td>
-						<td><a href="UpdEmp?empId=${emp.empId }">EDIT</a></td>
-				</tr>
+							<fmt:parseDate value="${emp.dob}" pattern="yyyy-MM-dd"
+								var="dobDate" type="date" />
+							<td><fmt:formatDate pattern="dd-MM-yyyy" value="${dobDate}" />
+							</td>
 
-				</c:forEach>
-			</table>
-		</div>
+							<fmt:parseDate value="${emp.doj}" pattern="yyyy-MM-dd"
+								var="dojDate" type="date" />
+							<td><fmt:formatDate pattern="dd-MM-yyyy" value="${dojDate}" />
+							</td>
+							<td>${emp.address}</td>
+							<td>${emp.city }</td>
+							<td>${emp.pincode }</td>
+							<td>${emp.mobileNo }</td>
+							<td>${emp.state }</td>
+							<td>${emp.mailId }</td>
+							<td>${emp.panNo }</td>
+							<td>${emp.dept.deptName}</td>
+							<td>${emp.grade.gradeName }</td>
+							<td><a href="empDel?empId=${emp.empId }"><fmt:message
+										key="Delete" /></a></td>
+							<td><a href="UpdEmp?empId=${emp.empId }"><fmt:message
+										key="Edit" /></a></td>
+						</tr>
 
-		<br>
+					</c:forEach>
+
+				</table>
+			</div>
+
+			<br>
 
 			<div>
-		
-			<button onclick="history.go(-1)" class="btn btn-primary">Go
-				Back</button>
 
-			<a href="adminControl.jsp"><button type="button"
-					class="btn btn-primary">
-					<strong>HOME</strong>
-				</button></a> <br>
+				<button onclick="history.go(-1)" class="btn btn-primary">Go
+					Back</button>
+
+				<a href="adminControl.jsp"><button type="button"
+						class="btn btn-primary">
+						<strong><fmt:message key="Home" /></strong>
+					</button></a> <br>
 			</div>
+		</fmt:bundle>
 	</div>
 	<br>
 </body>

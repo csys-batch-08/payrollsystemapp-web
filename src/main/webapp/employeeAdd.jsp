@@ -1,3 +1,4 @@
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -47,6 +48,7 @@
 			<c:remove var="grdDept" scope="session" />
 		</c:if>
 	</div>
+		<fmt:bundle basename = "com.payroll.bundle.Label" prefix="nav.">
 
 	<div class="empDiv">
 
@@ -79,20 +81,20 @@
 							required="required"><br> <br></td>
 					</tr>
 					<tr>
-						<td><label for="address">ADDRESS<span>*</span></label></td>
+						<td><label for="address"><fmt:message  key="Address"/><span>*</span></label></td>
 						<td><input type="text" pattern="^[#.0-9a-zA-Z\s,-]+$"
 							id="address" name="address" placeholder="Enter Address"
 							required="required"><br> <br></td>
 					</tr>
 					<tr>
-						<td><label for="city">CITY<span>*</span></label></td>
+						<td><label for="city"><fmt:message  key="City"/><span>*</span></label></td>
 						<td><input type="text" id="city" 
 							pattern="^([a-zA-Z\u0080-\u024F]+(?:. |-| |'))*[a-zA-Z\u0080-\u024F]*$"
 							name="city" placeholder="Enter city"
 							required="required"><br> <br></td>
 					</tr>
 					<tr>
-						<td><label for="pincode">PINCODE<span>*</span></label></td>
+						<td><label for="pincode"><fmt:message  key="Pincode"/><span>*</span></label></td>
 						<td><input type="number" maxlength="6" id="pincode"
 							pattern="([1-9]{1}[0-9]{5}|[1-9]{1}[0-9]{3}\\s[0-9]{3})"
 							name="pincode" placeholder="pincode" required="required"><br>
@@ -107,7 +109,7 @@
 							<br></td>
 					</tr>
 					<tr>
-						<td><label for="state">STATE<span>*</span></label></td>
+						<td><label for="state"><fmt:message  key="State"/><span>*</span></label></td>
 						<td><input type="text"
 							pattern="[a - zA - Z] + |[a - zA - Z] + \\s[a - zA - Z] + )"
 							id="state" name="state" placeholder="Enter State"
@@ -149,19 +151,22 @@
 
 
 			<div>
-				<button type="submit" class="btn btn-primary">Submit</button>
+				<button type="submit" class="btn btn-primary"><fmt:message  key="Submit"/></button>
 
-				<input type="reset" id="" class="btn btn-primary">
+				<input type="reset"  class="btn btn-primary">
 				</div>
+				
 		</form>
 		<div>
 		<a href="adminControl.jsp"><button type="button"
 				class="btn btn-primary">
-				<strong>HOME</strong>
+				<strong><fmt:message  key="Home"/></strong>
 			</button></a> <input type="button" value="Go back!" onclick="history.go(-1)"
 			class="btn btn-primary"> <br> <br>
 		</div>
 	</div>
+			</fmt:bundle>
+	
 	<script>
 		today();
 		function today() {

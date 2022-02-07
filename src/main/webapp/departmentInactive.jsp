@@ -41,16 +41,17 @@
 		</tr>
 		</thead>
 
+			<c:forEach items="${sessionScope.inactiveDeptList}" var="depart">
 
 			<tr>
-			<c:forEach items="${sessionScope.inactiveDeptList}" var="depart">
 				<td>${depart.deptId }</td>
 
 				<td>${fn:toUpperCase(depart.deptName)}</td>
 
-				<td><a href="deptStatus?statusId="${depart.deptId}">ACTIVE</a></td>
-				</c:forEach>
+				<td><a href="deptStatus?statusId=${depart.deptId}">ACTIVE </a></td>
+				
 			</tr>
+			</c:forEach>
 		
 	</table>
 	<div>

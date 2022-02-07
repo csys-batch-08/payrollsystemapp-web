@@ -39,7 +39,7 @@
 				placeholder="enter department name"><br> <br> 
 				<input
 				type="submit" class="btn btn-primary"> 
-				<input type="reset"	id="" class="btn btn-primary"> 
+				<input type="reset"	 class="btn btn-primary"> 
 				<a href="adminControl.jsp">
 				<button
 					type="button" class="btn btn-primary"><fmt:message  key="Home"/></button></a> <br>
