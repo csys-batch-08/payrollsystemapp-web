@@ -53,7 +53,7 @@
 				<option value="yes">Yes</option>
 				<option value="no">No</option>
 
-			</select> <br> <br> <input type="reset" name="rest"  aria-labelledby="rest" class="btn btn-primary">
+			</select> <br> <br> <input type="reset" name="firstname" aria-label="firstname" class="btn btn-primary">
 			<button type="submit" class="btn btn-primary">Submit</button>
 			</div>
 	</form>
