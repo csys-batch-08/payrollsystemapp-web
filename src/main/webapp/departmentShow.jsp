@@ -1,6 +1,7 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+	<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <%@page import="com.payroll.daoimpl.DepartmentsDaoImpl"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -38,7 +39,8 @@
 			<button type="submit" class="btn btn-primary">&#128269;</button>
 		</form>
 	</div>
-	<h3 class="text-primary"><label>DEPARTMENT</label></h3>
+	<fmt:bundle basename = "com.payroll.bundle.Label" prefix="nav.">
+	<h3 class="text-primary"><fmt:message  key="Department"/></h3>
 
 	&nbsp;&nbsp;
 
@@ -51,8 +53,8 @@
 			<td>DEPARTMENT ID</td>
 			<td>DEPARTMENT NAME</td>
 
-			<td><label>DELETE</label></td>
-			<td><label>EDIT</label></td>
+			<td><fmt:message  key="Delete"/></td>
+			<td><fmt:message  key="Edit"/></td>
 			
 		</tr>
 	
@@ -65,8 +67,8 @@
 
 				<td>${fn:toUpperCase(depart.deptName)}</td>
 
-				<td><a href="departDel?deptId=${depart.deptId }">DELETE</a></td>
-				<td><a href="EditDept?departId=${depart.deptId }">EDIT</a></td>
+				<td><a href="departDel?deptId=${depart.deptId }"><fmt:message  key="Delete"/></a></td>
+				<td><a href="EditDept?departId=${depart.deptId }"><fmt:message  key="Edit"/></a></td>
 
 			</tr>
 		</c:forEach>
@@ -78,6 +80,6 @@
 			</button></a> <input type="button" value="Go back!" onclick="history.go(-1)"
 			class="btn btn-primary">
 	</div>
-
+</fmt:bundle>
 </body>
 </html>

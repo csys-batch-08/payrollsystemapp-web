@@ -2,18 +2,13 @@ package com.payroll.bundle;
 
 import java.util.ListResourceBundle;
 
-public class Label  extends ListResourceBundle{
+public class InputLabel  extends ListResourceBundle{
 
 	@Override
 	protected Object[][] getContents() {
 		return contents;
 	}
-	
 	static final Object[][] contents= {
-			{"nav.Home","HOME"},
-			{"nav.EDIT","EDIT"},
-			{"nav.Delete","DELETE"},
-			{"nav.Submit","SUBMIT"},
 			{"nav.Department","DEPARTMENT"},
 			{"nav.Address","ADDRESS"},
 			{"nav.City","CITY"},

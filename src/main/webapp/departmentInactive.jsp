@@ -1,6 +1,7 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <%@page import="com.payroll.daoimpl.DepartmentsDaoImpl"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -25,14 +26,17 @@
 
 	&nbsp;&nbsp;
 
-	<table>
+	<table >
 	
 <thead>
 		<tr class="bg-primary">
 		<th></th>
 			<td>DEPARTMENT ID</td>
 			<td>DEPARTMENT NAME</td>
-			<td>STATUS</td>
+			<fmt:bundle basename = "com.payroll.bundle.InputLabel" prefix="nav.">
+			
+			<td><fmt:message  key="Status"/></td>
+			</fmt:bundle>
 			
 		</tr>
 		</thead>

@@ -2,6 +2,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+	
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,14 +30,19 @@
 		</c:if>
 	</div>
 	<h2>Search Department</h2>
+					<fmt:bundle basename = "com.payroll.bundle.Label" prefix="nav.">
+	
 	<table >
+	
 		<thead>
 		
 			<tr class="bg-primary">
 			
 				<td>DEPARTMENT ID</td>
 				<td>DEPARTMENT NAME</td>
-				<td>STATUS</td>
+				
+				<td><fmt:message  key="Status"/></td>
+				
 
 			</tr>
 		</thead>
@@ -46,14 +53,17 @@
 				<td>${searchdept.status }</td>
 
 			</tr>
+			
 		</c:forEach>
 	</table>
 
 
 	<div>
 		<a href="adminControl.jsp"><button type="button"
-				class="btn btn-primary">HOME</button></a> <input type="button"
+				class="btn btn-primary"><fmt:message  key="Home"/></button></a> <input type="button"
 			value="Go back!" onclick="history.go(-1)" class="btn btn-primary">
+			
 	</div>
+	</fmt:bundle>
 </body>
 </html>
