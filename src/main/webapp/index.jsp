@@ -48,14 +48,14 @@
 					<form class="p-3 mt-3" action="login" method="post">
 						<div class="form-field d-flex align-items-center">
 							<span class="far fa-user"></span>
-							 <input type="email" aria-labelledby="email"
-								name="email" id="" required="required" id="userName"
+							 <input type="email" aria-labelledby="userName"
+								name="email"  required="required" id="userName"
 								pattern="[a-z][a-z0-9]+[@][a-z]+[.][a-z]+" 
 								placeholder="Email Id" autofocus="autofocus">
 						</div>
 						<div class="form-field d-flex align-items-center">
 							<span class="fas fa-key"></span> 
-							<input type="password"  aria-labelledby="pass"
+							<input type="password"  aria-labelledby="pwd"
 								name="pass" id="pwd"  required="required"
 								onkeyup="checkpattern()" 
 								pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,15}$"
