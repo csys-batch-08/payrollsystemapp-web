@@ -60,7 +60,8 @@ public class LeaveDaoImpl {
 			while (resultSet.next()) {
 				Employee employ = employeeDaoImpl.findEmployee(resultSet.getInt(EMPID));
 
-				Leave leave = new Leave(resultSet.getInt(LEAVEID), employ, resultSet.getDate(LEAVEDATE), resultSet.getString(REASON));
+				Leave leave = new Leave(resultSet.getInt(LEAVEID), employ, resultSet.getDate(LEAVEDATE),
+						resultSet.getString(REASON));
 				leaveList.add(leave);
 
 			}
@@ -108,7 +109,8 @@ public class LeaveDaoImpl {
 
 	public Leave findLeave(Date leaveDt, int empId) {
 
-		String qry = "select LEAVE_ID,EMP_ID,LEAVE_DATE,REASON from leave_details where LEAVE_DATE = ? and emp_id =  ?";
+		String qry = "select LEAVE_ID,EMP_ID,LEAVE_DATE,REASON from leave_details "
+				+ "where LEAVE_DATE = ? and emp_id =  ?";
 		ConnectionUtilImpl connectionUtilImpl = new ConnectionUtilImpl();
 		Connection connection = connectionUtilImpl.dbConnect();
 		ResultSet resultSet = null;
@@ -164,23 +166,25 @@ public class LeaveDaoImpl {
 
 	public Leave findLeave(int leaveId) {
 
-		String qry = "select LEAVE_ID,EMP_ID,LEAVE_DATE,REASON from Leave_details where leave_id = " + leaveId;
+		String qry = "select LEAVE_ID,EMP_ID,LEAVE_DATE,REASON from Leave_details where leave_id = ?" ;
 		ConnectionUtilImpl connectionUtilImpl = new ConnectionUtilImpl();
 		Connection connection = connectionUtilImpl.dbConnect();
 		EmployeeDaoImpl employeeDaoImpl = new EmployeeDaoImpl();
-		Statement statement = null;
+		PreparedStatement preparedStatement=null;
 		Leave leave = null;
 		try {
-			statement = connection.createStatement();
-			ResultSet resultSet = statement.executeQuery(qry);
+			preparedStatement = connection.prepareStatement(qry);
+			preparedStatement.setInt(1, leaveId);
+			ResultSet resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
 				Employee emp = employeeDaoImpl.findEmployee(resultSet.getInt(EMPID));
-				leave = new Leave(resultSet.getInt(LEAVEID), emp, resultSet.getDate(LEAVEDATE), resultSet.getString(REASON));
+				leave = new Leave(resultSet.getInt(LEAVEID), emp, resultSet.getDate(LEAVEDATE),
+						resultSet.getString(REASON));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			ConnectionUtilImpl.closeStatement(statement, connection);
+			ConnectionUtilImpl.closePreparedStatement(preparedStatement, connection);
 		}
 
 		return leave;
@@ -232,7 +236,8 @@ public class LeaveDaoImpl {
 	public List<Leave> searchLeave(Date fromDt, Date toDate) {
 		ConnectionUtilImpl connectionUtilImpl = new ConnectionUtilImpl();
 		Connection connection = connectionUtilImpl.dbConnect();
-		String searchQuery = "select LEAVE_ID,EMP_ID,LEAVE_DATE,REASON from leave_details where LEAVE_DATE  between ? and ?";
+		String searchQuery = "select LEAVE_ID,EMP_ID,LEAVE_DATE,REASON from leave_details "
+				+ "where LEAVE_DATE  between ? and ?";
 		List<Leave> leaveList = new ArrayList();
 		ResultSet resultSet = null;
 		PreparedStatement preparedStatement = null;
@@ -244,7 +249,8 @@ public class LeaveDaoImpl {
 			while (resultSet.next()) {
 				EmployeeDaoImpl employDao = new EmployeeDaoImpl();
 				Employee employ = employDao.findEmployee(resultSet.getInt(EMPID));
-				Leave leave = new Leave(resultSet.getInt(LEAVEID), employ, resultSet.getDate(LEAVEDATE), resultSet.getString(REASON));
+				Leave leave = new Leave(resultSet.getInt(LEAVEID), employ, resultSet.getDate(LEAVEDATE), 
+						resultSet.getString(REASON));
 				leaveList.add(leave);
 
 			}

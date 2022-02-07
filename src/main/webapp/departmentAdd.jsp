@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -31,7 +32,7 @@
 	<div class="formSty">
 		<form action="deptAdd" method="post">
 
-
+<fmt:bundle basename = "com.payroll.bundle.Label" prefix="nav.">
 			<label for="deptName">DEPARTMENT NAME</label> 
 			<input type="text"
 				id="deptName" name="dptname" autofocus="autofocus"
@@ -41,7 +42,8 @@
 				<input type="reset"	id="" class="btn btn-primary"> 
 				<a href="adminControl.jsp">
 				<button
-					type="button" class="btn btn-primary">HOME</button></a> <br>
+					type="button" class="btn btn-primary"><fmt:message  key="Home"/></button></a> <br>
+					   </fmt:bundle>
 		</form>
 
 

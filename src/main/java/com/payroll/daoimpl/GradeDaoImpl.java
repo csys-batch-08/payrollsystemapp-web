@@ -21,7 +21,8 @@ public class GradeDaoImpl {
 	static final String PERDAYSALARY="perDaySalary";
 	public boolean insertGrade(Grade grade) 
 	{	boolean result=false;
-		String insertQuery="insert into Grades (grade_name,grade_basic,grade_bonus,grade_pf,grade_pt,DEPT_ID) values (?,?,?,?,?,?)";
+		String insertQuery="insert into Grades (grade_name,grade_basic,grade_bonus,grade_pf,grade_pt,"
+				+ "DEPT_ID) values (?,?,?,?,?,?)";
 		ConnectionUtilImpl connectionUtilImpl=new ConnectionUtilImpl();
 		Connection connection=connectionUtilImpl.dbConnect();
 		PreparedStatement preparedStatement=null;
@@ -81,7 +82,8 @@ public class GradeDaoImpl {
 	
 	public boolean updateGrade(Grade grade)
 	{
-		String updateQuery = "update  grades set grade_basic=?,grade_bonus=?,grade_pf=?,grade_pt=? where GRADE_ID=?";
+		String updateQuery = "update  grades set grade_basic=?,grade_bonus=?,grade_pf=?,"
+				+ "grade_pt=? where GRADE_ID=?";
 		ConnectionUtilImpl connectionUtilImpl=new ConnectionUtilImpl();
 		Connection connection=connectionUtilImpl.dbConnect();
 		boolean result=false;
@@ -131,7 +133,8 @@ public class GradeDaoImpl {
 	{
 		List<Grade> gradeList=new ArrayList();
 		
-		String showQuery="select GRADE_ID,GRADE_NAME,GRADE_BASIC,GRADE_BONUS,GRADE_PF,GRADE_PT,DEPT_ID from grades";
+		String showQuery="select GRADE_ID,GRADE_NAME,GRADE_BASIC,GRADE_BONUS,GRADE_PF,"
+				+ "GRADE_PT,DEPT_ID from grades";
 		ConnectionUtilImpl connectionUtilImpl=new ConnectionUtilImpl();
 		Connection connection=connectionUtilImpl.dbConnect();
 		Statement statement=null;
@@ -142,7 +145,9 @@ public class GradeDaoImpl {
 			while(resultSet.next())
 			{	DepartmentsDaoImpl departmentDao=new DepartmentsDaoImpl();
 				Departments department=departmentDao.findDepartment(resultSet.getInt(DEPTID));
-				Grade grade=new Grade( resultSet.getInt(GRADEID),department,resultSet.getString(GRADENAME), resultSet.getLong(GRADEBASIC), resultSet.getLong(GRADEBONUS),resultSet.getLong(GRADEPF),resultSet.getLong(GRADEPT));
+				Grade grade=new Grade( resultSet.getInt(GRADEID),department,resultSet.getString(GRADENAME), 
+						resultSet.getLong(GRADEBASIC), resultSet.getLong(GRADEBONUS),resultSet.getLong(GRADEPF),
+						resultSet.getLong(GRADEPT));
 				gradeList.add(grade);
 			}
 			
@@ -192,7 +197,8 @@ public class GradeDaoImpl {
 	
 	public  Grade findGrade(int gradeId) 
 	{	
-		String qry="select GRADE_ID,GRADE_NAME,GRADE_BASIC,GRADE_BONUS,GRADE_PF,GRADE_PT,DEPT_ID  from grades where GRADE_ID=?";
+		String qry="select GRADE_ID,GRADE_NAME,GRADE_BASIC,GRADE_BONUS,GRADE_PF,"
+				+ "GRADE_PT,DEPT_ID  from grades where GRADE_ID=?";
 		ConnectionUtilImpl connectionUtilImpl=new ConnectionUtilImpl();
 		Connection connection=connectionUtilImpl.dbConnect();
 		Grade grd=null;
@@ -206,7 +212,9 @@ public class GradeDaoImpl {
 				DepartmentsDaoImpl departmentDao=new DepartmentsDaoImpl();
 
 				Departments depart=departmentDao.findDepartment(resultSet.getInt(DEPTID));
-				 grd=new Grade(resultSet.getInt(GRADEID),depart,resultSet.getString(GRADENAME),resultSet.getLong(GRADEBASIC),resultSet.getLong(GRADEBONUS),resultSet.getLong(GRADEPF),resultSet.getLong(GRADEPT));
+				 grd=new Grade(resultSet.getInt(GRADEID),depart,resultSet.getString(GRADENAME),
+						 resultSet.getLong(GRADEBASIC),resultSet.getLong(GRADEBONUS),
+						 resultSet.getLong(GRADEPF),resultSet.getLong(GRADEPT));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -220,7 +228,8 @@ public class GradeDaoImpl {
 	
 	public  long perDaySalary(String gradeName,int deptId) 
 	{
-		String query="select (grade_basic/30) as perDaySalary from grades where grade_name = ? and DEPT_ID=?";
+		String query="select (grade_basic/30) as perDaySalary from grades where grade_name = ?"
+				+ " and DEPT_ID=?";
 		long perDaySalary=0;
 		ResultSet resultSet=null;
 		ConnectionUtilImpl connectionUtilImpl=new ConnectionUtilImpl();
@@ -361,7 +370,8 @@ public class GradeDaoImpl {
 	{
 		ConnectionUtilImpl connectionUtilImpl=new ConnectionUtilImpl();
 		Connection connection=connectionUtilImpl.dbConnect();
-		String query="select GRADE_ID,GRADE_NAME,GRADE_BASIC,GRADE_BONUS,GRADE_PF,GRADE_PT,DEPT_ID  from grades where upper(GRADE_NAME) like ?";
+		String query="select GRADE_ID,GRADE_NAME,GRADE_BASIC,GRADE_BONUS,GRADE_PF,"
+				+ "GRADE_PT,DEPT_ID  from grades where upper(GRADE_NAME) like ?";
 		ResultSet resultSet=null;
 		List<Grade> gradeList=new ArrayList();
 		PreparedStatement preparedStatement=null;
@@ -374,7 +384,9 @@ public class GradeDaoImpl {
 			while(resultSet.next()) {
 				DepartmentsDaoImpl departmentDao=new DepartmentsDaoImpl();
 				Departments depart=departmentDao.findDepartment(resultSet.getInt(DEPTID));
-				Grade grade=new Grade(resultSet.getInt(GRADEID),depart,resultSet.getString(GRADENAME),resultSet.getLong(GRADEBASIC),resultSet.getLong(GRADEBONUS),resultSet.getLong(GRADEPF),resultSet.getLong(GRADEPT));
+				Grade grade=new Grade(resultSet.getInt(GRADEID),depart,resultSet.getString(GRADENAME),
+						resultSet.getLong(GRADEBASIC),resultSet.getLong(GRADEBONUS),
+						resultSet.getLong(GRADEPF),resultSet.getLong(GRADEPT));
 				gradeList.add(grade);
 			}
 			
@@ -395,7 +407,8 @@ public class GradeDaoImpl {
 	public  Grade findGrade(String gradeName,int deptId) 
 	{
 		
-		String qry="select GRADE_ID,GRADE_NAME,GRADE_BASIC,GRADE_BONUS,GRADE_PF,GRADE_PT,DEPT_ID  from grades where grade_name = ?  and DEPT_ID=?";
+		String qry="select GRADE_ID,GRADE_NAME,GRADE_BASIC,GRADE_BONUS,GRADE_PF,GRADE_PT,"
+				+ "DEPT_ID  from grades where grade_name = ?  and DEPT_ID=?";
 		ConnectionUtilImpl connectionUtilImpl=new ConnectionUtilImpl();
 		Connection connection=connectionUtilImpl.dbConnect();
 		Grade grd=null;
@@ -409,7 +422,9 @@ public class GradeDaoImpl {
 			while(resultSet.next()) {
 				DepartmentsDaoImpl departDao= new DepartmentsDaoImpl();
 				Departments depart=departDao.findDepartment(resultSet.getInt(DEPTID));
-				 grd=new Grade(resultSet.getInt(GRADEID),depart,resultSet.getString(GRADENAME),resultSet.getLong(GRADEBASIC),resultSet.getLong(GRADEBONUS),resultSet.getLong(GRADEPF),resultSet.getLong(GRADEPT));
+				 grd=new Grade(resultSet.getInt(GRADEID),depart,resultSet.getString(GRADENAME),
+						 resultSet.getLong(GRADEBASIC),resultSet.getLong(GRADEBONUS),resultSet.getLong(GRADEPF),
+						 resultSet.getLong(GRADEPT));
 			}
 			
 		} catch (SQLException e) {

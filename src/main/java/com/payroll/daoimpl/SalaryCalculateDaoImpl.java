@@ -29,7 +29,8 @@ public class SalaryCalculateDaoImpl
 	static final String INACTIVE="inactive_emp";
 	static final String TOTAL="total";
 
-	public boolean insertSalary(Employee employ, Grade grade, Departments department, int noOfLeave, long grossSalary,
+	public boolean insertSalary(Employee employ, Grade grade, Departments department, 
+			int noOfLeave, long grossSalary,
 			long totalSalary) {
 		boolean result = false;
 		EmployeeDaoImpl employeeDaoImpl = new EmployeeDaoImpl();
@@ -39,7 +40,8 @@ public class SalaryCalculateDaoImpl
 		GradeDaoImpl gradeDaoImpl = new GradeDaoImpl();
 		int gradeID = gradeDaoImpl.findGradeID(grade);
 
-		String query = "insert into salarys (EMP_ID,DEPT_ID,TOTAL_LEAVE,GRADE_ID,GROSS_SALARY,TOTAL_SALARY,nextpay_date) values(?,?,?,?,?,?,sysdate+30)";
+		String query = "insert into salarys (EMP_ID,DEPT_ID,TOTAL_LEAVE,GRADE_ID,GROSS_SALARY,TOTAL_SALARY,"
+				+ "nextpay_date) values(?,?,?,?,?,?,sysdate+30)";
 		ConnectionUtilImpl connectionUtilImpl = new ConnectionUtilImpl();
 		Connection connection = connectionUtilImpl.dbConnect();
 		PreparedStatement preparedStatement = null;
@@ -64,9 +66,10 @@ public class SalaryCalculateDaoImpl
 	}
 
 	public List<EmpSalary> showEmployee() {
-		List<EmpSalary> salaryList = new ArrayList<EmpSalary>();
+		List<EmpSalary> salaryList = new ArrayList();
 
-		String showQuery = "select TRANS_ID,EMP_ID,DEPT_ID,TOTAL_LEAVE,GRADE_ID,PAID_DATE,GROSS_SALARY,TOTAL_SALARY,NEXTPAY_DATE from salarys ";
+		String showQuery = "select TRANS_ID,EMP_ID,DEPT_ID,TOTAL_LEAVE,GRADE_ID,PAID_DATE,"
+				+ "GROSS_SALARY,TOTAL_SALARY,NEXTPAY_DATE from salarys ";
 		ConnectionUtilImpl connection = new ConnectionUtilImpl();
 		Connection con = connection.dbConnect();
 		EmployeeDaoImpl employeeDaoImpl = new EmployeeDaoImpl();
@@ -83,8 +86,10 @@ public class SalaryCalculateDaoImpl
 				Departments department = departmentDao.findDepartment(resultSet.getInt(DEPTID));
 				Grade grade = gradeDaoImpl.findGrade(resultSet.getInt(GRADEID));
 
-				EmpSalary empSalary = new EmpSalary(employ, department, resultSet.getInt(TRANSID), resultSet.getInt(TOTALLEAVE), grade,
-						resultSet.getLong(GROSSSALARY), resultSet.getLong(TOTALSALARY), resultSet.getDate(PAIDDATE));
+				EmpSalary empSalary = new EmpSalary(employ, department, resultSet.getInt(TRANSID),
+						resultSet.getInt(TOTALLEAVE), grade,
+						resultSet.getLong(GROSSSALARY), resultSet.getLong(TOTALSALARY),
+						resultSet.getDate(PAIDDATE));
 				salaryList.add(empSalary);
 			}
 
@@ -98,7 +103,8 @@ public class SalaryCalculateDaoImpl
 	}
 
 	public EmpSalary salaryDetail(int empId) {
-		String query = "select TRANS_ID,EMP_ID,DEPT_ID,TOTAL_LEAVE,GRADE_ID,PAID_DATE,GROSS_SALARY,TOTAL_SALARY,NEXTPAY_DATE  from salarys where EMP_ID=?";
+		String query = "select TRANS_ID,EMP_ID,DEPT_ID,TOTAL_LEAVE,GRADE_ID,PAID_DATE,GROSS_SALARY,"
+				+ "TOTAL_SALARY,NEXTPAY_DATE  from salarys where EMP_ID=?";
 		ConnectionUtilImpl connectionUtilImpl = new ConnectionUtilImpl();
 		Connection connection = connectionUtilImpl.dbConnect();
 		EmpSalary salary = null;
@@ -117,7 +123,8 @@ public class SalaryCalculateDaoImpl
 				Departments department = departDao.findDepartment(resultSet.getInt(DEPTID));
 
 				salary = new EmpSalary(emp, department, resultSet.getInt(TOTALLEAVE), grade,
-						new java.sql.Date(resultSet.getDate(PAIDDATE).getTime()), resultSet.getLong(GROSSSALARY), resultSet.getLong(TOTALSALARY));
+						new java.sql.Date(resultSet.getDate(PAIDDATE).getTime()), resultSet.getLong(GROSSSALARY),
+						resultSet.getLong(TOTALSALARY));
 				return salary;
 			}
 		} catch (SQLException e) {

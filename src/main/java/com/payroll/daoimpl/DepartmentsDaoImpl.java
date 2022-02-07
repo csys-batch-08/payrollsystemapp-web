@@ -123,7 +123,8 @@ public class DepartmentsDaoImpl implements DepartmentDao {
 			 statement = connection.createStatement();
 			resultSet = statement.executeQuery(showQuery);
 			while (resultSet.next()) {
-				Departments department = new Departments(resultSet.getInt(DEPTID), resultSet.getString(DEPTNAME));
+				Departments department = new Departments(resultSet.getInt(DEPTID), 
+						resultSet.getString(DEPTNAME));
 				departmentList.add(department);
 			}
 
@@ -148,7 +149,8 @@ public class DepartmentsDaoImpl implements DepartmentDao {
 			statement = connection.createStatement();
 			resultSet = statement.executeQuery(showQuery);
 			while (resultSet.next()) {
-				Departments department = new Departments(resultSet.getInt(DEPTID), resultSet.getString(DEPTNAME));
+				Departments department = new Departments(resultSet.getInt(DEPTID), 
+						resultSet.getString(DEPTNAME));
 				departmentList.add(department);
 			}
 
@@ -228,7 +230,8 @@ public class DepartmentsDaoImpl implements DepartmentDao {
 			resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
 
-				Departments department = new Departments(resultSet.getInt(DEPTID), resultSet.getString(DEPTNAME),resultSet.getString(STATUS));
+				Departments department = new Departments(resultSet.getInt(DEPTID), 
+						resultSet.getString(DEPTNAME),resultSet.getString(STATUS));
 				departmentList.add(department);
 			}
 

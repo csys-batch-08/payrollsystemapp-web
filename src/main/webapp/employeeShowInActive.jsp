@@ -9,7 +9,7 @@
 <html lang="en">
 <head>
 <meta charset="ISO-8859-1">
-<title>payroll</title>
+<title>show inactive employee</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet">
