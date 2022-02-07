@@ -71,7 +71,7 @@
 				</ul>
 			</div>
 						<div class="checkBox">
-							<input type="checkbox" onkeypress="myFunction()"  name="check"  aria-labelledby="check"> <label
+							<input type="checkbox" onkeypress="myFunction()"  name="check"  > <label
 								class="showPassword">Show Password</label>
 						</div>
 						
