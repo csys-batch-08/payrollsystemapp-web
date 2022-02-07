@@ -27,7 +27,7 @@
 <input type="text" name="reason" id="leaveReason" placeholder="enter leave reason"><br><br>
 <div>
 <input type="submit" class="btn btn-primary">
-<input type="reset"  class="btn btn-primary" name="rest"  aria-labelledby="rest">
+<input type="reset" name="reset" class="btn btn-primary" aria-label="firstname" >
 </div>
 </form>
 <div>

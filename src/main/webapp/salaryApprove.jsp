@@ -28,7 +28,7 @@
 
 				<label for="gradeName">EMPLOYEE ID</label>
 
-				<input type="number" id="" name="empId" value="${ApproveEmp.empId }">
+				<input type="number" id="gradeName" name="empId" value="${ApproveEmp.empId }">
 				<br>
 				<br>
 				<label for="gradeName">GRADE NAME</label>

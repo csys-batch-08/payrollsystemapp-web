@@ -71,8 +71,8 @@
 				</ul>
 			</div>
 						<div class="checkBox">
-							<input type="checkbox" onkeypress="myFunction()"  name="check"  > <label
-								class="showPassword">Show Password</label>
+							<input type="checkbox" onkeypress="myFunction()"  name="check"  aria-labelledby="pwdShow"> <label
+								class="showPassword" for="pwdShow">Show Password</label>
 						</div>
 						
 						<button class="btn mt-3">Login</button>
