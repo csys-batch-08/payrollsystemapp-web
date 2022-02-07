@@ -44,7 +44,12 @@ public class EmailValidateController extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		try {
+			doGet(request, response);
+		}
+		catch(Exception exception) {
+			exception.printStackTrace();
+		}
 	}
 
 }
