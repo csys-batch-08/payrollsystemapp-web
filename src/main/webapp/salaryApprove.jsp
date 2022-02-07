@@ -44,7 +44,7 @@
 
 			</c:forEach>
 			<label for="taxDeducte">PROFESSIONAL TAX</label> <select name="tax"
-				id="pf">
+				id="taxDeducte">
 				<option value="yes">Yes</option>
 				<option value="no">No</option>
 
@@ -53,7 +53,7 @@
 				<option value="yes">Yes</option>
 				<option value="no">No</option>
 
-			</select> <br> <br> <input type="reset"  id="" class="btn btn-primary">
+			</select> <br> <br> <input type="reset" name="rest"  aria-labelledby="rest" class="btn btn-primary">
 			<button type="submit" class="btn btn-primary">Submit</button>
 			</div>
 	</form>

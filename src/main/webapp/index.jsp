@@ -51,7 +51,7 @@
 							 <input type="email" aria-labelledby="email"
 								name="email" required="required" id="userName"
 								pattern="[a-z][a-z0-9]+[@][a-z]+[.][a-z]+" 
-								placeholder="Email Id" autofocus="autofocus"/>
+								placeholder="Email Id" autofocus="autofocus">
 						</div>
 						<div class="form-field d-flex align-items-center">
 							<span class="fas fa-key"></span> 
@@ -59,7 +59,7 @@
 								name="pass" id="pwd"  required="required"
 								onkeyup="checkpattern()" 
 								pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,15}$"
-								placeholder="*********" />
+								placeholder="*********" >
 						</div>
 						<div>
 				<ul>
@@ -71,7 +71,7 @@
 				</ul>
 			</div>
 						<div class="checkBox">
-							<input type="checkbox" onkeypress="myFunction()"  name="check"  aria-labelledby="check"/> <label
+							<input type="checkbox" onkeypress="myFunction()"  name="check"  aria-labelledby="check"> <label
 								class="showPassword">Show Password</label>
 						</div>
 						
