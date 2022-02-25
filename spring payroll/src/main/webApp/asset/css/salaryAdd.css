@@ -1,0 +1,23 @@
+@charset "ISO-8859-1";
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	background-image:
+		url("../images/carlos-muza-hpjSkU2UYSU-unsplash.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+
+.formSty {
+	padding: 0px 20px;
+	border-radius: 25px;
+	width: 30%;
+	background-color: #d8dfe9;
+	margin-top: 10%;
+	margin-left: 737px;
+}
+
+label {
+	width: 150px;
+	display: inline-block;
+}
